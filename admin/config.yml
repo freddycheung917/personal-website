@@ -1,0 +1,124 @@
+# Decap CMS 設定 — Freddy's Home
+# 登入後台：https://YOUR-DOMAIN.com/admin（用 GitHub 帳號登入）
+# 注意：base_url 要換成你真正嘅 domain；repo 已經預設為
+# freddycheung917/personal-website，如果你喺 GitHub 開咗唔同名嘅 repo，
+# 記得改呢度。
+
+backend:
+  name: github
+  repo: freddycheung917/personal-website
+  branch: main
+  base_url: https://YOUR-DOMAIN.com
+  auth_endpoint: /api/auth
+
+publish_mode: editorial_workflow
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: notices
+    label: 告示板
+    label_singular: 告示
+    format: json
+    files:
+      - label: 告示板內容
+        name: notices
+        file: content/notices.json
+        fields:
+          - label: 告示列表
+            name: notices
+            widget: list
+            fields:
+              - {label: 標題, name: title, widget: string}
+              - {label: 日期, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false}
+              - {label: 位置標籤（例如：客廳 · 見證分享）, name: where, widget: string}
+              - label: 位置標籤顏色
+                name: where_color
+                widget: select
+                options:
+                  - {label: 橙色, value: "var(--orange2)"}
+                  - {label: 螢光黃, value: "var(--yellow)"}
+              - {label: 內文, name: body, widget: text}
+              - {label: 狀態貼紙文字（例如：新上架）, name: chip, widget: string}
+              - label: 狀態貼紙樣式
+                name: chip_style
+                widget: select
+                options:
+                  - {label: 橙色實底（new）, value: new}
+                  - {label: 螢光黃實底（live）, value: live}
+                  - {label: 螢光黃邊框（soon）, value: soon}
+
+  - name: rooms
+    label: 房間
+    label_singular: 房間
+    format: json
+    files:
+      - label: 房間內容
+        name: rooms
+        file: content/rooms.json
+        fields:
+          - label: 房間列表
+            name: rooms
+            widget: list
+            fields:
+              - {label: 房間代號（唔好改，要同首頁道門對應）, name: key, widget: string}
+              - {label: 房間名稱, name: name, widget: string}
+              - {label: 英文名稱, name: en, widget: string}
+              - {label: 路徑顯示（例如：~/home/study）, name: path, widget: string}
+              - {label: 副標題, name: sub, widget: string}
+              - {label: 房間介紹, name: desc, widget: text}
+              - label: 主色
+                name: color
+                widget: select
+                options:
+                  - {label: 橙色, value: "var(--orange)"}
+                  - {label: 螢光黃, value: "var(--yellow)"}
+              - label: 底色
+                name: soft
+                widget: select
+                options:
+                  - {label: 橙色淡底, value: "var(--orange-soft)"}
+                  - {label: 螢光黃淡底, value: "var(--yellow-soft)"}
+              - {label: 房入面有咩, name: inside, widget: list, field: {label: 項目, name: item, widget: string}}
+              - {label: 日後會加, name: coming, widget: list, field: {label: 項目, name: item, widget: string}}
+
+  - name: articles
+    label: 書房文章
+    label_singular: 文章
+    format: json
+    files:
+      - label: 文章列表
+        name: articles
+        file: content/articles.json
+        fields:
+          - label: 文章列表
+            name: articles
+            widget: list
+            fields:
+              - {label: 標題, name: title, widget: string}
+              - {label: 日期, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false}
+              - {label: 簡介, name: summary, widget: text}
+              - {label: 連結（文章網址，冇就留空）, name: url, widget: string, required: false}
+
+  - name: site
+    label: 網站設定
+    label_singular: 網站設定
+    format: json
+    files:
+      - label: 首頁文字
+        name: site
+        file: content/site.json
+        fields:
+          - {label: Hero 英文標題（可用 <em> 包住要發光嘅字）, name: hero_en, widget: string}
+          - {label: Hero 主標題（可用 <br> 斷行，<span class="accent"> 包住要橙色嘅字）, name: hero_title, widget: string}
+          - {label: 歡迎文字（第一段，可用 <strong> 加粗）, name: lede_1, widget: text}
+          - {label: 歡迎文字（第二段）, name: lede_2, widget: text}
+          - {label: 屋主名稱, name: host_name, widget: string}
+          - {label: 屋主簡介, name: host_desc, widget: string}
+          - {label: 跑馬燈文字（可用 <b>◆</b> / <i>◆</i> 做分隔符號）, name: ticker, widget: text}
+          - {label: 經文牆標籤, name: verse_label, widget: string}
+          - {label: 經文（可用 <em> 包住要橙色嘅一句）, name: verse_text, widget: text}
+          - {label: 經文出處, name: verse_cite, widget: string}
+          - {label: 經文註解, name: verse_note, widget: text}
+          - {label: 頁尾說明, name: footer_note, widget: text}

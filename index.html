@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="data:," />
+<title>Freddy 嘅屋企 — Homepage 原型</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<nav class="topnav" aria-label="屋企導覽">
+  <div class="wrap">
+    <a class="home-link" href="#top"><i>&lt;/</i> FREDDY<b>_HOME</b></a>
+    <a href="#news">01_告示板</a>
+    <a href="#rooms">02_房間</a>
+    <a href="#verse">03_牆上一句</a>
+    <a href="#guestbook">04_留言簿</a>
+    <button class="lamp-btn" id="lampBtn" type="button" aria-pressed="false"><span class="lamp-dot" aria-hidden="true"></span><span id="lampLabel">啟動 BOOST MODE</span></button>
+  </div>
+</nav>
+<div class="hazard" aria-hidden="true"></div>
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="tickerTrack"><span>&nbsp;WELCOME // 入嚟坐 <b>◆</b> 見證分享《超過所求所想》 <i>◆</i> 《大衛的故事》互動網頁已上架 <b>◆</b> 《財務自由》大綱籌備中 <i>◆</i> EPHESIANS 3:20 — 超過所求所想 <b>◆</b> TORONTO, CA <i>◆</i></span><span>&nbsp;WELCOME // 入嚟坐 <b>◆</b> 見證分享《超過所求所想》 <i>◆</i> 《大衛的故事》互動網頁已上架 <b>◆</b> 《財務自由》大綱籌備中 <i>◆</i> EPHESIANS 3:20 — 超過所求所想 <b>◆</b> TORONTO, CA <i>◆</i></span></div></div>
+
+<main id="top">
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="sysbar"><span class="online">SYSTEM ONLINE · 門開咗</span><span class="coords">LOC: <b>TORONTO, CA</b> // HK → CA</span></div>
+      <h1><span class="en" id="heroEn">WELCOME TO <em>FREDDY'S</em> DIGITAL HOME</span><span id="heroTitle">入嚟坐，<br>呢度係 <span class="accent">Freddy</span> 嘅屋企。</span></h1>
+      <p class="lede" id="lede1">我係 Freddy，香港人，而家住喺加拿大。呢個網站唔係公司、唔係履歷表，只係一間屋 — 你可以喺<strong>客廳</strong>聽我講見證，去<strong>書房</strong>睇神學文章，或者去<strong>兒童房</strong>，陪小朋友一齊聽大衛嘅故事。</p>
+      <p class="lede" id="lede2">唔使趕，慢慢行。茶水自便，當自己屋企就得。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#rooms">進入間屋 →</a>
+        <a class="btn btn-ghost" href="#guestbook">// 留言簿打招呼</a>
+      </div>
+      <div class="host-card">
+        <div class="host-avatar" aria-hidden="true">F</div>
+        <div><strong><span>HOST // ADMIN</span><span id="hostName">屋主 · Freddy Cheung</span></strong><span class="desc" id="hostDesc">機構同工 · 「吾港。神學」版主 · 喺加拿大慢慢建立緊一個家</span></div>
+      </div>
+      <div class="sync" aria-hidden="true"><span class="sync-label">SYNC_RATE</span><div class="sync-track"><div class="sync-fill" id="syncFill"></div></div><strong id="syncVal">--.--%</strong></div>
+      <p class="clock-line">LOCAL_TIME <strong id="homeClock">--:--</strong> — 無論你嗰邊幾點，入嚟都啱時候。<span class="cursor" aria-hidden="true"></span></p>
+    </div>
+    <figure class="hero-photo">
+      <div class="hud-head"><span><b>● LIVE</b> &nbsp;LIVING_ROOM // CAM_01</span><span>ORANGE / NEON YELLOW</span></div>
+      <div class="frame"><img src="assets/eva-home.webp" alt="指揮中心風格客廳：黑色牆身同書架配橙色霓虹燈帶、黑黃警戒斜紋同螢光黃全息介面板，窗外係落雪中嘅多倫多天際線同 CN Tower，茶几上有一杯熱茶" /></div>
+      <figcaption><span><b>客廳一角</b> — 外面落緊雪，入面有茶、有書、有位坐。</span><span>FEED_01</span></figcaption>
+    </figure>
+  </div>
+</header>
+
+<section id="news">
+  <div class="wrap">
+    <div class="sec-head"><p class="kicker" style="color:var(--orange2)">// 01 — TRANSMISSION BOARD</p><h2>玄關告示板 — <span>今日屋企有咩新嘢</span></h2><p>好似屋企入門口塊板咁，回頭客一入嚟，就知最近有咩新鮮事。<b>最新訊號已經上線。</b></p></div>
+    <div class="board">
+      <div class="board-top"><span>INCOMING_SIGNALS</span><b id="boardCount">3 ACTIVE</b></div>
+      <div class="notes" id="notesWrap"><p class="load-note">// 接收訊號中…</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="rooms">
+  <div class="wrap">
+    <div class="sec-head"><p class="kicker" style="color:var(--yellow)">// 02 — SELECT MODULE</p><h2>行下間屋 — <span>五道門，五個房間</span></h2><p>成個網站就係一間屋：每個房間係一個獨立 module，日後加新內容，就係加多道門，唔使成間屋裝修過。撳一道門，睇下入面有咩。</p></div>
+    <div class="doors" role="tablist" aria-label="房間選擇">
+      <button class="door" type="button" role="tab" data-room="living" data-num="MOD_01" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><path d="M3 13.5A1.8 1.8 0 0 1 6.6 13v1.2h10.8V13a1.8 1.8 0 0 1 3.6.5V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3.5Z"/><path d="M5.5 19v1.6M18.5 19v1.6"/></svg><span class="room-name">客廳</span><span class="room-en">LIVING ROOM</span><span class="room-sub">見證同分享，人嚟人往傾偈嘅地方</span><span class="status">● SELECTED</span></button>
+      <button class="door" type="button" role="tab" data-room="study" data-num="MOD_02" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 5.2S5 3.7 7.5 3.7c1.7 0 3.2.6 4.5 1.7 1.3-1.1 2.8-1.7 4.5-1.7 2.5 0 5 1.5 5 1.5v13.6s-2.5-1.5-5-1.5c-1.7 0-3.2.6-4.5 1.7-1.3-1.1-2.8-1.7-4.5-1.7-2.5 0-5 1.5-5 1.5Z"/><path d="M12 5.4v13.5"/></svg><span class="room-name">書房</span><span class="room-en">STUDY</span><span class="room-sub">神學思考同文章，安安靜靜睇書嘅地方</span><span class="status">○ STANDBY</span></button>
+      <button class="door" type="button" role="tab" data-room="kids" data-num="MOD_03" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.7 5.5 6 .8-4.4 4.2 1.1 6L12 16.8l-5.4 2.9 1.1-6L3.3 9.5l6-.8Z"/></svg><span class="room-name">兒童房</span><span class="room-en">KIDS ROOM</span><span class="room-sub">小朋友嘅聖經故事，色彩繽紛、任佢哋玩</span><span class="status">○ STANDBY</span></button>
+      <button class="door" type="button" role="tab" data-room="prayer" data-num="MOD_04" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8c1.7 2.1 2.8 3.7 2.8 5.4a2.8 2.8 0 0 1-5.6 0c0-1.7 1.1-3.3 2.8-5.4Z"/><path d="M8.5 21v-6.5h7V21"/><path d="M5.5 21h13"/></svg><span class="room-name">祈禱角</span><span class="room-en">PRAYER</span><span class="room-sub">屋企最靜嘅角落，留畀禱告同安靜</span><span class="status">○ STANDBY</span></button>
+      <button class="door" type="button" role="tab" data-room="daily" data-num="MOD_05" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.4"/><path d="M8.6 7l1.2-2.2h4.4L15.4 7"/></svg><span class="room-name">生活角落</span><span class="room-en">DAILY LOG</span><span class="room-sub">相片同日常隨想，加拿大生活嘅碎片</span><span class="status">○ STANDBY</span></button>
+    </div>
+    <article class="room-panel" id="roomPanel" aria-live="polite"><div class="panel-body"><p class="load-note">// 載入房間資料中…</p></div></article>
+  </div>
+</section>
+
+<section id="verse">
+  <div class="wrap"><div class="verse-band"><div class="atfield" aria-hidden="true"></div><p class="v-label" id="verseLabel">— TITLE CARD // CORE_VERSE —</p><blockquote id="verseText">神能照著運行在我們心裡的大力，充充足足地成就一切，<em>超過我們所求所想的。</em></blockquote><cite id="verseCite">— <b>EPHESIANS</b> 以弗所書 3:20</cite><p class="v-note" id="verseNote">呢句經文，係 Freddy 呢兩年等 PR 嘅路上，一次又一次返嚟睇嘅一句。掛喺牆上，唔係裝飾 — 係提醒：神開嘅路，往往大過我哋敢求嘅。</p></div></div>
+</section>
+
+<section id="grow">
+  <div class="wrap">
+    <div class="sec-head"><p class="kicker" style="color:var(--orange2)">// 03 — SYSTEM EXPANSION</p><h2>間屋點樣 <span>擴建</span></h2><p>呢個原型最想試嘅，其實係個結構：首頁只係門口同客廳，每個房間各自獨立。日後想加嘢，跟住呢三步就得，唔使推倒重來。</p></div>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><h3><span>STEP_01</span>有新諗法</h3><p>例如想放講道錄音、開個讀書會專頁，或者為下一個兒童故事開新房 — 先諗清楚佢屬於邊類內容。</p></div>
+      <div class="step"><div class="num">02</div><h3><span>STEP_02</span>開一間新房</h3><p>每個 module 係一個獨立頁面，自己一套內容，唔會影響其他房間。正式版會放喺你 Cloudflare domain 上面，用 Cloudflare Pages 託管。</p></div>
+      <div class="step"><div class="num">03</div><h3><span>STEP_03</span>喺首頁加道門</h3><p>首頁只需要加多道門、喺玄關告示板貼張新字條，訪客就搵到。間屋，就係咁慢慢大落去。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="guestbook">
+  <div class="wrap">
+    <div class="sec-head"><p class="kicker" style="color:var(--yellow)">// 04 — GUEST LOG</p><h2>留言簿 — <span>走之前，留低一句</span></h2><p>去親朋友屋企，臨走總會講句「下次再嚟」。呢本留言簿就係畀你留低足跡、打個招呼，或者留一句代禱需要都得。</p></div>
+    <div class="guest-grid">
+      <form class="guest-form" id="guestForm"><h3><span>NEW_ENTRY // INPUT</span>簽個名先走</h3><p>寫低你嘅名同想講嘅說話，佢會即刻貼上右邊本簿度。</p><label>NAME_ 點稱呼你？<input type="text" id="guestName" maxlength="30" placeholder="例如：阿 Ming" autocomplete="off" /></label><label>MESSAGE_ 想留低咩說話？<textarea id="guestMsg" maxlength="300" placeholder="例如：今日嚟坐咗陣，好舒服，下次帶埋小朋友嚟聽故事。" required></textarea></label><button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">傳送留言 →</button><p class="form-note">[NOTE] 原型示範：留言只會喺你而家呢次瀏覽顯示，唔會儲存、唔會傳去任何地方。正式版先會接真正嘅留言簿。</p></form>
+      <div><div class="guest-list" id="guestList"></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><div><p class="f-title"><i>&lt;/</i> FREDDY<b>_HOME</b> — v3.0 EVA_MODE</p><p id="footerNote">Homepage 原型 — 黑色主場、橙色主光、螢光黃訊號，加黑黃警戒紋同指揮中心式介面。門、房間、告示板嘅位置都可以調，內容亦可以慢慢換成你真正想放嘅嘢。</p></div><nav aria-label="頁尾導覽"><a href="#news">告示板</a><a href="#rooms">行下間屋</a><a href="#verse">牆上的一句</a><a href="#guestbook">留言簿</a></nav></div></footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
