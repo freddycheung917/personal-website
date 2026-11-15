@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First Month Grade 3 to 6 Math</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a night-city page (Toronto after work) with light "paper" cards for every decision. The bank balance is always visible, it is the score. */
+:root{
+  --night:#121A3A;
+  --night2:#1C2650;
+  --card:#F7F8FC;
+  --ink:#161C3A;
+  --muted:#4A5578;
+  --line:#D9DEEE;
+  --amber:#FFB02E;
+  --blue:#2F5FE0;
+  --gain:#0E6B35;
+  --gainbg:#DFF3E6;
+  --loss:#A8231B;
+  --lossbg:#FCE6E4;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'Figtree',system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--night)}
+body{margin:0;background:var(--night);color:#fff;font:500 17px/1.55 var(--body)}
+button,input{font-family:inherit;color:inherit}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance;font-family:var(--display)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.card :focus-visible,.card:focus-visible{outline-color:var(--blue)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--ink);padding:8px 14px;border-radius:8px;z-index:9}
+.skip:focus{left:8px}
+.wrap{max-width:880px;margin:0 auto;padding:20px 16px 56px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.logo{display:flex;align-items:center;gap:10px;font:700 20px/1 var(--display);letter-spacing:.01em}
+.gtag{font:700 14px var(--body);padding:4px 10px;border-radius:12px;background:var(--amber);color:var(--night)}
+.bal{display:inline-flex;align-items:baseline;gap:8px;min-height:44px;padding:6px 16px;border:1.5px solid #3A4678;border-radius:22px;background:var(--night2)}
+.bal small{font-size:14px;color:#C9D1F0;font-weight:700}
+.bal b{font:700 22px/1 var(--display);color:var(--amber)}
+.quit{min-height:44px;padding:0 16px;border-radius:22px;background:transparent;border:1.5px solid #3A4678;cursor:pointer;font-weight:700;font-size:15px}
+.quit:hover{border-color:#fff}
+
+.hero{position:relative;overflow:hidden;border-radius:28px;background:var(--night2);padding:44px 28px 150px}
+.hero h1{font:700 clamp(44px,9vw,76px)/1 var(--display);letter-spacing:-.02em}
+.hero .kick{font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.lede{max-width:46ch;margin-top:16px;color:#D6DCF5;font-size:19px}
+.sky{position:absolute;left:0;bottom:0;width:100%;height:140px}
+.gradepick{position:relative;margin-top:24px}
+.gradepick p{font-size:14px;font-weight:700;color:#C9D1F0;margin-bottom:8px}
+.grades{display:flex;flex-wrap:wrap;gap:10px}
+.gbtn{min-height:48px;padding:0 22px;border-radius:24px;border:2px solid #3A4678;background:transparent;cursor:pointer;font:700 18px var(--body)}
+.gbtn:hover{border-color:#fff}
+.gbtn[aria-pressed="true"]{background:var(--amber);border-color:var(--amber);color:var(--night)}
+.namefield{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;position:relative}
+.resume{margin-top:20px;padding:16px 18px;border-radius:16px;background:#1D2757;border:2px solid var(--amber);position:relative;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.resume p{margin:0;font-size:17px;line-height:1.4;color:#fff}
+.resume small{display:block;font-size:14px;color:#C9D1F0;margin-top:2px}
+.codes{margin-top:20px;position:relative;border-top:1px solid #3A4678;padding-top:12px}
+.codes summary{cursor:pointer;font-weight:700;font-size:16px;color:#C9D1F0;min-height:44px;display:flex;align-items:center}
+.codes h3{margin:14px 0 6px;font-size:16px;color:#fff}
+.codes p.sm{margin:0 0 8px;font-size:14px;color:#C9D1F0;line-height:1.45}
+.codes textarea{width:100%;min-height:78px;padding:12px;border-radius:12px;border:2px solid #3A4678;background:var(--night);color:#fff;font:600 14px/1.4 ui-monospace,Menlo,Consolas,monospace;resize:vertical;word-break:break-all}
+.codes .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.codes .btn.ghost{border-color:#C9D1F0;color:#fff}
+.codes .msg{margin-top:8px;font-size:15px;font-weight:700;color:var(--amber)}
+.namefield label{display:block;font-size:14px;font-weight:700;color:#C9D1F0;margin-bottom:6px}
+.namefield input{height:52px;width:230px;padding:0 16px;border-radius:14px;border:2px solid #3A4678;background:var(--night);font:700 19px var(--body);color:#fff}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;position:relative}
+.skills span{padding:4px 12px;border-radius:14px;background:#2A3670;font-size:14px;font-weight:700;color:#E3E8FB}
+
+.card{background:var(--card);color:var(--ink);border-radius:24px;padding:28px}
+.kick{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.cicon{flex:none;width:64px;height:64px;border-radius:18px;background:var(--night);display:flex;align-items:center;justify-content:center}
+.card h1{font:700 clamp(28px,5vw,38px)/1.1 var(--display);letter-spacing:-.01em}
+.card h2.prompt{font:600 clamp(22px,3.4vw,28px)/1.25 var(--display);margin:6px 0 16px}
+.story{font-size:18px;color:var(--muted);margin:10px 0 4px;max-width:60ch}
+.intro{font-size:19px;max-width:56ch;margin-bottom:22px}
+.visual{margin:6px 0 20px}
+.prog{display:flex;gap:6px;flex:1;min-width:120px;max-width:300px}
+.seg{flex:1;height:10px;border-radius:5px;background:#3A4678}
+.seg.ok{background:var(--amber)}
+.seg.miss{background:transparent;border:2px solid #FF8F85}
+.seg.cur{background:#fff}
+
+.btn{min-height:54px;padding:0 30px;border-radius:27px;border:2px solid transparent;cursor:pointer;font:700 19px var(--body);display:inline-flex;align-items:center;justify-content:center}
+.btn.go{background:var(--amber);color:var(--night)}
+.btn.dark{background:var(--night);color:#fff}
+.btn.ghost{background:transparent;border-color:var(--ink);color:var(--ink)}
+.btn.small{min-height:46px;font-size:16px;padding:0 20px}
+.btn:disabled{background:var(--line);color:var(--ink);cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.opt{min-height:88px;padding:10px 16px;border-radius:18px;background:#fff;border:2.5px solid var(--line);cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;text-align:left;font:700 20px/1.3 var(--body);color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.sel{background:#E8EEFF;border-color:var(--blue)}
+.opt.right{background:var(--gainbg);border-color:var(--gain)}
+.opt.wrong{background:var(--lossbg);border-color:var(--loss)}
+.tag{font:700 14px var(--body)}
+.opt.right .tag{color:var(--gain)}
+.opt.wrong .tag{color:var(--loss)}
+.numrow label{display:block;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.field{display:inline-flex;align-items:center;gap:10px;font:600 28px var(--display)}
+.field input{width:190px;font:600 28px var(--display);padding:10px 14px;border:2.5px solid var(--ink);border-radius:14px;background:#fff;color:var(--ink)}
+.field input.ok{border-color:var(--gain);background:var(--gainbg)}
+.field input.bad{border-color:var(--loss);background:var(--lossbg)}
+.note{margin-top:16px;padding:14px 18px;border-radius:14px;font-size:17px;line-height:1.45;color:var(--ink)}
+.note.hint{background:#FFF1CC}
+.note.good{background:var(--gainbg)}
+.note.good strong{color:var(--gain)}
+.note.bad{background:var(--lossbg)}
+.note.bad strong{color:var(--loss)}
+
+.eq{display:inline-block;font:600 32px var(--display);padding:10px 20px;border-radius:14px;background:#EEF1FA}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chipd{display:flex;flex-direction:column;align-items:center;min-width:64px;padding:8px 12px;border-radius:14px;background:#EEF1FA}
+.chipd small{font-size:13px;font-weight:700;color:var(--muted)}
+.chipd b{font:600 26px var(--display)}
+.seq{display:flex;flex-wrap:wrap;gap:10px}
+.chip{min-width:56px;height:56px;padding:0 12px;border-radius:14px;background:#EEF1FA;border:2px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font:600 26px var(--display)}
+.chip.q{background:var(--amber);border-color:var(--ink)}
+.rect{max-width:100%;height:auto}
+.rect text{font:600 18px var(--display);fill:var(--ink)}
+.tags{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tagc{padding:12px 16px;border-radius:14px;background:#EEF1FA}
+.tagc small{display:block;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.tagc b{font:600 22px var(--display)}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .12em;font-weight:700}
+.frac .n{padding:0 .2em .12em;border-bottom:.09em solid currentColor}
+.frac .d{padding-top:.12em}
+.fbar{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;height:44px;max-width:480px}
+.fbar i{border:3px solid var(--ink);background:#fff;border-radius:6px}
+.fbar i.on{background:var(--amber)}
+.chart{margin:0;max-width:580px;padding-right:18px}
+.chart figcaption{font-size:15px;font-weight:700;color:var(--muted);margin-bottom:10px}
+.crow{display:grid;grid-template-columns:116px 1fr;gap:10px;align-items:center;margin-bottom:8px}
+.clab{font-size:15px;font-weight:700}
+.ctrack{height:28px;border-right:2px solid var(--line)}
+.ctrack b{display:block;height:100%;background:var(--blue);border-radius:0 6px 6px 0}
+.cticks{position:relative;height:22px}
+.cticks span{position:absolute;top:0;transform:translateX(-50%);font-size:14px;font-weight:700;color:var(--muted)}
+
+.stmtbox{overflow-x:auto;margin-top:6px}
+.stmt{width:100%;border-collapse:collapse;font-size:16px}
+.stmt th{text-align:left;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 10px;border-bottom:2px solid var(--ink)}
+.stmt td{padding:9px 10px;border-bottom:1px solid var(--line)}
+.stmt .r{text-align:right;white-space:nowrap}
+.stmt .g{color:var(--gain);font-weight:700}
+.stmt .l{color:var(--loss);font-weight:700}
+.stmt tfoot td{font-weight:700;border-bottom:none;border-top:2px solid var(--ink)}
+.big{font:700 clamp(52px,12vw,84px)/1 var(--display);letter-spacing:-.02em}
+.delta{font-weight:700;font-size:18px}
+.result{display:flex;flex-direction:column;gap:6px;margin-bottom:22px}
+@media (max-width:640px){
+  .opts{grid-template-columns:1fr}
+  .card{padding:20px}
+  .hero{padding:32px 20px 140px}
+  .tags{grid-template-columns:1fr}
+  .crow{grid-template-columns:92px 1fr}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<main id="main" class="wrap"><div id="view"></div></main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- helpers ---------- */
+  var ri = function (a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; };
+  var pick = function (a) { return a[ri(0, a.length - 1)]; };
+  function shuffle(a) {
+    var r = a.slice();
+    for (var i = r.length - 1; i > 0; i--) { var j = ri(0, i); var t = r[i]; r[i] = r[j]; r[j] = t; }
+    return r;
+  }
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+  function r2(x) { return Math.round(x * 100) / 100; }
+  function usd(n, sign) {
+    var neg = n < 0, a = Math.abs(n), whole = Math.abs(a - Math.round(a)) < 1e-9;
+    var s = '$' + (whole ? Math.round(a).toLocaleString('en-CA') : a.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+    return (neg ? '−' : (sign ? '+' : '')) + s;
+  }
+  function usd2(n) { return '$' + Math.abs(n).toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function fr(n, d) { return '<span class="frac"><span class="n">' + n + '</span><span class="d">' + d + '</span></span>'; }
+  function fopt(n, d) { return { html: fr(n, d), key: n + '/' + d }; }
+  function T(h, m) {
+    var mm = ((m % 60) + 60) % 60, hh = h + Math.floor(m / 60);
+    hh = (((hh - 1) % 12) + 12) % 12 + 1;
+    return hh + ':' + (mm < 10 ? '0' : '') + mm;
+  }
+  function icon(name) {
+    var p = {
+      building: '<rect x="14" y="10" width="26" height="40" rx="2"/><path d="M20 18h4M30 18h4M20 26h4M30 26h4M20 34h4M30 34h4M25 50v-8h6v8"/>',
+      kettle: '<path d="M16 24h24l-3 24H19z"/><path d="M40 28h6a4 4 0 0 1 0 12h-7M22 24c0-6 4-8 6-8s6 2 6 8"/>',
+      cheque: '<rect x="10" y="16" width="44" height="32" rx="3"/><path d="M16 26h18M16 34h12M40 38h8"/><circle cx="44" cy="26" r="3"/>',
+      bus: '<rect x="12" y="12" width="40" height="34" rx="5"/><path d="M12 28h40M12 20h40"/><circle cx="22" cy="46" r="4"/><circle cx="42" cy="46" r="4"/>',
+      stall: '<path d="M10 24l4-10h36l4 10c0 4-3 6-6 6s-6-2-6-6c0 4-3 6-6 6s-6-2-6-6c0 4-3 6-6 6s-6-2-6-6c0 4-3 6-6 6s-6-2-6-6z"/><path d="M14 30v20h36V30M26 50V38h12v12"/>'
+    }[name];
+    return '<svg width="40" height="40" viewBox="0 0 64 64" fill="none" stroke="#FFB02E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>';
+  }
+
+  /* ---------- question builders and visuals ---------- */
+  function mcOptions(correct, cands, count) {
+    var seen = {}; seen[correct.key] = true;
+    var out = [correct];
+    shuffle(cands).forEach(function (c) {
+      if (out.length >= count || seen[c.key]) return;
+      seen[c.key] = true; out.push(c);
+    });
+    return shuffle(out).map(function (o) { return { html: o.html, val: o.key, correct: o.key === correct.key }; });
+  }
+  function MC(o, correct, cands, count) {
+    o.kind = 'mc'; o.visual = o.visual || '';
+    o.options = mcOptions(correct, cands, count); o.correctKey = correct.key; o.ansText = correct.html;
+    return o;
+  }
+  function NUM(o) { o.kind = 'num'; o.visual = o.visual || ''; o.prefix = o.prefix || ''; o.suffix = o.suffix || ''; return o; }
+  function wrapq(g, extra) { return function () { var q = g(); for (var k in extra) q[k] = extra[k]; return q; }; }
+  function rectVis(w, h, unit) {
+    var u = 20, W = w * u, H = h * u, x = 56, y = 34;
+    return '<svg class="rect" width="' + (x + W + 30) + '" height="' + (y + H + 16) + '" viewBox="0 0 ' + (x + W + 30) + ' ' + (y + H + 16) + '" role="img" aria-label="Rectangle ' + w + ' ' + unit + ' by ' + h + ' ' + unit + '">' +
+      '<rect x="' + x + '" y="' + y + '" width="' + W + '" height="' + H + '" rx="6" fill="#E8EEFF" stroke="#2F5FE0" stroke-width="4"/>' +
+      '<text x="' + (x + W / 2) + '" y="22" text-anchor="middle">' + w + ' ' + unit + '</text>' +
+      '<text x="' + (x - 10) + '" y="' + (y + H / 2 + 6) + '" text-anchor="end">' + h + ' ' + unit + '</text></svg>';
+  }
+  function gridVis(w, h) {
+    var s = '<div role="img" aria-label="A grid of ' + w + ' rows of ' + h + ' squares" style="display:grid;grid-template-columns:repeat(' + w + ',30px);gap:3px">';
+    for (var i = 0; i < w * h; i++) s += '<i style="width:30px;height:30px;background:#E8EEFF;border:2px solid #2F5FE0;border-radius:4px"></i>';
+    return s + '</div>';
+  }
+  function barVis(total, filled) {
+    var s = '<div class="fbar" role="img" aria-label="' + filled + ' of ' + total + ' equal parts shaded">';
+    for (var i = 0; i < total; i++) s += '<i' + (i < filled ? ' class="on"' : '') + '></i>';
+    return s + '</div>';
+  }
+  function seqVis(terms, hidden) {
+    var label = terms.map(function (t, i) { return hidden.indexOf(i) > -1 ? 'blank' : t; }).join(', ');
+    return '<div class="seq" role="img" aria-label="Number pattern: ' + label + '">' + terms.map(function (t, i) {
+      var q = hidden.indexOf(i) > -1;
+      return '<span class="chip num' + (q ? ' q' : '') + '">' + (q ? '?' : t) + '</span>';
+    }).join('') + '</div>';
+  }
+  function eqVis(txt, label) { return '<span class="eq num" role="img" aria-label="' + label + '">' + txt + '</span>'; }
+  function chartVis(ds, max, step, caption) {
+    var gl = (step / max * 100);
+    var rows = ds.map(function (r) {
+      return '<div class="crow"><span class="clab">' + r.n + '</span><div class="ctrack" style="background:repeating-linear-gradient(90deg,#D9DEEE 0 2px,transparent 2px ' + gl + '%)"><b style="width:' + (r.v / max * 100) + '%"></b></div></div>';
+    }).join('');
+    var ticks = '';
+    for (var t = 0; t <= max; t += step) ticks += '<span style="left:' + (t / max * 100) + '%">' + t + '</span>';
+    return '<figure class="chart" role="img" aria-label="Bar chart. ' + caption + '. ' + ds.map(function (r) { return r.n + ' ' + r.v; }).join(', ') + '">' +
+      '<figcaption>' + caption + '</figcaption>' + rows + '<div class="crow"><span class="clab"></span><div class="cticks num">' + ticks + '</div></div></figure>';
+  }
+  function dataSet(names, vals, mult) {
+    var n = shuffle(names).slice(0, 4), v = shuffle(vals).slice(0, 4);
+    return n.map(function (x, i) { return { n: x, v: v[i] * mult }; });
+  }
+  function twoOf(ds) { return shuffle(ds).slice(0, 2).sort(function (a, b) { return b.v - a.v; }); }
+
+  /* ======================================================================
+     GRADE 6
+     ====================================================================== */
+  function g6RentRatio() {
+    var R = pick([1500, 1800, 2400, 3000]), r = pick([[2, 1], [3, 1], [3, 2], [4, 1]]), big = r[0], small = r[1], p = big + small, mine = R * small / p;
+    return NUM({ label: 'Rent split', stake: 60, answer: mine, prefix: '$', ansText: usd(mine),
+      story: 'You found a two-bedroom. Your roommate wants the bigger room, so you agree to split the rent unevenly.',
+      prompt: 'Rent is ' + usd(R) + ' a month, split ' + big + ' : ' + small + ' (roommate : you). How much do you pay each month?',
+      hint: 'Add the parts of the ratio to get the total number of parts. Divide the rent by that number.',
+      explain: 'There are ' + p + ' parts in all. ' + usd(R) + ' ÷ ' + p + ' = ' + usd(R / p) + ' a part. You pay ' + small + ' part' + (small > 1 ? 's' : '') + ': ' + usd(mine) + '.',
+      win: 'The split is fair and written down. No awkward conversations later.',
+      lose: 'You send the wrong amount and have to fix it with your roommate.' });
+  }
+  function g6UnitRent() {
+    var s1, r1, s2, r2_, u1, u2;
+    do { s1 = ri(10, 18) * 50; r1 = ri(28, 44) * 50; s2 = ri(10, 18) * 50; r2_ = ri(28, 44) * 50; u1 = r1 / s1; u2 = r2_ / s2; }
+    while (Math.abs(u1 - u2) < 0.15 || s1 === s2);
+    var a = u1 < u2, best = a ? 'A' : 'B';
+    var vis = '<div class="tags"><div class="tagc"><small>Apartment A</small><b>' + s1 + ' sq ft · ' + usd(r1) + '</b></div><div class="tagc"><small>Apartment B</small><b>' + s2 + ' sq ft · ' + usd(r2_) + '</b></div></div>';
+    return MC({ label: 'Apartment comparison', stake: 50, visual: vis,
+      story: 'Two apartments are on your shortlist. Both are close to work. The bigger one is not always the better deal.',
+      prompt: 'Which apartment costs less per square foot?',
+      hint: 'Divide each rent by its size to get a rate: dollars per square foot.',
+      explain: 'A: ' + usd(r1) + ' ÷ ' + s1 + ' ≈ $' + u1.toFixed(2) + ' per sq ft. B: ' + usd(r2_) + ' ÷ ' + s2 + ' ≈ $' + u2.toFixed(2) + ' per sq ft. Apartment ' + best + ' is cheaper per sq ft.',
+      win: 'You sign for the better value and keep more of every square foot you pay for.',
+      lose: 'You pick the pricier one per square foot and pay extra all year.' },
+      { html: 'Apartment ' + best, key: best }, [{ html: 'Apartment ' + (a ? 'B' : 'A'), key: a ? 'B' : 'A' }], 2);
+  }
+  function g6Flooring() {
+    var w = ri(10, 16), h = ri(8, 14), p = pick([2, 3, 4]), c = w * h * p;
+    return NUM({ label: 'Flooring', stake: 40, answer: c, prefix: '$', ansText: usd(c), visual: rectVis(w, h, 'ft'),
+      story: 'The landlord says you can replace the living room floor if you pay for it.',
+      prompt: 'The living room is ' + w + ' ft by ' + h + ' ft. Flooring costs $' + p + ' per square foot. What will it cost?',
+      hint: 'Find the area first: length × width. Then multiply by the price per square foot.',
+      explain: 'Area = ' + w + ' × ' + h + ' = ' + (w * h) + ' sq ft. Cost = ' + (w * h) + ' × $' + p + ' = ' + usd(c) + '.',
+      win: 'You order exactly enough flooring and stay on budget.',
+      lose: 'You miscount the area and order the wrong amount. The return fee stings.' });
+  }
+  function g6Box() {
+    var l = pick([30, 40, 50, 60]), w = pick([20, 30, 40]), h = pick([20, 30, 40]), v = l * w * h;
+    return NUM({ label: 'Moving boxes', stake: 30, answer: v, suffix: 'cm³', ansText: v.toLocaleString('en-CA') + ' cm³',
+      story: 'Moving day. The truck is booked by the hour, so you pack smart.',
+      prompt: 'A moving box is ' + l + ' cm long, ' + w + ' cm wide and ' + h + ' cm high. What is its volume?',
+      hint: 'Volume of a rectangular prism = length × width × height.',
+      explain: l + ' × ' + w + ' × ' + h + ' = ' + v.toLocaleString('en-CA') + ' cm³.',
+      win: 'You judge the loads well and finish before the truck rental clock runs out.',
+      lose: 'You misjudge the space and need a second trip.' });
+  }
+  function g6UnitPrice() {
+    var u1, u2, item = pick(['rice', 'flour', 'oats', 'lentils']);
+    do { u1 = ri(10, 18) * 0.25; u2 = ri(10, 18) * 0.25; } while (Math.abs(u1 - u2) < 0.25);
+    var k1 = pick([1, 2]), k2 = pick([4, 5]), p1 = r2(k1 * u1), p2 = r2(k2 * u2), first = u1 < u2;
+    var vis = '<div class="tags"><div class="tagc"><small>Small bag</small><b>' + k1 + ' kg · ' + usd(p1) + '</b></div><div class="tagc"><small>Big bag</small><b>' + k2 + ' kg · ' + usd(p2) + '</b></div></div>';
+    return MC({ label: 'Best buy: ' + item, stake: 40, visual: vis,
+      story: 'The grocery store sells ' + item + ' in two sizes. Your cupboard is bare, but your budget is tight.',
+      prompt: 'Which bag of ' + item + ' is the better buy?',
+      hint: 'Find the price for 1 kg of each bag. The lower unit price is the better buy.',
+      explain: 'Small bag: ' + usd(p1) + ' ÷ ' + k1 + ' = $' + u1.toFixed(2) + ' per kg. Big bag: ' + usd(p2) + ' ÷ ' + k2 + ' = $' + u2.toFixed(2) + ' per kg. The ' + (first ? 'small' : 'big') + ' bag costs less per kg.',
+      win: 'You pick the lower unit price and save on every meal.',
+      lose: 'You grab the wrong bag and pay more per kilogram.' },
+      { html: 'The ' + (first ? k1 : k2) + ' kg bag', key: first ? 'S' : 'B' }, [{ html: 'The ' + (first ? k2 : k1) + ' kg bag', key: first ? 'B' : 'S' }], 2);
+  }
+  function gDiscount() {
+    var item = pick(['a toaster', 'a kettle', 'a set of pots', 'a blender']), price = pick([40, 60, 80, 120]), pct = pick([10, 20, 25, 50]), sale = price * (100 - pct) / 100;
+    return NUM({ label: 'Sale price', stake: 50, answer: sale, prefix: '$', ansText: usd(sale),
+      story: 'You need kitchen basics. A store has a sale on ' + item + '.',
+      prompt: 'Regular price is ' + usd(price) + ' with ' + pct + '% off. What is the sale price?',
+      hint: 'Find ' + pct + '% of ' + usd(price) + ', then subtract it. Or multiply by ' + (100 - pct) + '%.',
+      explain: pct + '% of ' + usd(price) + ' = ' + usd(price * pct / 100) + '. ' + usd(price) + ' − ' + usd(price * pct / 100) + ' = ' + usd(sale) + '.',
+      win: 'You know the real price before you reach the till.',
+      lose: 'You misjudge the discount and leave with less money than planned.' });
+  }
+  function g6HST() {
+    var x = pick([50, 100, 150, 200, 250, 300]), tax = r2(x * 0.13), tot = r2(x + tax);
+    return NUM({ label: 'HST at the till', stake: 60, answer: tot, prefix: '$', ansText: usd(tot),
+      story: 'At the till, the cashier adds HST. In Ontario it is 13%.',
+      prompt: 'The sticker price of a coffee maker is ' + usd(x) + ' before tax. What is the total with 13% HST?',
+      hint: 'Find 13% of the price, then add it. Or multiply the price by 1.13.',
+      explain: '13% of ' + usd(x) + ' = ' + usd(tax) + '. Total: ' + usd(x) + ' + ' + usd(tax) + ' = ' + usd(tot) + '.',
+      win: 'No surprise at the till. You brought enough.',
+      lose: 'The total is more than you expected and you have to put something back.' });
+  }
+  function gBudget() {
+    var B = pick([80, 90, 100, 120]), a, b, c;
+    do { a = ri(1200, 3500); b = ri(800, 2800); c = ri(600, 2500); } while ((a + b + c) > B * 100 - 500);
+    var left = (B * 100 - a - b - c) / 100;
+    return NUM({ label: 'Weekly grocery budget', stake: 30, answer: left, prefix: '$', ansText: usd2(left),
+      story: 'You set a weekly grocery budget and keep your receipts.',
+      prompt: 'Your budget is ' + usd(B) + '. You spent ' + usd2(a / 100) + ' on produce, ' + usd2(b / 100) + ' on dairy and ' + usd2(c / 100) + ' on bread and pantry items. How much is left?',
+      hint: 'Add the three amounts you spent, then subtract the total from your budget.',
+      explain: usd2(a / 100) + ' + ' + usd2(b / 100) + ' + ' + usd2(c / 100) + ' = ' + usd2((a + b + c) / 100) + '. ' + usd(B) + ' − ' + usd2((a + b + c) / 100) + ' = ' + usd2(left) + '.',
+      win: 'You know exactly what is left, so there is room for a treat on Friday.',
+      lose: 'Your count is off and you overspend before the week ends.' });
+  }
+  function g6Offer() {
+    var w = ri(16, 24), h = ri(28, 38), A = w * h, F = A + pick([-60, -40, -20, 20, 40, 60]), better = A > F ? 'A' : 'B';
+    return MC({ label: 'Job offer', stake: 50,
+      story: 'A second company wants to hire you. Their pay is set up differently.',
+      prompt: 'Offer A pays ' + usd(w) + ' an hour for ' + h + ' hours a week. Offer B pays ' + usd(F) + ' flat per week. Which pays more per week?',
+      hint: 'Work out Offer A’s weekly pay: hourly wage × hours.',
+      explain: 'Offer A: ' + usd(w) + ' × ' + h + ' = ' + usd(A) + '. Offer B: ' + usd(F) + '. Offer ' + better + ' pays ' + usd(Math.abs(A - F)) + ' more per week.',
+      win: 'You compare the offers properly and accept the better one.',
+      lose: 'You take the lower offer and lose money every week.' },
+      { html: 'Offer ' + better + ' pays more', key: better }, [{ html: 'Offer ' + (better === 'A' ? 'B' : 'A') + ' pays more', key: better === 'A' ? 'B' : 'A' }], 2);
+  }
+  function g6Overtime() {
+    var W = pick([16, 18, 20, 22, 24]), X = pick([2, 4, 6, 8]), pay = 40 * W + 1.5 * W * X;
+    return NUM({ label: 'Overtime pay', stake: 80, answer: pay, prefix: '$', ansText: usd(pay),
+      story: 'Your manager asks you to stay late this week. Overtime is paid at a higher rate.',
+      prompt: 'You make ' + usd(W) + ' an hour. This week you worked 40 regular hours plus ' + X + ' overtime hours, paid at 1.5 times your hourly wage. What is your gross pay?',
+      hint: 'Overtime wage per hour = 1.5 × ' + usd(W) + '. Add the regular pay and the overtime pay.',
+      explain: 'Regular: 40 × ' + usd(W) + ' = ' + usd(40 * W) + '. Overtime wage: 1.5 × ' + usd(W) + ' = ' + usd(1.5 * W) + ' an hour, so ' + X + ' × ' + usd(1.5 * W) + ' = ' + usd(1.5 * W * X) + '. Total ' + usd(pay) + '.',
+      win: 'Your pay stub matches your math. You spot nothing missing.',
+      lose: 'You miss part of your overtime and do not notice the shortfall.' });
+  }
+  function g6Deduction() {
+    var G = pick([1000, 1200, 1500, 1800]), pct = pick([10, 20, 25]), net = G * (100 - pct) / 100;
+    return NUM({ label: 'Take-home pay', stake: 70, answer: net, prefix: '$', ansText: usd(net),
+      story: 'Your first pay stub shows a gross amount and some deductions.',
+      prompt: 'Your gross pay for two weeks is ' + usd(G) + '. In this game, ' + pct + '% is deducted for income tax, CPP and EI. What is your take-home pay?',
+      hint: 'Find ' + pct + '% of the gross pay. Take that amount away.',
+      explain: pct + '% of ' + usd(G) + ' = ' + usd(G * pct / 100) + '. ' + usd(G) + ' − ' + usd(G * pct / 100) + ' = ' + usd(net) + '.',
+      win: 'You plan your rent and bills around the real number, not the gross one.',
+      lose: 'You plan around the gross number and come up short before the next pay date.' });
+  }
+  function g6Mean() {
+    var d, s;
+    do { d = [ri(4, 10), ri(4, 10), ri(4, 10), ri(4, 10), ri(4, 10)]; s = d[0] + d[1] + d[2] + d[3] + d[4]; } while (s % 5 !== 0);
+    var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+    var vis = '<div class="chips" role="img" aria-label="Hours worked: ' + d.map(function (v, i) { return days[i] + ' ' + v; }).join(', ') + '">' +
+      d.map(function (v, i) { return '<div class="chipd"><small>' + days[i] + '</small><b>' + v + '</b></div>'; }).join('') + '</div>';
+    return NUM({ label: 'Average hours', stake: 40, answer: s / 5, suffix: 'hours', ansText: (s / 5) + ' hours', visual: vis,
+      story: 'Your boss asks for a summary of your week. You keep a simple log of hours.',
+      prompt: 'Here are your hours for the week. What is the mean number of hours per day?',
+      hint: 'Add all five numbers, then divide by 5.',
+      explain: d.join(' + ') + ' = ' + s + '. ' + s + ' ÷ 5 = ' + (s / 5) + ' hours a day.',
+      win: 'Your summary is accurate and your boss notices.',
+      lose: 'Your numbers do not match the time sheet and you have to redo the report.' });
+  }
+  function g6Speed() {
+    var s = pick([60, 80, 90, 100]), t = pick([2, 3, 4, 5]), d = s * t, v = pick(['speed', 'time', 'distance']);
+    var base = 'You borrow a friend’s car for a day trip and keep an eye on the clock.';
+    if (v === 'speed') return NUM({ label: 'Driving speed', stake: 50, answer: s, suffix: 'km/h', ansText: s + ' km/h', story: base,
+      prompt: 'You drive ' + d + ' km in ' + t + ' hours at a steady speed. What is your speed?',
+      hint: 'Speed = distance ÷ time.', explain: d + ' km ÷ ' + t + ' h = ' + s + ' km/h.',
+      win: 'You arrive on time and the friend gets the car back as promised.', lose: 'You guess the timing wrong and arrive late.' });
+    if (v === 'time') return NUM({ label: 'Driving time', stake: 50, answer: t, suffix: 'hours', ansText: t + ' hours', story: base,
+      prompt: 'You need to drive ' + d + ' km at a steady ' + s + ' km/h. How many hours will it take?',
+      hint: 'Time = distance ÷ speed.', explain: d + ' km ÷ ' + s + ' km/h = ' + t + ' hours.',
+      win: 'You leave at the right time and arrive on schedule.', lose: 'You leave too late and miss your appointment.' });
+    return NUM({ label: 'Driving distance', stake: 50, answer: d, suffix: 'km', ansText: d + ' km', story: base,
+      prompt: 'You drive at a steady ' + s + ' km/h for ' + t + ' hours. How far do you go?',
+      hint: 'Distance = speed × time.', explain: s + ' km/h × ' + t + ' h = ' + d + ' km.',
+      win: 'You plan the stops well and do not run low on gas.', lose: 'You misjudge the distance and run short of fuel.' });
+  }
+  function g6Fuel() {
+    var r = pick([6, 8, 9, 10]), d = pick([150, 200, 250, 300, 400]), p = pick([1.5, 1.6, 1.8, 2]), L = r * d / 100, cost = r2(L * p);
+    return NUM({ label: 'Fuel cost', stake: 60, answer: cost, prefix: '$', ansText: usd2(cost),
+      story: 'The car you borrowed needs gas. You decide to split the cost with your friend, so you need the real number.',
+      prompt: 'The car uses ' + r + ' L of gas per 100 km. Gas costs $' + p.toFixed(2) + ' per litre. How much gas money for a ' + d + ' km trip?',
+      hint: 'First find the litres used: ' + r + ' L × (' + d + ' ÷ 100). Then multiply by the price per litre.',
+      explain: 'Litres: ' + r + ' × ' + (d / 100) + ' = ' + L + ' L. Cost: ' + L + ' × $' + p.toFixed(2) + ' = ' + usd2(cost) + '.',
+      win: 'You split the gas fairly and everyone is happy.', lose: 'You ask for the wrong amount and have to settle up again later.' });
+  }
+  function g6Pass() {
+    var pass = pick([100, 110, 120, 130, 140]), f = pick([2.5, 3, 3.25, 3.5]), n = Math.floor(pass / f + 1e-9) + 1;
+    return NUM({ label: 'Transit pass', stake: 70, answer: n, suffix: 'rides', ansText: n + ' rides',
+      story: 'You take transit to work. A monthly pass might save you money, if you ride enough.',
+      prompt: 'A single ride costs $' + f.toFixed(2) + '. A monthly pass costs ' + usd(pass) + '. What is the fewest number of single rides after which the pass is cheaper?',
+      hint: 'Divide the pass price by the fare. The pass is cheaper once you pass that number of rides.',
+      explain: usd(pass) + ' ÷ $' + f.toFixed(2) + ' ≈ ' + (pass / f).toFixed(1) + '. After ' + (n - 1) + ' rides you have paid ' + usd2(r2((n - 1) * f)) + ', which is not more than the pass. After ' + n + ' rides you have paid ' + usd2(r2(n * f)) + ', so the pass wins.',
+      win: 'You buy the pass only when it makes sense for how often you ride.', lose: 'You pick the wrong way to pay and overspend on commuting.' });
+  }
+  function g6Map() {
+    var k = pick([2, 5, 10, 20]), c = ri(3, 12), a = k * c;
+    return NUM({ label: 'Map distance', stake: 40, answer: a, suffix: 'km', ansText: a + ' km',
+      story: 'You plan a weekend trip with a paper map. The scale is printed in the corner.',
+      prompt: 'On the map, 1 cm stands for ' + k + ' km. Two towns are ' + c + ' cm apart on the map. How far apart are they in real life?',
+      hint: 'Every centimetre on the map is ' + k + ' km. Multiply.',
+      explain: c + ' × ' + k + ' km = ' + a + ' km.',
+      win: 'You book the right amount of time and the trip goes smoothly.', lose: 'You underestimate the distance and the day runs long.' });
+  }
+  function g6BreakEven() {
+    var p = pick([6, 8, 10, 12]), n = ri(10, 25), S = p * n;
+    return NUM({ label: 'Cover the stall fee', stake: 80, answer: n, suffix: 'bags', ansText: n + ' bags',
+      visual: eqVis(p + ' × n = ' + S, p + ' times n equals ' + S),
+      story: 'You start selling hand-sewn tote bags at a weekend market. The stall costs money before you earn anything.',
+      prompt: 'The stall fee is ' + usd(S) + '. You earn ' + usd(p) + ' profit on each bag, before the fee. How many bags must you sell to cover the fee?',
+      hint: 'Solve the equation ' + p + ' × n = ' + S + '. What number times ' + p + ' makes ' + S + '?',
+      explain: 'n = ' + S + ' ÷ ' + p + ' = ' + n + ' bags.',
+      win: 'You know your target before the market opens and push for the sale.', lose: 'You set the wrong target and finish the day in the red.' });
+  }
+  function g6Scale() {
+    var b = pick([12, 24]), f = pick([2, 3, 4]), k = ri(3, 8), Tt = b * k, ans = f * k;
+    return NUM({ label: 'Scaling a recipe', stake: 50, answer: ans, suffix: 'cups', ansText: ans + ' cups',
+      story: 'A cafe orders your cookies for a weekend event, and you need to scale your recipe up.',
+      prompt: 'Your recipe makes ' + b + ' cookies with ' + f + ' cups of flour. You need ' + Tt + ' cookies. How many cups of flour do you need?',
+      hint: 'How many batches of ' + b + ' fit into ' + Tt + '? Multiply the flour by that number.',
+      explain: Tt + ' ÷ ' + b + ' = ' + k + ' batches. ' + k + ' × ' + f + ' cups = ' + ans + ' cups.',
+      win: 'You buy the right amount of flour and nothing goes to waste.', lose: 'You run out of flour halfway through the baking.' });
+  }
+  function g6Markup() {
+    var c = pick([20, 25, 40, 50]), pct = pick([10, 20, 25, 30, 40, 50]), pr = c * (100 + pct) / 100;
+    return NUM({ label: 'Price markup', stake: 60, answer: pct, suffix: '%', ansText: pct + '%',
+      story: 'You also sell candles. You buy them at one price and sell them at a higher one.',
+      prompt: 'You buy a candle for ' + usd(c) + ' and sell it for ' + usd(pr) + '. What is the percent increase from your cost to your selling price?',
+      hint: 'Find the increase in dollars. Divide it by the original cost, then write as a percent.',
+      explain: 'Increase: ' + usd(pr) + ' − ' + usd(c) + ' = ' + usd(pr - c) + '. ' + usd(pr - c) + ' ÷ ' + usd(c) + ' = ' + (pct / 100) + ' = ' + pct + '%.',
+      win: 'You price with confidence and know your margin.', lose: 'You misread your margin and sell too cheaply.' });
+  }
+  function g6Invoice() {
+    var b = pick([3, 4, 6]), n = ri(5, 20), s = pick([5, 10, 15]), Tt = s + b * n;
+    return NUM({ label: 'Packaging invoice', stake: 70, answer: n, suffix: 'boxes', ansText: n + ' boxes',
+      visual: eqVis(b + 'n + ' + s + ' = ' + Tt, b + ' times n plus ' + s + ' equals ' + Tt),
+      story: 'A supplier sends your packaging invoice, but the box count is smudged.',
+      prompt: 'The supplier charges a ' + usd(s) + ' setup fee plus ' + usd(b) + ' per box. Your invoice total is ' + usd(Tt) + '. How many boxes did you order?',
+      hint: 'Subtract the setup fee first. Then divide what is left by the price per box.',
+      explain: usd(Tt) + ' − ' + usd(s) + ' = ' + usd(Tt - s) + '. ' + usd(Tt - s) + ' ÷ ' + usd(b) + ' = ' + n + ' boxes.',
+      win: 'The invoice checks out. You pay what you owe, nothing more.', lose: 'You accept a wrong invoice and overpay.' });
+  }
+
+  /* ======================================================================
+     GRADE 3
+     ====================================================================== */
+  function g3Boxes() {
+    var a = ri(3, 9), b = ri(3, 9);
+    return NUM({ label: 'Packing books', stake: 10, answer: a * b, ansText: String(a * b),
+      story: 'You start packing at your old place.',
+      prompt: 'You fill ' + a + ' boxes with ' + b + ' books in each box. How many books is that?',
+      hint: 'Equal groups: multiply the number of boxes by the books in each box.',
+      explain: a + ' × ' + b + ' = ' + (a * b) + ' books.',
+      win: 'You count right and nothing is left behind.', lose: 'You lose count and leave a shelf of books behind.' });
+  }
+  function g3Baseboard() {
+    var w = ri(3, 9), h = ri(2, 8); if (w === h) w++;
+    return NUM({ label: 'Baseboard length', stake: 15, answer: 2 * (w + h), suffix: 'm', ansText: (2 * (w + h)) + ' m', visual: rectVis(w, h, 'm'),
+      story: 'Your new bedroom needs a strip of trim along the bottom of every wall.',
+      prompt: 'The room is ' + w + ' m long and ' + h + ' m wide. How many metres of trim go all the way around?',
+      hint: 'Add all four sides: ' + w + ' + ' + h + ' + ' + w + ' + ' + h + '.',
+      explain: w + ' + ' + h + ' + ' + w + ' + ' + h + ' = ' + (2 * (w + h)) + ' m.',
+      win: 'You buy just enough trim.', lose: 'You buy too little and need another trip to the store.' });
+  }
+  function g3Deposit() {
+    var a = ri(15, 45) * 10, b = ri(30, 50) * 10;
+    return NUM({ label: 'Deposit and rent', stake: 20, answer: a + b, prefix: '$', ansText: usd(a + b),
+      story: 'The landlord wants money up front.',
+      prompt: 'The deposit is ' + usd(a) + ' and the first month’s rent is ' + usd(b) + '. How much do you pay today?',
+      hint: 'Add the two amounts. Line up hundreds, tens and ones.',
+      explain: usd(a) + ' + ' + usd(b) + ' = ' + usd(a + b) + '.',
+      win: 'You bring the right amount and get the keys.', lose: 'You come up short and have to go back to the bank.' });
+  }
+  function g3Pizza() {
+    var n = pick([4, 6, 8]), k = ri(1, n - 1);
+    var cands = [[n - k, n], [k, n + 2], [k + 1, n], [k - 1, n]].filter(function (x) { return x[0] > 0 && x[0] < x[1]; }).map(function (x) { return fopt(x[0], x[1]); });
+    return MC({ label: 'Pizza night', stake: 10, visual: barVis(n, k),
+      story: 'First night in the new place. You order a pizza for the friends who helped you move.',
+      prompt: 'The pizza has ' + n + ' equal slices. The shaded slices were eaten. What fraction was eaten?',
+      hint: 'The bottom number is all the equal parts. The top number is the parts we are counting.',
+      explain: k + ' of the ' + n + ' slices were eaten, so the fraction is ' + fr(k, n) + '.',
+      win: 'You order the right amount next time.', lose: 'You guess wrong and order too little for the next party.' }, fopt(k, n), cands, 4);
+  }
+  function g3Receipt() {
+    var a = ri(10, 60), b = ri(10, 60), c = ri(10, 60), s = a + b + c;
+    return NUM({ label: 'Add up the receipt', stake: 15, answer: s, prefix: '$', ansText: usd(s),
+      story: 'You buy a few things for your kitchen.',
+      prompt: 'A pan costs ' + usd(a) + ', a kettle costs ' + usd(b) + ' and a toaster costs ' + usd(c) + '. What is the total?',
+      hint: 'Add the three prices.', explain: usd(a) + ' + ' + usd(b) + ' + ' + usd(c) + ' = ' + usd(s) + '.',
+      win: 'Your total matches the receipt.', lose: 'Your total is off and you do not notice an extra charge.' });
+  }
+  function g3Change() {
+    var pay = pick([50, 100]), x = ri(11, pay === 50 ? 49 : 89), ch = pay - x;
+    return NUM({ label: 'Change from the till', stake: 15, answer: ch, prefix: '$', ansText: usd(ch),
+      story: 'You pay with a bill and the cashier hands back coins and notes.',
+      prompt: 'You pay with ' + usd(pay) + ' for something that costs ' + usd(x) + '. How much change should you get?',
+      hint: 'Subtract the price from what you paid.', explain: usd(pay) + ' − ' + usd(x) + ' = ' + usd(ch) + '.',
+      win: 'You check your change and it is right.', lose: 'You do not check and get short-changed.' });
+  }
+  function g3Eggs() {
+    var k = pick([2, 3, 4, 5, 6]), q = ri(3, 9), n = k * q;
+    return NUM({ label: 'Cartons of eggs', stake: 10, answer: q, suffix: 'cartons', ansText: q + ' cartons',
+      story: 'You are stocking up for a week of breakfasts.',
+      prompt: 'You need ' + n + ' eggs. Each carton holds ' + k + ' eggs. How many cartons do you buy?',
+      hint: 'Share ' + n + ' into equal groups of ' + k + '. Think: ' + k + ' × ? = ' + n + '.',
+      explain: n + ' ÷ ' + k + ' = ' + q + ' cartons.',
+      win: 'You buy the right number of cartons.', lose: 'You run out of eggs on Thursday.' });
+  }
+  function g3UnitCompare() {
+    var ds = shuffle([2, 3, 4, 5, 6, 8]).slice(0, 2).sort(function (a, b) { return a - b; });
+    return MC({ label: 'Bigger slice', stake: 10,
+      story: 'You and a friend share a big pan of lasagna, but cut it differently.',
+      prompt: 'Which slice is bigger: ' + fr(1, ds[0]) + ' of the pan or ' + fr(1, ds[1]) + ' of the pan?',
+      hint: 'The more equal parts a whole is cut into, the smaller each part is.',
+      explain: 'Cutting into ' + ds[0] + ' parts gives bigger pieces than cutting into ' + ds[1] + ' parts, so ' + fr(1, ds[0]) + ' is bigger.',
+      win: 'You choose the bigger slice.', lose: 'Your friend ends up with the bigger slice.' },
+      fopt(1, ds[0]), [fopt(1, ds[1])], 2);
+  }
+  function g3Wage() {
+    var w = ri(5, 10), h = ri(3, 9);
+    return NUM({ label: 'Pay for the shift', stake: 15, answer: w * h, prefix: '$', ansText: usd(w * h),
+      story: 'You pick up a short shift at a cafe.',
+      prompt: 'You earn ' + usd(w) + ' for every hour. You work ' + h + ' hours. How much do you earn?',
+      hint: 'Equal groups: ' + h + ' hours with ' + usd(w) + ' each.', explain: h + ' × ' + usd(w) + ' = ' + usd(w * h) + '.',
+      win: 'Your pay matches your count.', lose: 'You miscount and the pay surprises you.' });
+  }
+  function g3Hours() {
+    var s = pick([7, 8, 9, 10]), e = pick([2, 3, 4, 5]), h = 12 - s + e;
+    return NUM({ label: 'Hours at work', stake: 15, answer: h, suffix: 'hours', ansText: h + ' hours',
+      story: 'You write your start and end times on your time sheet.',
+      prompt: 'You start at ' + s + ':00 a.m. and finish at ' + e + ':00 p.m. How many hours did you work?',
+      hint: 'Count from ' + s + ':00 a.m. to 12:00 noon, then from 12:00 to ' + e + ':00 p.m.',
+      explain: 'From ' + s + ' a.m. to noon is ' + (12 - s) + ' hours. From noon to ' + e + ' p.m. is ' + e + ' hours. ' + (12 - s) + ' + ' + e + ' = ' + h + ' hours.',
+      win: 'Your time sheet is right.', lose: 'Your time sheet is wrong and you are paid late.' });
+  }
+  function g3Paycheques() {
+    var a = ri(100, 480), b = ri(100, 480);
+    return NUM({ label: 'Two paycheques', stake: 20, answer: a + b, prefix: '$', ansText: usd(a + b),
+      story: 'You have been working for two weeks.',
+      prompt: 'Week 1 you earned ' + usd(a) + ' and week 2 you earned ' + usd(b) + '. How much is that in all?',
+      hint: 'Add the ones, then the tens, then the hundreds.', explain: usd(a) + ' + ' + usd(b) + ' = ' + usd(a + b) + '.',
+      win: 'You know how much you have to spend.', lose: 'You think you have more than you do.' });
+  }
+  function g3BarDays() {
+    var days = ['Mon', 'Tue', 'Wed', 'Thu'], vals = shuffle([2, 4, 6, 8, 10]).slice(0, 4);
+    var ds = days.map(function (d, i) { return { n: d, v: vals[i] }; }), p = twoOf(ds), A = p[0], B = p[1];
+    return NUM({ label: 'Read the graph', stake: 15, answer: A.v - B.v, suffix: 'hours', ansText: (A.v - B.v) + ' hours', visual: chartVis(ds, 10, 2, 'Hours you worked'),
+      story: 'You make a bar graph of your hours.',
+      prompt: 'How many more hours did you work on ' + A.n + ' than on ' + B.n + '?',
+      hint: 'Read the end of each bar on the scale. Then subtract.', explain: A.n + ' is ' + A.v + ' hours and ' + B.n + ' is ' + B.v + ' hours. ' + A.v + ' − ' + B.v + ' = ' + (A.v - B.v) + '.',
+      win: 'You read the graph right and tell your boss exactly.', lose: 'You read the graph wrong and report the wrong hours.' });
+  }
+  function g3Fare() {
+    var f = pick([2, 3, 4, 5]), r = ri(3, 9);
+    return NUM({ label: 'Bus fares', stake: 15, answer: f * r, prefix: '$', ansText: usd(f * r),
+      story: 'You ride the bus to work.',
+      prompt: 'Each ride costs ' + usd(f) + '. You take ' + r + ' rides this week. How much do you spend?',
+      hint: 'Multiply the fare by the number of rides.', explain: r + ' × ' + usd(f) + ' = ' + usd(f * r) + '.',
+      win: 'You set aside the right amount for the bus.', lose: 'You run out of fare money midweek.' });
+  }
+  function g3Arrive() {
+    var h = pick([7, 8, 9]), m = pick([0, 15, 30, 45]), a = pick([15, 30, 45]), ans = T(h, m + a);
+    var cands = [T(h, m + a + 15), T(h, m + a - 15), T(h, m + a + 30), T(h, m + a - 30)].map(function (s) { return { html: s + ' a.m.', key: s }; });
+    return MC({ label: 'Arrival time', stake: 15,
+      story: 'You do not want to be late on your first week.',
+      prompt: 'The bus leaves at ' + T(h, m) + ' a.m. and the trip takes ' + a + ' minutes. When does it arrive?',
+      hint: 'Add the minutes to the start time. Remember 60 minutes make 1 hour.',
+      explain: T(h, m) + ' plus ' + a + ' minutes is ' + ans + '.',
+      win: 'You arrive on time.', lose: 'You show up late and the boss notices.' },
+      { html: ans + ' a.m.', key: ans }, cands, 4);
+  }
+  function g3Remaining() {
+    var Tt = ri(40, 95) * 10, D = ri(10, Tt / 10 - 5) * 10;
+    return NUM({ label: 'Distance left', stake: 20, answer: Tt - D, suffix: 'km', ansText: (Tt - D) + ' km',
+      story: 'You and a friend drive to a family dinner.',
+      prompt: 'The trip is ' + Tt + ' km. You have driven ' + D + ' km. How many km are left?',
+      hint: 'Subtract the distance you drove from the whole trip.', explain: Tt + ' − ' + D + ' = ' + (Tt - D) + ' km.',
+      win: 'You tell everyone the right arrival time.', lose: 'You promise dinner on time and miss it.' });
+  }
+  function g3Pattern() {
+    var d = pick([2, 3, 4, 5, 10]), s = d, t = [s, s + d, s + 2 * d, s + 3 * d, s + 4 * d];
+    return NUM({ label: 'Bus schedule pattern', stake: 10, answer: t[4], ansText: String(t[4]), visual: seqVis(t, [4]),
+      story: 'You notice the bus timetable follows a pattern.',
+      prompt: 'The stops are ' + d + ' minutes apart. What number comes next?',
+      hint: 'Skip count. How much does each number grow?', explain: 'The pattern adds ' + d + ' each time. ' + t[3] + ' + ' + d + ' = ' + t[4] + '.',
+      win: 'You time your walk to the stop perfectly.', lose: 'You miss the bus by a minute.' });
+  }
+  function g3Cookies() {
+    var p = pick([2, 3, 4, 5]), n = ri(4, 9);
+    return NUM({ label: 'Cookie sales', stake: 10, answer: p * n, prefix: '$', ansText: usd(p * n),
+      story: 'You bake cookies and sell them at a weekend market.',
+      prompt: 'Each cookie costs ' + usd(p) + '. You sell ' + n + ' cookies. How much money do you make?',
+      hint: 'Multiply the price by the number sold.', explain: n + ' × ' + usd(p) + ' = ' + usd(p * n) + '.',
+      win: 'Your cash box matches your sales.', lose: 'Your cash box is short and you do not know why.' });
+  }
+  function g3Bags() {
+    var k = pick([2, 3, 4, 5, 6]), q = ri(3, 9), n = k * q;
+    return NUM({ label: 'Gift bags', stake: 10, answer: q, suffix: 'bags', ansText: q + ' bags',
+      story: 'A shop wants your cookies in gift bags.',
+      prompt: 'You put ' + k + ' cookies in each bag. You have ' + n + ' cookies. How many bags can you fill?',
+      hint: 'Share ' + n + ' into equal groups of ' + k + '.', explain: n + ' ÷ ' + k + ' = ' + q + ' bags.',
+      win: 'Every bag is full and none are wasted.', lose: 'You end up with half-empty bags.' });
+  }
+  function g3FracMore() {
+    var n = pick([6, 8, 10]), a = ri(1, n - 1), b; do { b = ri(1, n - 1); } while (b === a);
+    var big = Math.max(a, b), small = Math.min(a, b);
+    return MC({ label: 'Which is more', stake: 10,
+      story: 'You compare two orders from your shop.',
+      prompt: 'Which is more: ' + fr(a, n) + ' of a tray or ' + fr(b, n) + ' of a tray?',
+      hint: 'The bottom numbers are the same, so compare the top numbers.',
+      explain: 'Both trays are cut into ' + n + ' parts. ' + big + ' parts is more than ' + small + ' parts, so ' + fr(big, n) + ' is more.',
+      win: 'You pick the bigger share.', lose: 'You pick the smaller share.' }, fopt(big, n), [fopt(small, n)], 2);
+  }
+  function g3Area() {
+    var w = ri(3, 7), h = ri(2, 5);
+    return NUM({ label: 'Mat squares', stake: 15, answer: w * h, suffix: 'squares', ansText: (w * h) + ' squares', visual: gridVis(w, h),
+      story: 'Your market stall needs a floor mat made of small squares.',
+      prompt: 'The mat has ' + h + ' rows with ' + w + ' squares in each row. How many squares are in the mat?',
+      hint: 'Area is the number of squares inside. Multiply the rows by the squares in a row.',
+      explain: h + ' × ' + w + ' = ' + (w * h) + ' squares.',
+      win: 'You order the right mat.', lose: 'The mat is the wrong size for the stall.' });
+  }
+
+  /* ======================================================================
+     GRADE 4
+     ====================================================================== */
+  function g4Area() {
+    var w = ri(4, 12), h = ri(3, 9); if (w === h) w++;
+    return NUM({ label: 'Floor area', stake: 30, answer: w * h, suffix: 'm²', ansText: (w * h) + ' m²', visual: rectVis(w, h, 'm'),
+      story: 'You measure the living room to see which rug will fit.',
+      prompt: 'The floor is ' + w + ' m long and ' + h + ' m wide. What is its area?',
+      hint: 'Area = length × width.', explain: w + ' × ' + h + ' = ' + (w * h) + ' square metres.',
+      win: 'You pick a rug that fits.', lose: 'The rug is too small and the floor looks bare.' });
+  }
+  function g4Fence() {
+    var w = ri(3, 8), h = ri(2, 6); if (w === h) w++;
+    return NUM({ label: 'Balcony railing', stake: 30, answer: 2 * (w + h), suffix: 'm', ansText: (2 * (w + h)) + ' m', visual: rectVis(w, h, 'm'),
+      story: 'The balcony needs a safety railing on all four sides.',
+      prompt: 'The balcony is ' + w + ' m by ' + h + ' m. How many metres of railing go all the way around?',
+      hint: 'Perimeter is the distance around. Add all four sides.', explain: w + ' + ' + h + ' + ' + w + ' + ' + h + ' = ' + (2 * (w + h)) + ' m.',
+      win: 'You order the right length.', lose: 'You order too little and have to pay for a second delivery.' });
+  }
+  function g4Utilities() {
+    var p = pick([45, 55, 65, 75, 85, 95]), n = pick([6, 7, 8, 9]);
+    return NUM({ label: 'Internet bill', stake: 30, answer: p * n, prefix: '$', ansText: usd(p * n),
+      story: 'You sign up for internet with a fixed monthly price.',
+      prompt: 'The internet costs ' + usd(p) + ' a month. How much is that for ' + n + ' months?',
+      hint: 'Split ' + p + ' into tens and ones, multiply each by ' + n + ', then add.', explain: p + ' × ' + n + ' = ' + usd(p * n) + '.',
+      win: 'You budget for the full contract.', lose: 'The yearly cost catches you off guard.' });
+  }
+  function g4Round() {
+    var n; do { n = ri(1100, 9890); } while (n % 100 === 50);
+    var a = Math.round(n / 100) * 100;
+    return NUM({ label: 'Estimate the deposit', stake: 20, answer: a, prefix: '$', ansText: usd(a),
+      story: 'You want a quick estimate before you talk to the landlord.',
+      prompt: 'The move-in cost is ' + usd(n) + '. Round it to the nearest hundred dollars.',
+      hint: 'Look at the tens digit. If it is 5 or more, round up. If it is less than 5, round down.',
+      explain: usd(n) + ' is between ' + usd(Math.floor(n / 100) * 100) + ' and ' + usd(Math.floor(n / 100) * 100 + 100) + '. It is closer to ' + usd(a) + '.',
+      win: 'Your estimate is close enough to plan with.', lose: 'Your estimate is off and your plan falls apart.' });
+  }
+  function g4Change() {
+    var price = ri(205, 1895), ch = (2000 - price) / 100;
+    return NUM({ label: 'Change from a $20', stake: 30, answer: ch, prefix: '$', ansText: usd2(ch),
+      story: 'You buy a few things for the kitchen and pay with a bill.',
+      prompt: 'You pay with a $20 bill for something that costs ' + usd2(price / 100) + '. How much change do you get?',
+      hint: 'Subtract the price from $20.00. Line up the decimal points.', explain: '$20.00 − ' + usd2(price / 100) + ' = ' + usd2(ch) + '.',
+      win: 'Your change is right.', lose: 'You do not notice you got too little change.' });
+  }
+  function g4AddDec() {
+    var a = ri(150, 990), b = ri(150, 990), s = (a + b) / 100;
+    return NUM({ label: 'Two items', stake: 30, answer: s, prefix: '$', ansText: usd2(s),
+      story: 'You buy a pan and a spatula.',
+      prompt: 'The pan costs ' + usd2(a / 100) + ' and the spatula costs ' + usd2(b / 100) + '. What is the total?',
+      hint: 'Line up the decimal points and add.', explain: usd2(a / 100) + ' + ' + usd2(b / 100) + ' = ' + usd2(s) + '.',
+      win: 'You know what you will pay before the till.', lose: 'The total is more than you planned.' });
+  }
+  function g4FracCups() {
+    var d = pick([4, 5, 6, 8, 10]), a = ri(1, d - 2), b = ri(1, d - 1 - a), s = a + b;
+    var cands = [[s, 2 * d], [s + 1, d], [s - 1, d], [s, d + 1]].filter(function (x) { return x[0] > 0; }).map(function (x) { return fopt(x[0], x[1]); });
+    return MC({ label: 'Cups of flour', stake: 30,
+      story: 'You try a new recipe for your first dinner party.',
+      prompt: 'The recipe needs ' + fr(a, d) + ' cup of flour, then ' + fr(b, d) + ' cup more. How many cups is that in all?',
+      hint: 'The parts are the same size. Add the top numbers and keep the bottom number.',
+      explain: a + ' + ' + b + ' = ' + s + ' parts of size 1/' + d + '. The answer is ' + fr(s, d) + ' cup.',
+      win: 'The dinner turns out perfectly.', lose: 'The dough is too dry and dinner is a flop.' }, fopt(s, d), cands, 4);
+  }
+  function g4DecWeight() {
+    var t = ri(2, 8), x = (t / 10).toFixed(1), yh = t * 10 + pick([-9, -7, -5, -3, -1, 1, 3, 5, 7, 9]), y = (yh / 100).toFixed(2);
+    var xBig = t * 10 > yh, big = xBig ? x : y, small = xBig ? y : x;
+    return MC({ label: 'Heavier pack', stake: 20,
+      story: 'You compare two packs of coffee beans at the store. Both are labelled in kilograms.',
+      prompt: 'Which pack has more coffee: ' + x + ' kg or ' + y + ' kg?',
+      hint: 'Write ' + x + ' as ' + x + '0 so both numbers have hundredths.',
+      explain: x + ' kg is ' + (t * 10) + ' hundredths. ' + y + ' kg is ' + yh + ' hundredths. ' + big + ' kg is more.',
+      win: 'You get more coffee for your money.', lose: 'You pick the smaller pack.' }, { html: big + ' kg', key: big }, [{ html: small + ' kg', key: small }], 2);
+  }
+  function g4DailyPay() {
+    var p = ri(61, 98);
+    return NUM({ label: 'Week of pay', stake: 30, answer: p * 5, prefix: '$', ansText: usd(p * 5),
+      story: 'You get paid a flat amount each day.',
+      prompt: 'You earn ' + usd(p) + ' a day. You work 5 days. How much do you earn?',
+      hint: 'Multiply ' + p + ' by 5.', explain: p + ' × 5 = ' + usd(p * 5) + '.',
+      win: 'Your pay matches what you counted on.', lose: 'You count wrong and plan for less than you earn.' });
+  }
+  function g4Minutes() {
+    var h = pick([8, 9, 10]), m = pick([0, 15, 30, 45]), dur = ri(2, 6) * 60 + pick([15, 30, 45]);
+    var endTot = h * 60 + m + dur, eh = Math.floor(endTot / 60), em = endTot % 60, ap = eh >= 12 ? 'p.m.' : 'a.m.';
+    return NUM({ label: 'Shift length', stake: 30, answer: dur, suffix: 'minutes', ansText: dur + ' minutes',
+      story: 'You write down how long each shift lasts.',
+      prompt: 'A shift starts at ' + T(h, m) + ' a.m. and ends at ' + T(eh, em) + ' ' + ap + '. How many minutes is the shift?',
+      hint: 'Find the hours first, then the extra minutes. Each hour is 60 minutes.',
+      explain: 'The shift is ' + Math.floor(dur / 60) + ' hours and ' + (dur % 60) + ' minutes. ' + Math.floor(dur / 60) + ' × 60 + ' + (dur % 60) + ' = ' + dur + ' minutes.',
+      win: 'Your time sheet is accurate.', lose: 'Your time sheet is off and you get paid late.' });
+  }
+  function g4BarMost() {
+    var ds = dataSet(['Coffee', 'Tea', 'Muffins', 'Bagels', 'Soup', 'Salads'], [1, 2, 3, 4, 5, 6, 7], 10), s = ds.slice().sort(function (a, b) { return b.v - a.v; });
+    return MC({ label: 'Best seller', stake: 20, visual: chartVis(ds, 80, 10, 'Items sold at the cafe on Saturday'),
+      story: 'Your boss asks which item sold best this weekend.',
+      prompt: 'Which item sold the most?',
+      hint: 'Find the longest bar.', explain: s[0].n + ' has the longest bar, at ' + s[0].v + ' sold.',
+      win: 'You order more of the best seller.', lose: 'You order more of the wrong item.' },
+      { html: s[0].n, key: s[0].n }, ds.map(function (r) { return { html: r.n, key: r.n }; }), 4);
+  }
+  function g4Raise() {
+    var x = pick([12, 14, 15, 16, 18]), d = pick([1, 2, 3]), a = x + 5 * d;
+    return NUM({ label: 'Pay raises', stake: 30, answer: a, prefix: '$', ansText: usd(a), visual: seqVis([x, x + d, x + 2 * d, x + 3 * d, '?'].map(function (v) { return v; }), [4]),
+      story: 'Your wage goes up by the same amount every month.',
+      prompt: 'Month 1: ' + usd(x) + ' an hour. Each month it goes up by ' + usd(d) + '. What is your hourly wage in month 6?',
+      hint: 'Month 6 is five steps after month 1. Add ' + usd(d) + ' five times.', explain: usd(x) + ' + 5 × ' + usd(d) + ' = ' + usd(a) + '.',
+      win: 'You plan around your raise.', lose: 'You undercount your raise and spend too little.' });
+  }
+  function g4Cars() {
+    var n = ri(23, 58), c = pick([4, 5, 6]), a = Math.ceil(n / c);
+    return NUM({ label: 'Carpool', stake: 30, answer: a, suffix: 'cars', ansText: a + ' cars',
+      story: 'Your team goes to a work event and everyone carpools.',
+      prompt: n + ' people need a ride. Each car holds ' + c + ' people. How many cars do you need?',
+      hint: 'Divide ' + n + ' by ' + c + '. If there is a remainder, you need one more car.',
+      explain: n + ' ÷ ' + c + ' = ' + Math.floor(n / c) + ' remainder ' + (n % c) + (n % c ? ', so one more car is needed: ' : ': ') + a + ' cars.',
+      win: 'Everyone gets a seat.', lose: 'Someone is left standing at the curb.' });
+  }
+  function g4Parking() {
+    var r = pick([3, 4, 5]), h = ri(2, 6), f = pick([1.5, 2.5]), t = r * h + f;
+    return NUM({ label: 'Parking', stake: 30, answer: t, prefix: '$', ansText: usd2(t),
+      story: 'You park downtown for a meeting.',
+      prompt: 'Parking costs ' + usd(r) + ' an hour for ' + h + ' hours, plus a ' + usd2(f) + ' booking fee. What is the total?',
+      hint: 'Multiply the hours by the hourly rate. Then add the fee.', explain: h + ' × ' + usd(r) + ' = ' + usd(r * h) + '. ' + usd(r * h) + ' + ' + usd2(f) + ' = ' + usd2(t) + '.',
+      win: 'You pay the right amount.', lose: 'You owe more than you thought.' });
+  }
+  function g4Odo() {
+    var s = ri(240, 1000) * 5, d = ri(120, 780);
+    return NUM({ label: 'Odometer', stake: 30, answer: d, suffix: 'km', ansText: d + ' km',
+      story: 'You track the distance on a borrowed car.',
+      prompt: 'The odometer read ' + s.toLocaleString('en-CA') + ' km before the trip and ' + (s + d).toLocaleString('en-CA') + ' km after. How far did you drive?',
+      hint: 'Subtract the first reading from the second.', explain: (s + d).toLocaleString('en-CA') + ' − ' + s.toLocaleString('en-CA') + ' = ' + d + ' km.',
+      win: 'You report the trip honestly and fairly.', lose: 'You report the wrong distance.' });
+  }
+  function g4Lap() {
+    var w = pick([60, 80, 100, 120]), h = pick([40, 50, 60, 70]);
+    return NUM({ label: 'Walk around the park', stake: 30, answer: 2 * (w + h), suffix: 'm', ansText: (2 * (w + h)) + ' m',
+      story: 'You walk a lap around a park after work.',
+      prompt: 'The park is a rectangle ' + w + ' m long and ' + h + ' m wide. How far is one lap?',
+      hint: 'One lap is the perimeter. Add all four sides.', explain: w + ' + ' + h + ' + ' + w + ' + ' + h + ' = ' + (2 * (w + h)) + ' m.',
+      win: 'You plan your walk perfectly.', lose: 'You walk much farther than planned.' });
+  }
+  function g4BagProfit() {
+    var p = ri(3, 9), n = ri(12, 35);
+    return NUM({ label: 'Bag profit', stake: 30, answer: p * n, prefix: '$', ansText: usd(p * n),
+      story: 'You sell hand-sewn bags at a market on weekends.',
+      prompt: 'You make ' + usd(p) + ' profit on each bag. You sell ' + n + ' bags. What is your total profit?',
+      hint: 'Break ' + n + ' into tens and ones. Multiply each by ' + p + ', then add.', explain: n + ' × ' + p + ' = ' + usd(p * n) + '.',
+      win: 'You count your profit right.', lose: 'You miscount and spend money you do not have.' });
+  }
+  function g4FracSold() {
+    var n = pick([4, 5, 6, 8, 10]), k = ri(1, n - 1);
+    var cands = [[n - k, n], [k + 1, n], [k, n + 2], [k - 1, n]].filter(function (x) { return x[0] > 0 && x[0] < x[1]; }).map(function (x) { return fopt(x[0], x[1]); });
+    return MC({ label: 'Fraction sold', stake: 30, visual: barVis(n, k),
+      story: 'You laid out ' + n + ' bags on your table. The shaded ones are sold.',
+      prompt: 'What fraction of the bags were sold?',
+      hint: 'Count all the bags first. Then count the sold ones.', explain: k + ' of ' + n + ' bags are sold. The fraction is ' + fr(k, n) + '.',
+      win: 'You know how much stock is left.', lose: 'You restock the wrong amount.' }, fopt(k, n), cands, 4);
+  }
+  function g4Mat() {
+    var w = ri(3, 8), h = ri(2, 6); if (w === h) w++;
+    var a = w * h, per = 2 * (w + h);
+    var cands = [per, w + h, a + w, a - h].map(function (v) { return { html: v + ' m²', key: String(v) }; });
+    return MC({ label: 'Stall floor', stake: 30, visual: rectVis(w, h, 'm'),
+      story: 'You rent a small floor space for your stall.',
+      prompt: 'The space is ' + w + ' m by ' + h + ' m. What is its area?',
+      hint: 'Area is length × width.', explain: w + ' × ' + h + ' = ' + a + ' square metres. (' + per + ' would be the perimeter.)',
+      win: 'Your displays fit in the space.', lose: 'Your displays do not fit.' }, { html: a + ' m²', key: String(a) }, cands, 4);
+  }
+  function g4Sales3() {
+    var a = ri(450, 1950), b = ri(450, 1950), c = ri(450, 1950), s = (a + b + c) / 100;
+    return NUM({ label: 'Total sales', stake: 30, answer: s, prefix: '$', ansText: usd2(s),
+      story: 'At the end of the day you add up your sales.',
+      prompt: 'You made ' + usd2(a / 100) + ', ' + usd2(b / 100) + ' and ' + usd2(c / 100) + ' in three sales. What is the total?',
+      hint: 'Line up the decimal points and add.', explain: usd2(a / 100) + ' + ' + usd2(b / 100) + ' + ' + usd2(c / 100) + ' = ' + usd2(s) + '.',
+      win: 'Your cash box matches your total.', lose: 'Your cash box is short.' });
+  }
+
+  /* ======================================================================
+     GRADE 5
+     ====================================================================== */
+  function g5RentYear() {
+    var r = pick([650, 700, 750, 800, 850, 900, 950, 1100, 1200]);
+    return NUM({ label: 'A year of rent', stake: 40, answer: r * 12, prefix: '$', ansText: usd(r * 12),
+      story: 'You sign a one-year lease. The landlord wants to see that you understand the total.',
+      prompt: 'Rent is ' + usd(r) + ' a month. How much is that for 12 months?',
+      hint: 'Multiply by 10, then by 2, then add: ' + r + ' × 10 + ' + r + ' × 2.', explain: r + ' × 12 = ' + usd(r * 10) + ' + ' + usd(r * 2) + ' = ' + usd(r * 12) + '.',
+      win: 'You know the real cost of the lease.', lose: 'You underestimate the lease and have to scramble.' });
+  }
+  function g5RoomArea() {
+    var w = pick([3.5, 4.5, 5.5, 6.5]), h = pick([3, 4, 5, 6]), a = r2(w * h);
+    return NUM({ label: 'Room area', stake: 40, answer: a, suffix: 'm²', ansText: a + ' m²', visual: rectVis(w, h, 'm'),
+      story: 'You measure your bedroom for new carpet.',
+      prompt: 'The room is ' + w + ' m by ' + h + ' m. What is its area?',
+      hint: 'Multiply the length by the width. Think: ' + (w * 2) + ' halves times ' + h + ', then halve it.', explain: w + ' × ' + h + ' = ' + a + ' square metres.',
+      win: 'You order the right amount of carpet.', lose: 'You order too little carpet.' });
+  }
+  function g5Convert() {
+    var v = pick([['2.4 m', 240, 'cm', 'There are 100 cm in 1 m.', 100], ['3.5 L', 3500, 'mL', 'There are 1000 mL in 1 L.', 1000], ['4.2 m', 420, 'cm', 'There are 100 cm in 1 m.', 100], ['1.5 L', 1500, 'mL', 'There are 1000 mL in 1 L.', 1000]]);
+    var num = parseFloat(v[0]);
+    return NUM({ label: 'Unit conversion', stake: 30, answer: v[1], suffix: v[2], ansText: v[1] + ' ' + v[2],
+      story: 'You are buying curtains and a water jug for the new place. The labels use different units.',
+      prompt: 'Convert ' + v[0] + ' to ' + v[2] + '.',
+      hint: v[3] + ' Multiply by ' + v[4] + '.', explain: num + ' × ' + v[4] + ' = ' + v[1] + ' ' + v[2] + '.',
+      win: 'Your purchase fits the window.', lose: 'You buy the wrong size.' });
+  }
+  function g5PaintFrac() {
+    var pair = pick([[2, 4], [2, 8], [3, 6], [4, 8], [5, 10], [2, 6]]), b = pair[0], d = pair[1], m = d / b, a, c;
+    do { a = ri(1, b - 1); c = ri(1, d - 1); } while (a * m + c >= d);
+    var s = a * m + c;
+    var cands = [[a + c, b + d], [a + c, d], [a + c, b]].filter(function (x) { return x[0] < x[1]; }).map(function (x) { return fopt(x[0], x[1]); });
+    return MC({ label: 'Painting the wall', stake: 40,
+      story: 'You paint your new apartment over two evenings.',
+      prompt: 'On Monday you paint ' + fr(a, b) + ' of the wall. On Tuesday you paint ' + fr(c, d) + ' more. What fraction is painted?',
+      hint: 'Rename ' + fr(a, b) + ' with a bottom number of ' + d + ' first. Then add.', explain: fr(a, b) + ' = ' + fr(a * m, d) + '. ' + a * m + ' + ' + c + ' = ' + s + ', so ' + fr(s, d) + ' of the wall is painted.',
+      win: 'You buy exactly enough paint.', lose: 'You run out of paint on Wednesday.' }, fopt(s, d), cands, 4);
+  }
+  function g5DecMult() {
+    var p = pick([1.25, 1.75, 2.25, 2.75, 3.5, 4.25, 5.5]), q = ri(3, 9), t = r2(p * q);
+    return NUM({ label: 'Groceries by the pack', stake: 30, answer: t, prefix: '$', ansText: usd2(t),
+      story: 'You stock the kitchen with the same snack for the whole week.',
+      prompt: 'One pack costs ' + usd2(p) + '. You buy ' + q + ' packs. What is the total?',
+      hint: 'Multiply the price by ' + q + '. Keep two decimal places.', explain: usd2(p) + ' × ' + q + ' = ' + usd2(t) + '.',
+      win: 'You bring the right amount of cash.', lose: 'You are short at the till.' });
+  }
+  function g5UnitDiv() {
+    var k = pick([2, 3, 4, 5]), u = pick([1.25, 1.5, 1.75, 2.4, 3.2, 3.5]), tot = r2(k * u);
+    return NUM({ label: 'Price per kilogram', stake: 40, answer: u, prefix: '$', ansText: usd2(u),
+      story: 'The store sells apples in a bag, but the label shows only the total.',
+      prompt: 'A ' + k + ' kg bag costs ' + usd2(tot) + '. What is the price for 1 kg?',
+      hint: 'Divide the total price by the number of kilograms.', explain: usd2(tot) + ' ÷ ' + k + ' = ' + usd2(u) + ' per kg.',
+      win: 'You compare prices with confidence.', lose: 'You think a bad deal is a good one.' });
+  }
+  function g5Wage() {
+    var w = pick([15.5, 16.25, 17.5, 18.75, 19.5]), h = pick([6, 7, 8]), t = r2(w * h);
+    return NUM({ label: 'Daily pay', stake: 40, answer: t, prefix: '$', ansText: usd2(t),
+      story: 'You work a full day at your new job.',
+      prompt: 'You earn ' + usd2(w) + ' an hour. You work ' + h + ' hours. How much do you earn?',
+      hint: 'Multiply the hourly wage by the hours.', explain: usd2(w) + ' × ' + h + ' = ' + usd2(t) + '.',
+      win: 'Your pay stub matches your math.', lose: 'You miss a mistake on your pay stub.' });
+  }
+  function g5Save() {
+    var P = pick([240, 320, 400, 480, 560, 640]), d = pick([4, 5, 8]), n = ri(1, d - 1), a = P / d * n;
+    return NUM({ label: 'Savings plan', stake: 40, answer: a, prefix: '$', ansText: usd(a),
+      story: 'You decide to save part of every paycheque.',
+      prompt: 'You save ' + fr(n, d) + ' of a ' + usd(P) + ' paycheque. How much do you save?',
+      hint: 'Find ' + fr(1, d) + ' of ' + usd(P) + ' first. Then multiply by ' + n + '.', explain: usd(P) + ' ÷ ' + d + ' = ' + usd(P / d) + '. ' + n + ' × ' + usd(P / d) + ' = ' + usd(a) + '.',
+      win: 'Your savings grow on schedule.', lose: 'You set aside the wrong amount.' });
+  }
+  function g5BarDiff() {
+    var ds = dataSet(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], [1, 2, 3, 4, 5, 6, 7], 10), p = twoOf(ds), A = p[0], B = p[1];
+    return NUM({ label: 'Tips by day', stake: 30, answer: A.v - B.v, prefix: '$', ansText: usd(A.v - B.v), visual: chartVis(ds, 80, 10, 'Tips you earned (dollars)'),
+      story: 'You keep track of your tips in a bar graph.',
+      prompt: 'How many more dollars did you earn in tips on ' + A.n + ' than on ' + B.n + '?',
+      hint: 'Read the end of each bar on the scale. Then subtract.', explain: A.n + ': ' + usd(A.v) + '. ' + B.n + ': ' + usd(B.v) + '. ' + usd(A.v) + ' − ' + usd(B.v) + ' = ' + usd(A.v - B.v) + '.',
+      win: 'You see which days pay best and plan your schedule.', lose: 'You misread the graph and pick the wrong shift.' });
+  }
+  function g5Shift() {
+    var h = pick([8, 9]), m = pick([0, 15, 30, 45]), dur = pick([450, 465, 480, 495, 510, 525]), lunch = pick([30, 45, 60]);
+    var endTot = h * 60 + m + dur, eh = Math.floor(endTot / 60), em = endTot % 60, paid = (dur - lunch) / 60;
+    return NUM({ label: 'Paid hours', stake: 40, answer: paid, suffix: 'hours', ansText: paid + ' hours',
+      story: 'Your boss only pays for working time, not for lunch.',
+      prompt: 'Your shift runs from ' + T(h, m) + ' a.m. to ' + T(eh, em) + ' p.m. Your unpaid lunch is ' + lunch + ' minutes. How many hours are you paid for?',
+      hint: 'Find the minutes from start to end. Subtract lunch. Then divide by 60.',
+      explain: 'The shift is ' + dur + ' minutes. ' + dur + ' − ' + lunch + ' = ' + (dur - lunch) + ' minutes. ' + (dur - lunch) + ' ÷ 60 = ' + paid + ' hours.',
+      win: 'Your time sheet matches payroll.', lose: 'You claim the wrong hours and payroll has to fix it.' });
+  }
+  function g5Perim() {
+    var w = pick([3.5, 4.5, 5.5, 6.5, 7.5]), h = pick([2, 3, 4, 5]), p = 2 * (w + h);
+    return NUM({ label: 'Garden edging', stake: 30, answer: p, suffix: 'm', ansText: p + ' m', visual: rectVis(w, h, 'm'),
+      story: 'A community garden gives you a small plot, and you want to put edging around it.',
+      prompt: 'The plot is ' + w + ' m by ' + h + ' m. How many metres of edging go all the way around?',
+      hint: 'Add the length and width, then double the answer.', explain: '(' + w + ' + ' + h + ') × 2 = ' + (w + h) + ' × 2 = ' + p + ' m.',
+      win: 'You buy the right length of edging.', lose: 'You run out of edging.' });
+  }
+  function g5Km() {
+    var k = pick([1.2, 2.5, 3.4, 4.8, 5.5]), m = r2(k * 1000);
+    return NUM({ label: 'Kilometres to metres', stake: 30, answer: m, suffix: 'm', ansText: m + ' m',
+      story: 'The map shows distances in km, but your fitness app uses metres.',
+      prompt: 'Your walk to work is ' + k + ' km. How many metres is that?',
+      hint: 'There are 1000 m in 1 km. Multiply by 1000.', explain: k + ' × 1000 = ' + m + ' m.',
+      win: 'Your app and your map agree.', lose: 'You set the wrong goal in your app.' });
+  }
+  function g5Split() {
+    var n = pick([3, 4, 5]), u = ri(850, 2450), tot = n * u / 100;
+    return NUM({ label: 'Split the gas', stake: 40, answer: u / 100, prefix: '$', ansText: usd2(u / 100),
+      story: 'You take a road trip with friends and split the gas.',
+      prompt: 'Gas for the trip costs ' + usd2(tot) + '. ' + n + ' people share it equally. How much does each person pay?',
+      hint: 'Divide the total by ' + n + '.', explain: usd2(tot) + ' ÷ ' + n + ' = ' + usd2(u / 100) + ' each.',
+      win: 'Everyone pays the same and nobody argues.', lose: 'The split is off and someone is annoyed.' });
+  }
+  function g5Taxi() {
+    var b = pick([3, 4, 5]), r = pick([1.25, 1.5, 2]), k = pick([4, 6, 8, 10]), t = r2(b + r * k);
+    return NUM({ label: 'Taxi fare', stake: 40, answer: t, prefix: '$', ansText: usd2(t), visual: eqVis(usd(b) + ' + ' + usd2(r) + ' × ' + k, 'base fare plus rate times kilometres'),
+      story: 'It is raining, so you take a taxi home.',
+      prompt: 'The base fare is ' + usd(b) + ', plus ' + usd2(r) + ' per km. Your ride is ' + k + ' km. What is the fare?',
+      hint: 'Multiply first, then add. Use the order of operations.', explain: usd2(r) + ' × ' + k + ' = ' + usd2(r * k) + '. ' + usd(b) + ' + ' + usd2(r * k) + ' = ' + usd2(t) + '.',
+      win: 'You have exactly enough to tip.', lose: 'You are surprised by the meter.' });
+  }
+  function g5Profit() {
+    var n = pick([12, 16, 20, 24]), p = pick([9.5, 10.75, 12.5, 14.25]), c = ri(60, 110), rev = r2(n * p), pr = r2(rev - c);
+    return NUM({ label: 'Mug profit', stake: 40, answer: pr, prefix: '$', ansText: usd2(pr),
+      story: 'You decorate mugs and sell them at a market.',
+      prompt: 'You sell ' + n + ' mugs at ' + usd2(p) + ' each. Your costs were ' + usd(c) + '. What is your profit?',
+      hint: 'Find the money you took in first. Then subtract your costs.', explain: n + ' × ' + usd2(p) + ' = ' + usd2(rev) + '. ' + usd2(rev) + ' − ' + usd(c) + ' = ' + usd2(pr) + '.',
+      win: 'You know your profit and plan the next batch.', lose: 'You confuse sales with profit.' });
+  }
+  function g5FracSet() {
+    var o = pick([[40, [4, 5, 8]], [24, [3, 4, 6, 8]], [30, [3, 5, 6]], [36, [3, 4, 6]], [20, [4, 5]]]), n = o[0], d = pick(o[1]), a = ri(1, d - 1), ans = n / d * a;
+    return NUM({ label: 'Candles sold', stake: 30, answer: ans, suffix: 'candles', ansText: ans + ' candles',
+      story: 'You count what is left on the table at the end of the day.',
+      prompt: 'You made ' + n + ' candles. You sold ' + fr(a, d) + ' of them. How many did you sell?',
+      hint: 'Divide ' + n + ' into ' + d + ' equal groups. Then take ' + a + ' of them.', explain: n + ' ÷ ' + d + ' = ' + (n / d) + '. ' + a + ' × ' + (n / d) + ' = ' + ans + ' candles.',
+      win: 'Your stock count is right.', lose: 'You reorder too many.' });
+  }
+  function g5PercentOf() {
+    var d = pick([10, 20, 25, 50]), x = ri(1, d - 1), p = x * 100 / d;
+    return NUM({ label: 'Percent sold', stake: 40, answer: p, suffix: '%', ansText: p + '%',
+      story: 'You want to tell a shop owner how well your bags sell.',
+      prompt: 'You sold ' + x + ' out of ' + d + ' bags. What percent did you sell?',
+      hint: 'Percent means out of 100. Rename ' + fr(x, d) + ' with a bottom number of 100.', explain: fr(x, d) + ' = ' + fr(p, 100) + ' = ' + p + '%.',
+      win: 'You make a clear pitch with real numbers.', lose: 'Your numbers do not add up.' });
+  }
+  function g5Backwards() {
+    var s = pick([12, 15, 18, 25]), l = pick([20, 28, 35, 42]), st = s + l;
+    return NUM({ label: 'Starting stock', stake: 40, answer: st, suffix: 'bags', ansText: st + ' bags', visual: eqVis('n − ' + s + ' = ' + l, 'n minus ' + s + ' equals ' + l),
+      story: 'You forgot how many bags you brought to the market.',
+      prompt: 'You sold ' + s + ' bags and ' + l + ' are left. How many bags did you start with?',
+      hint: 'Work backwards. Add the bags you sold to the bags that are left.', explain: 'n − ' + s + ' = ' + l + ', so n = ' + l + ' + ' + s + ' = ' + st + ' bags.',
+      win: 'Your records are right.', lose: 'Your records do not match your stock.' });
+  }
+
+  /* ---------- chapters and grades ---------- */
+  var META = [
+    { kick: 'Week 1', title: 'Find a place', icon: 'building', intro: 'You just moved to Toronto for your first job. Before anything else, you need somewhere to live, and the numbers have to work.' },
+    { kick: 'Week 2', title: 'Set up the kitchen', icon: 'kettle', intro: 'Your new kitchen is empty. Time to shop, and every price tag is a small decision.' },
+    { kick: 'Week 3', title: 'First paycheque', icon: 'cheque', intro: 'Your first pay stub arrives. Does it add up? Check the maths before you spend a cent.' },
+    { kick: 'Week 4', title: 'Get around town', icon: 'bus', intro: 'Work, groceries, weekend trips. Getting around costs time and money, so you work out the best way.' },
+    { kick: 'Weekend', title: 'Side hustle', icon: 'stall', intro: 'You start a small weekend business. It can bring in extra money, but only if the numbers hold up.' }
+  ];
+  var GENS = {
+    3: [[g3Boxes, g3Baseboard, g3Deposit, g3Pizza], [g3Receipt, g3Change, g3Eggs, g3UnitCompare], [g3Wage, g3Hours, g3Paycheques, g3BarDays], [g3Fare, g3Arrive, g3Remaining, g3Pattern], [g3Cookies, g3Bags, g3FracMore, g3Area]],
+    4: [[g4Area, g4Fence, g4Utilities, g4Round], [g4Change, g4AddDec, g4FracCups, g4DecWeight], [g4DailyPay, g4Minutes, g4BarMost, g4Raise], [g4Cars, g4Parking, g4Odo, g4Lap], [g4BagProfit, g4FracSold, g4Mat, g4Sales3]],
+    5: [[g5RentYear, g5RoomArea, g5Convert, g5PaintFrac], [g5DecMult, wrapq(gDiscount, { stake: 40 }), g5UnitDiv, wrapq(gBudget, { stake: 30 })], [g5Wage, g5Save, g5BarDiff, g5Shift], [g5Perim, g5Km, g5Split, g5Taxi], [g5Profit, g5FracSet, g5PercentOf, g5Backwards]],
+    6: [[g6RentRatio, g6UnitRent, g6Flooring, g6Box], [g6UnitPrice, gDiscount, g6HST, gBudget], [g6Offer, g6Overtime, g6Deduction, g6Mean], [g6Speed, g6Fuel, g6Pass, g6Map], [g6BreakEven, g6Scale, g6Markup, g6Invoice]]
+  };
+  var START = { 3: 500, 4: 700, 5: 900, 6: 1200 };
+  var SKILLS = {
+    3: ['Times tables', 'Money', 'Fractions', 'Time', 'Perimeter and area', 'Patterns', 'Bar graphs'],
+    4: ['Multiplying', 'Decimals', 'Rounding', 'Fractions', 'Area and perimeter', 'Elapsed time', 'Bar graphs'],
+    5: ['Decimals', 'Percents', 'Fractions', 'Unit conversion', 'Order of operations', 'Equations', 'Area and perimeter'],
+    6: ['Ratios', 'Rates', 'Percents', 'Equations', 'Area and volume', 'Mean', 'Financial literacy']
+  };
+  function chaptersFor(g) { return META.map(function (m, i) { return { kick: m.kick, title: m.title, icon: m.icon, intro: m.intro, gens: GENS[g][i] }; }); }
+
+  /* ---------- state ---------- */
+  var KEY = 'first-month-v2';
+  var store = { best: {}, name: '', grade: 6, run: null };
+  var codeUI = { open: false, text: '', msg: '' };
+  var G = null, S = null, pickedGrade = 6;
+  var view = document.getElementById('view');
+  function load() {
+    try {
+      var d = JSON.parse(window.localStorage.getItem(KEY) || 'null');
+      if (d) store = { best: d.best || {}, name: String(d.name || '').slice(0, 20), grade: +d.grade || 6, run: cleanRun(d.run) };
+    } catch (e) { /* ignore */ }
+  }
+  function save() { try { window.localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { /* ignore */ } }
+  function focusEl(id) { var el = id && document.getElementById(id); if (el) { try { el.focus(); } catch (e) { /* ignore */ } } }
+
+  /* Questions are random, so each month is built from a seed. The same seed gives the same questions,
+     which lets a saved month (or a save code) be rebuilt from the seed plus the list of results. */
+  function mulberry(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function newGame(name, grade, seed) {
+    var CH = chaptersFor(grade), orig = Math.random;
+    seed = seed || (Math.floor(Math.random() * 4294967294) + 1);
+    Math.random = mulberry(seed);
+    try {
+      G = { name: name || 'Alex', grade: grade, seed: seed, start: START[grade], balance: START[grade], ledger: [], ch: 0, qi: 0, CH: CH,
+        qs: CH.map(function (c) { return c.gens.map(function (g) { return g(); }); }) };
+    } finally { Math.random = orig; }
+  }
+  function totalQs() { return G.qs.reduce(function (a, c) { return a + c.length; }, 0); }
+  function cleanRun(r) {
+    if (!r || [3, 4, 5, 6].indexOf(+r.g) < 0 || !(+r.s > 0) || !Array.isArray(r.l) || r.l.length > 20) return null;
+    var l = r.l.map(Number);
+    if (l.some(function (x) { return !isFinite(x) || Math.abs(x) > 1000; })) return null;
+    return { g: +r.g, s: Math.floor(+r.s), n: String(r.n || '').slice(0, 20), l: l };
+  }
+  function saveRun() {
+    if (!G) return;
+    store.run = { g: G.grade, s: G.seed, n: G.name, l: G.ledger.map(function (x) { return x.amt; }) };
+    save();
+  }
+  function runInfo(r) {
+    var bal = START[r.g] + r.l.reduce(function (a, x) { return a + x; }, 0);
+    var per = 4, done = r.l.length;
+    return { bal: bal, ch: Math.min(Math.floor(done / per) + 1, 5), done: done };
+  }
+  function resumeRun(r) {
+    newGame(r.n, r.g, r.s);
+    var i = 0;
+    G.qs.forEach(function (list, ci) { list.forEach(function (q, qi) {
+      if (i < r.l.length) { G.ledger.push({ ch: ci, q: qi, label: q.label, amt: r.l[i], stake: q.stake }); G.balance += r.l[i]; }
+      i++;
+    }); });
+    var n = r.l.length;
+    if (n >= totalQs()) { renderEnding(); return; }
+    var ch = 0, left = n;
+    while (left >= G.qs[ch].length) { left -= G.qs[ch].length; ch++; }
+    G.ch = ch; G.qi = left;
+    if (left === 0) renderIntro(); else { newQuestion(); renderPlay(); }
+  }
+  /* save code: FM1-<base64 json>-<check> */
+  function chk(str) { var h = 0; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 65521; return h.toString(36); }
+  function makeCode() {
+    var o = { v: 1, n: store.name, b: store.best };
+    if (store.run) o.r = store.run;
+    var b = btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return 'FM1-' + b + '-' + chk(b);
+  }
+  function readCode(text) {
+    try {
+      var m = /^FM1-([A-Za-z0-9_\-]+)-([0-9a-z]+)$/.exec(String(text).replace(/\s+/g, ''));
+      if (!m || chk(m[1]) !== m[2]) return null;
+      var b = m[1].replace(/-/g, '+').replace(/_/g, '/'); while (b.length % 4) b += '=';
+      var o = JSON.parse(decodeURIComponent(escape(atob(b))));
+      if (!o || o.v !== 1) return null;
+      var best = {};
+      [3, 4, 5, 6].forEach(function (g) { var v = +(o.b && o.b[g]); if (isFinite(v) && v > 0 && v < 100000) best[g] = v; });
+      return { name: String(o.n || '').slice(0, 20), best: best, run: cleanRun(o.r) };
+    } catch (e) { return null; }
+  }
+  var SKY = '<svg class="sky" viewBox="0 0 600 140" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' +
+    '<rect x="0" y="80" width="60" height="60" fill="#243066"/><rect x="70" y="50" width="50" height="90" fill="#2A3670"/><rect x="130" y="95" width="70" height="45" fill="#243066"/>' +
+    '<rect x="210" y="40" width="60" height="100" fill="#2A3670"/><rect x="280" y="70" width="50" height="70" fill="#243066"/>' +
+    '<rect x="383" y="22" width="6" height="118" fill="#2A3670"/><ellipse cx="386" cy="62" rx="16" ry="7" fill="#2A3670"/><rect x="384" y="4" width="2" height="22" fill="#2A3670"/>' +
+    '<rect x="410" y="60" width="60" height="80" fill="#243066"/><rect x="480" y="30" width="55" height="110" fill="#2A3670"/><rect x="545" y="75" width="55" height="65" fill="#243066"/>' +
+    '<g fill="#FFB02E"><rect x="80" y="62" width="6" height="8"/><rect x="96" y="78" width="6" height="8"/><rect x="220" y="55" width="6" height="8"/><rect x="238" y="88" width="6" height="8"/>' +
+    '<rect x="290" y="84" width="6" height="8"/><rect x="420" y="76" width="6" height="8"/><rect x="448" y="100" width="6" height="8"/><rect x="492" y="46" width="6" height="8"/><rect x="510" y="70" width="6" height="8"/><rect x="556" y="92" width="6" height="8"/><rect x="20" y="96" width="6" height="8"/><rect x="150" y="108" width="6" height="8"/></g></svg>';
+
+  /* ---------- views ---------- */
+  function topbar(showQuit) {
+    return '<header class="top"><div class="logo">First Month <span class="gtag">Grade ' + G.grade + '</span></div><div class="bal"><small>Balance</small><b class="num">' + usd(G.balance) + '</b></div>' +
+      (showQuit ? '<button class="quit" data-a="title">Save &amp; exit</button>' : '') + '</header>';
+  }
+  function renderTitle() {
+    S = { screen: 'title' };
+    var g = pickedGrade, best = store.best[g], r = store.run, ri = r && runInfo(r);
+    var resume = r ? '<div class="resume"><p><strong>' + esc(r.n || 'Your') + (r.n ? '’s' : '') + ' month is saved.</strong><small>Grade ' + r.g + ' · chapter ' + ri.ch + ' of 5 · ' + ri.done + ' of 20 scenes done · balance ' + usd(ri.bal) + '</small></p>' +
+      '<button class="btn go" data-a="resume">Continue</button></div>' : '';
+    var codes = '<details class="codes"' + (codeUI.open ? ' open' : '') + '><summary>Save code (use on another device)</summary>' +
+      '<h3>Take your progress with you</h3><p class="sm">Get a code, keep it somewhere safe, and paste it on any device to carry on.</p>' +
+      '<div class="row"><button class="btn ghost small" data-a="getcode">Get my save code</button></div>' +
+      (codeUI.text ? '<label for="mycode" class="sm" style="display:block;margin-top:10px;font-size:14px;color:#C9D1F0">Your save code</label><textarea id="mycode" readonly>' + esc(codeUI.text) + '</textarea><div class="row"><button class="btn ghost small" data-a="copycode">Copy code</button></div>' : '') +
+      '<h3>Have a code?</h3><label for="loadcode" class="sm" style="display:block;font-size:14px;color:#C9D1F0">Paste it here</label><textarea id="loadcode" placeholder="FM1-..."></textarea>' +
+      '<div class="row"><button class="btn ghost small" data-a="loadcode">Load code</button></div>' +
+      '<p class="msg" role="status" aria-live="polite">' + esc(codeUI.msg) + '</p></details>';
+    view.innerHTML =
+      '<section class="hero">' + SKY +
+      '<p class="kick">Maths game for Grades 3 to 6</p><h1 id="title" tabindex="-1">First Month</h1>' +
+      '<p class="lede">New city. New job. A bank account with ' + usd(START[g]) + ' in it. Every price, pay stub and bill is a maths problem. Smart choices save money. Slips cost you.</p>' +
+      '<div class="gradepick"><p id="gp">Choose your grade</p><div class="grades" role="group" aria-labelledby="gp">' +
+      [3, 4, 5, 6].map(function (n) { return '<button class="gbtn" data-a="grade" data-k="' + n + '" aria-pressed="' + (n === g) + '">Grade ' + n + '</button>'; }).join('') + '</div></div>' +
+      '<div class="namefield"><div><label for="name">Your name</label><input id="name" type="text" maxlength="20" autocomplete="off" placeholder="Alex" value="' + esc(store.name) + '"></div>' +
+      '<button class="btn go" data-a="begin">Start your month</button></div>' +
+      resume +
+      '<div class="skills">' + SKILLS[g].map(function (s) { return '<span>' + s + '</span>'; }).join('') + '</div>' +
+      (best ? '<p class="lede" style="font-size:16px;position:relative">Best month in Grade ' + g + ': <strong class="num">' + usd(best) + '</strong></p>' : '') +
+      (r ? '<p class="lede" style="font-size:14px;position:relative;margin-top:6px">Starting a new month replaces your saved month.</p>' : '') +
+      codes + '</section>';
+    focusEl('title');
+  }
+  function renderIntro() {
+    S = { screen: 'intro' };
+    var c = G.CH[G.ch];
+    view.innerHTML = topbar(true) +
+      '<section class="card"><div class="chead"><div class="cicon">' + icon(c.icon) + '</div><div><p class="kick">' + c.kick + ' · Chapter ' + (G.ch + 1) + ' of ' + G.CH.length + '</p>' +
+      '<h1 id="title" tabindex="-1">' + c.title + '</h1></div></div>' +
+      '<p class="intro">' + (G.ch === 0 ? esc(G.name) + ', ' : '') + c.intro + '</p>' +
+      '<button class="btn dark" data-a="startch">Start chapter</button></section>';
+    focusEl('title');
+  }
+  function newQuestion() {
+    S = { screen: 'play', attempt: 0, sel: null, val: '', done: false, ok: false, hint: false, wrongNow: false, elim: [], msg: '', delta: 0, focusId: 'title' };
+  }
+  function renderPlay() {
+    var c = G.CH[G.ch], q = G.qs[G.ch][G.qi];
+    var segs = G.qs[G.ch].map(function (_, i) {
+      var st = i < G.qi ? (G.ledger.filter(function (l) { return l.ch === G.ch && l.q === i; })[0].amt < 0 ? 'miss' : 'ok') : i === G.qi ? 'cur' : 'todo';
+      return '<span class="seg ' + st + '"></span>';
+    }).join('');
+    var answers;
+    if (q.kind === 'mc') {
+      answers = '<div class="opts" role="group" aria-label="Answer choices">' + q.options.map(function (o, i) {
+        var cls = 'opt', tag = '', chosen = S.sel === o.val, wp = S.elim.indexOf(o.val) > -1;
+        if (S.done && o.correct) { cls += ' right'; tag = 'Smart choice'; }
+        else if (wp) { cls += ' wrong'; tag = 'Not quite'; }
+        else if (chosen) cls += ' sel';
+        return '<button id="opt-' + i + '" class="' + cls + '" data-a="pick" data-k="' + esc(o.val) + '" aria-pressed="' + chosen + '"' + (S.done || wp ? ' disabled' : '') + '>' +
+          '<span>' + o.html + '</span>' + (tag ? '<span class="tag">' + tag + '</span>' : '') + '</button>';
+      }).join('') + '</div>';
+    } else {
+      var fc = S.done ? (S.ok ? 'ok' : 'bad') : '';
+      answers = '<div class="numrow"><label for="ans">Your answer</label><div class="field">' + (q.prefix ? '<span>' + q.prefix + '</span>' : '') +
+        '<input id="ans" class="' + fc + '" type="text" inputmode="decimal" autocomplete="off" value="' + esc(S.val) + '"' + (S.done ? ' disabled' : '') + '>' +
+        (q.suffix ? '<span style="font-size:20px">' + q.suffix + '</span>' : '') + '</div></div>';
+    }
+    var last = G.qi === G.qs[G.ch].length - 1, actions;
+    if (S.done) actions = '<button id="next" class="btn dark" data-a="next">' + (last ? 'See chapter summary' : 'Next scene') + '</button>';
+    else actions = '<button id="check" class="btn go" data-a="check"' + (q.kind === 'mc' && S.sel == null ? ' disabled' : '') + '>' + (q.kind === 'mc' && S.sel == null ? 'Pick an answer first' : 'Check') + '</button>' +
+      '<button id="hintbtn" class="btn ghost small" data-a="hint" aria-expanded="' + S.hint + '">' + (S.hint ? 'Hide hint' : 'Show hint') + '</button>';
+    var fb = '';
+    if (S.hint && !S.done) fb += '<div class="note hint"><strong>Hint.</strong> ' + q.hint + '</div>';
+    if (S.wrongNow && !S.done) fb += '<div class="note bad"><strong>Not quite.</strong> You can try once more before it costs you.</div>';
+    if (S.msg) fb += '<div class="note bad">' + S.msg + '</div>';
+    if (S.done && S.ok) fb += '<div class="note good"><strong>' + usd(S.delta, true) + (S.attempt === 1 ? '' : ' (half, second try)') + '.</strong> ' + q.win + ' ' + q.explain + '</div>';
+    if (S.done && !S.ok) fb += '<div class="note bad"><strong>' + usd(S.delta, true) + '.</strong> ' + q.lose + ' The answer is ' + q.ansText + '. ' + q.explain + '</div>';
+    view.innerHTML = topbar(true) +
+      '<div style="display:flex;align-items:center;gap:14px;margin:-6px 0 14px"><div class="prog" role="img" aria-label="Scene ' + (G.qi + 1) + ' of ' + G.qs[G.ch].length + '">' + segs + '</div><span style="font-size:15px;font-weight:700;color:#C9D1F0">' + c.title + '</span></div>' +
+      '<section class="card" aria-labelledby="title"><p class="kick">Scene ' + (G.qi + 1) + ' · stakes ' + usd(q.stake) + '</p>' +
+      '<p class="story">' + q.story + '</p>' +
+      '<h2 class="prompt" id="title" tabindex="-1">' + q.prompt + '</h2>' +
+      (q.visual ? '<div class="visual">' + q.visual + '</div>' : '') +
+      answers + '<div class="actions">' + actions + '</div><div aria-live="polite">' + fb + '</div></section>';
+    focusEl(S.focusId);
+  }
+  function renderChapterEnd() {
+    S = { screen: 'chend' };
+    var c = G.CH[G.ch], rows = G.ledger.filter(function (l) { return l.ch === G.ch; });
+    var sub = rows.reduce(function (a, l) { return a + l.amt; }, 0);
+    var last = G.ch === G.CH.length - 1;
+    view.innerHTML = topbar(true) +
+      '<section class="card"><p class="kick">' + c.kick + ' · chapter ' + (G.ch + 1) + ' done</p><h1 id="title" tabindex="-1">' + c.title + ': ' + (sub >= 0 ? 'you came out ahead' : 'a rough patch') + '</h1>' +
+      '<div class="stmtbox" style="margin-top:14px"><table class="stmt num"><thead><tr><th scope="col">Decision</th><th scope="col" class="r">Result</th></tr></thead><tbody>' +
+      rows.map(function (l) { return '<tr><td>' + l.label + '</td><td class="r ' + (l.amt < 0 ? 'l' : 'g') + '">' + usd(l.amt, true) + '</td></tr>'; }).join('') +
+      '</tbody><tfoot><tr><td>Chapter total</td><td class="r ' + (sub < 0 ? 'l' : 'g') + '">' + usd(sub, true) + '</td></tr></tfoot></table></div>' +
+      '<div class="actions"><button class="btn dark" data-a="nextch">' + (last ? 'See your month' : 'Next: ' + G.CH[G.ch + 1].title) + '</button></div></section>';
+    focusEl('title');
+  }
+  function renderEnding() {
+    S = { screen: 'end' };
+    var tot = G.ledger.reduce(function (a, l) { return a + l.stake; }, 0), net = G.balance - G.start, ratio = (net + tot) / (2 * tot);
+    var t = ratio >= 0.85 ? ['Financially fearless', 'You read every price tag, checked every deal and kept your cool. Future you says thanks.']
+      : ratio >= 0.65 ? ['Solid start', 'A few slips, but your money habits are heading the right way.']
+      : ['Tight month, good lessons', 'Some of the numbers caught you out. Play again and see how much more you can save.'];
+    var newBest = G.balance > (store.best[G.grade] || 0);
+    if (newBest) store.best[G.grade] = G.balance;
+    store.run = null; save();
+    var run = G.start;
+    var rows = G.ledger.map(function (l) { run += l.amt; return '<tr><td>' + l.label + '</td><td class="r ' + (l.amt < 0 ? 'l' : 'g') + '">' + usd(l.amt, true) + '</td><td class="r">' + usd(run) + '</td></tr>'; }).join('');
+    view.innerHTML = '<header class="top"><div class="logo">First Month <span class="gtag">Grade ' + G.grade + '</span></div></header>' +
+      '<section class="card"><div class="result"><p class="kick">' + esc(G.name) + '’s month, end of statement</p>' +
+      '<p class="big num" id="title" tabindex="-1">' + usd(G.balance) + '</p>' +
+      '<p class="delta" style="color:' + (net >= 0 ? 'var(--gain)' : 'var(--loss)') + '">' + usd(net, true) + ' since you started with ' + usd(G.start) + (newBest ? ' · new best month' : '') + '</p>' +
+      '<h1 style="margin-top:10px">' + t[0] + '</h1><p class="intro" style="margin:0">' + t[1] + '</p></div>' +
+      '<p class="kick">Your bank statement</p><div class="stmtbox"><table class="stmt num"><thead><tr><th scope="col">Decision</th><th scope="col" class="r">Amount</th><th scope="col" class="r">Balance</th></tr></thead><tbody>' +
+      '<tr><td>Opening balance</td><td class="r"></td><td class="r">' + usd(G.start) + '</td></tr>' + rows + '</tbody></table></div>' +
+      '<div class="actions"><button class="btn go" data-a="again">Play again</button><button class="btn ghost" data-a="title">Change grade or name</button></div></section>';
+    focusEl('title');
+  }
+
+  /* ---------- actions ---------- */
+  function parseNum(raw) { var s = raw.replace(/[^0-9.\-]/g, ''); if (!s || s === '.' || s === '-') return NaN; return Number(s); }
+  function settle(amt) {
+    var q = G.qs[G.ch][G.qi];
+    G.balance += amt; S.delta = amt;
+    G.ledger.push({ ch: G.ch, q: G.qi, label: q.label, amt: amt, stake: q.stake });
+    saveRun();
+  }
+  function check() {
+    var q = G.qs[G.ch][G.qi], ok;
+    S.msg = '';
+    if (q.kind === 'mc') { if (S.sel == null) return; ok = S.sel === q.correctKey; }
+    else {
+      var raw = (S.val || '').trim();
+      if (!raw) { S.msg = 'Type your answer first.'; S.focusId = 'ans'; renderPlay(); return; }
+      var v = parseNum(raw);
+      if (isNaN(v)) { S.msg = 'Use numbers only, for example 120 or 36.50.'; S.focusId = 'ans'; renderPlay(); return; }
+      ok = Math.abs(v - q.answer) < 0.005;
+    }
+    S.attempt++;
+    if (ok) { S.done = true; S.ok = true; S.wrongNow = false; settle(S.attempt === 1 ? q.stake : q.stake / 2); S.focusId = 'next'; }
+    else {
+      if (q.kind === 'mc') { S.elim.push(S.sel); S.sel = null; }
+      if (S.attempt >= 2) { S.done = true; S.ok = false; S.wrongNow = false; settle(-q.stake); S.focusId = 'next'; }
+      else { S.wrongNow = true; S.hint = true; S.focusId = q.kind === 'mc' ? 'hintbtn' : 'ans'; }
+    }
+    renderPlay();
+  }
+  function keepName() { var n = document.getElementById('name'); if (n) store.name = n.value.trim().slice(0, 20); }
+  function act(a, d) {
+    if (a === 'grade') {
+      var nm0 = document.getElementById('name'); if (nm0) store.name = nm0.value.trim().slice(0, 20);
+      pickedGrade = +d.k; renderTitle(); focusEl(null); return;
+    }
+    if (a === 'begin') {
+      var nm = (document.getElementById('name').value || '').trim().slice(0, 20);
+      store.name = nm; store.grade = pickedGrade; save(); newGame(nm, pickedGrade); renderIntro();
+    }
+    else if (a === 'resume') { if (store.run) resumeRun(store.run); }
+    else if (a === 'getcode') { codeUI.open = true; codeUI.text = makeCode(); codeUI.msg = ''; keepName(); renderTitle(); focusEl('mycode'); return; }
+    else if (a === 'copycode') {
+      var ta = document.getElementById('mycode'), done = function (ok) { codeUI.open = true; codeUI.msg = ok ? 'Copied. Paste it somewhere safe.' : 'Select the code and copy it by hand.'; keepName(); renderTitle(); focusEl('mycode'); };
+      try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(codeUI.text).then(function () { done(true); }, function () { done(false); }); else { ta.select(); done(document.execCommand('copy')); } }
+      catch (e) { done(false); }
+      return;
+    }
+    else if (a === 'loadcode') {
+      var t = document.getElementById('loadcode'), d = readCode(t ? t.value : '');
+      codeUI.open = true;
+      if (!d) { codeUI.msg = 'That code does not look right. Check that you copied all of it.'; keepName(); renderTitle(); focusEl('loadcode'); return; }
+      [3, 4, 5, 6].forEach(function (g) { if (d.best[g] && d.best[g] > (store.best[g] || 0)) store.best[g] = d.best[g]; });
+      if (d.name) store.name = d.name;
+      store.run = d.run; if (d.run) { store.grade = d.run.g; pickedGrade = d.run.g; }
+      save(); codeUI.text = ''; codeUI.msg = d.run ? 'Code loaded. Press Continue to carry on.' : 'Code loaded. Your best scores are back.';
+      renderTitle(); return;
+    }
+    else if (a === 'title') { pickedGrade = G ? G.grade : pickedGrade; renderTitle(); }
+    else if (a === 'again') { newGame(store.name, G.grade); renderIntro(); }
+    else if (a === 'startch') { G.qi = 0; newQuestion(); renderPlay(); }
+    else if (a === 'pick') {
+      if (S.done) return;
+      S.sel = d.k; S.msg = ''; S.focusId = null; renderPlay();
+      var idx = G.qs[G.ch][G.qi].options.findIndex(function (o) { return o.val === d.k; });
+      focusEl('opt-' + idx);
+    }
+    else if (a === 'check') check();
+    else if (a === 'hint') { S.hint = !S.hint; S.focusId = 'hintbtn'; renderPlay(); }
+    else if (a === 'next') {
+      if (G.qi + 1 >= G.qs[G.ch].length) renderChapterEnd();
+      else { G.qi++; newQuestion(); renderPlay(); }
+    }
+    else if (a === 'nextch') {
+      if (G.ch + 1 >= G.CH.length) renderEnding();
+      else { G.ch++; G.qi = 0; renderIntro(); }
+    }
+    window.scrollTo(0, 0);
+  }
+
+  view.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-a]');
+    if (!t || t.disabled) return;
+    act(t.getAttribute('data-a'), { k: t.getAttribute('data-k') });
+  });
+  view.addEventListener('input', function (e) { if (e.target.id === 'ans') { S.val = e.target.value; S.msg = ''; } });
+  view.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') return;
+    if (e.target.id === 'ans' && S.screen === 'play' && !S.done) { e.preventDefault(); S.val = e.target.value; check(); }
+    if (e.target.id === 'name') { e.preventDefault(); act('begin', {}); }
+  });
+
+  function start(data) {
+    if (data && data.best && typeof data.best === 'object') store = { best: data.best, name: String(data.name || ''), grade: +data.grade || 6, run: cleanRun(data.run) };
+    else load();
+    pickedGrade = [3, 4, 5, 6].indexOf(store.grade) > -1 ? store.grade : 6;
+    renderTitle();
+  }
+  var hot = window.claude && window.claude.hot;
+  if (hot && hot.snapshot) hot.snapshot(function () { return store; });
+  if (hot && hot.ready) hot.ready(start); else start((hot && hot.data) || {});
+  window.__T = { GENS: GENS, chaptersFor: chaptersFor, newGame: newGame, getG: function () { return G; }, makeCode: makeCode, readCode: readCode, resumeRun: resumeRun, getStore: function () { return store; }, setStore: function (x) { store = x; } };
+})();
+</script>
+</body>
+</html>
