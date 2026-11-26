@@ -106,16 +106,18 @@
       if (first.playlistId) {
         if (statusEl) statusEl.textContent = "YouTube 同步中";
         var embedUrl = "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(first.playlistId);
+        var existingIframe = box.querySelector("iframe");
+        if (existingIframe && existingIframe.getAttribute("src") === embedUrl) return;
         var watchUrl = first.url || ("https://www.youtube.com/playlist?list=" + encodeURIComponent(first.playlistId));
         box.innerHTML =
           '<div class="sermon-grid">' +
             '<div class="video-box">' +
-              '<iframe src="' + embedUrl + '" title="' + escapeHTML(first.title) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>' +
+              '<iframe src="' + embedUrl + '" title="' + escapeHTML(first.title) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>' +
             '</div>' +
             '<div class="playlist-note">' +
               '<h3 class="item-title">' + escapeHTML(first.title) + '</h3>' +
-              '<p class="item-desc">' + escapeHTML(first.description || "") + '</p>' +
-              '<div><a class="btn-primary" href="' + escapeHTML(watchUrl) + '" target="_blank" rel="noopener noreferrer">喺 YouTube 打開完整清單 ↗</a></div>' +
+              '<p class="item-desc" style="margin:0">' + escapeHTML(first.description || "") + '</p>' +
+              '<div style="margin-top:6px"><a class="btn-primary" href="' + escapeHTML(watchUrl) + '" target="_blank" rel="noopener noreferrer">喺 YouTube 打開完整清單 ↗</a></div>' +
             '</div>' +
           '</div>';
       }

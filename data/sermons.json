@@ -2,9 +2,9 @@
   "playlists": [
     {
       "title": "講道回顧播放清單",
-      "description": "日後填入 YouTube Playlist ID 後，網站會自動嵌入播放清單並同步最新影片。",
-      "playlistId": "",
-      "url": ""
+      "description": "YouTube 講道影片合集，點擊播放器右上角選單即可切換各集講道；清單更新時呢頁會自動同步。",
+      "playlistId": "PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb",
+      "url": "https://www.youtube.com/playlist?list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb"
     }
   ]
 }

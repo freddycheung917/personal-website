@@ -83,35 +83,29 @@
             <h2 class="section-title">講道回顧</h2>
             <span class="badge">YouTube Playlist</span>
           </div>
-          <span id="sermonStatus" class="book-en">待接上播放清單</span>
+          <span id="sermonStatus" class="book-en">YouTube 同步中</span>
         </div>
 
         <div id="homeSermons" class="card card-pad">
           <div class="sermon-grid">
             <div class="video-box">
-              <div class="play-icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <p class="item-title" style="font-size:14px">YouTube 講道播放清單嵌入位</p>
-              <p class="item-desc" style="max-width:300px;margin:0">
-                喺 <span class="mono">data/sermons.json</span> 填入 Playlist ID 後，會自動嵌入播放器並同步清單。
-              </p>
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/videoseries?list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb"
+                title="講道回顧播放清單"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                loading="lazy"></iframe>
             </div>
 
             <div class="playlist-note">
-              <div class="playlist-slot is-highlight">
-                <span>講道回顧主清單</span>
-                <span class="mono">Playlist</span>
-              </div>
-              <div class="playlist-slot">
-                <span>新增影片自動同步</span>
-                <span>YouTube</span>
-              </div>
-              <p class="item-desc" style="margin:4px 0 0">
-                收到 YouTube Playlist 連結後，直接更新設定檔即可自動顯示。
+              <h3 class="item-title">講道回顧播放清單</h3>
+              <p class="item-desc" style="margin:0">
+                YouTube 講道影片合集，點擊播放器右上角選單即可切換各集講道；清單更新時呢頁會自動同步。
               </p>
+              <div style="margin-top:6px">
+                <a class="btn-primary" href="https://www.youtube.com/playlist?list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb" target="_blank" rel="noopener noreferrer">喺 YouTube 打開完整清單 ↗</a>
+              </div>
             </div>
           </div>
         </div>
