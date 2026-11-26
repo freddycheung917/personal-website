@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Personal Hub — Shared Script (Theme Toggle, Filters, Data Rendering)
+   Personal Hub — Shared Script (Theme Toggle, Filters, Dynamic Content)
    ========================================================================== */
 (function () {
   "use strict";
@@ -33,8 +33,8 @@
       themeBtn.setAttribute("aria-label", isDark ? "切換淺色模式" : "切換深色模式");
       themeBtn.setAttribute("title", isDark ? "切換淺色模式" : "切換深色模式");
       themeBtn.innerHTML = isDark
-        ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
-        : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+        ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
+        : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
     }
   }
 
@@ -95,33 +95,62 @@
         '</div>';
     }).catch(function () {});
 
-    /* Render Sermons (YouTube Playlist Ready) */
-    loadJSON("data/sermons.json").then(function (data) {
-      var lists = data.playlists || [];
-      var box = document.getElementById("homeSermons");
-      var statusEl = document.getElementById("sermonStatus");
-      if (!box || !lists.length) return;
+    /* Click-to-play handler for Sermon Video Cards */
+    var sermonGrid = document.getElementById("homeSermonGrid");
+    if (sermonGrid) {
+      sermonGrid.addEventListener("click", function (e) {
+        var playBtn = e.target.closest("[data-play-video]");
+        if (!playBtn) return;
+        var vid = playBtn.getAttribute("data-play-video");
+        var title = playBtn.getAttribute("data-video-title") || "講道影片";
+        if (!vid) return;
+        var embedWrap = document.createElement("div");
+        embedWrap.className = "video-embed-box";
+        embedWrap.innerHTML =
+          '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) + '?autoplay=1&rel=0" ' +
+          'title="' + escapeHTML(title) + '" ' +
+          'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+          'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+        playBtn.replaceWith(embedWrap);
+      });
+    }
 
-      var first = lists[0];
-      if (first.playlistId) {
-        if (statusEl) statusEl.textContent = "YouTube 同步中";
-        var embedUrl = "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(first.playlistId);
-        var existingIframe = box.querySelector("iframe");
-        if (existingIframe && existingIframe.getAttribute("src") === embedUrl) return;
-        var watchUrl = first.url || ("https://www.youtube.com/playlist?list=" + encodeURIComponent(first.playlistId));
-        box.innerHTML =
-          '<div class="sermon-grid">' +
-            '<div class="video-box">' +
-              '<iframe src="' + embedUrl + '" title="' + escapeHTML(first.title) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>' +
+    function renderSermonVideos(data) {
+      var videos = (data && data.videos) ? data.videos.slice(0, 3) : [];
+      if (!sermonGrid || !videos.length) return;
+      sermonGrid.innerHTML = videos.map(function (v) {
+        var thumb = v.thumbnail || ("https://i.ytimg.com/vi/" + encodeURIComponent(v.videoId) + "/hqdefault.jpg");
+        var watchUrl = v.url || ("https://www.youtube.com/watch?v=" + encodeURIComponent(v.videoId));
+        return '<article class="card card-hover video-card">' +
+          '<button type="button" class="video-thumb-btn" data-play-video="' + escapeHTML(v.videoId) + '" data-video-title="' + escapeHTML(v.title) + '" aria-label="播放：' + escapeHTML(v.title) + '">' +
+            '<img src="' + escapeHTML(thumb) + '" alt="' + escapeHTML(v.title) + '" loading="lazy" />' +
+            '<span class="video-thumb-overlay" aria-hidden="true">' +
+              '<span class="video-play-badge">' +
+                '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="margin-left:2px"><path d="M8 5v14l11-7z"/></svg>' +
+              '</span>' +
+            '</span>' +
+          '</button>' +
+          '<div class="video-body">' +
+            '<h3 class="video-title" title="' + escapeHTML(v.title) + '">' + escapeHTML(v.title) + '</h3>' +
+            '<div class="video-meta-row">' +
+              '<span>' + escapeHTML(v.date || "") + '</span>' +
+              '<a class="video-yt-link" href="' + escapeHTML(watchUrl) + '" target="_blank" rel="noopener noreferrer">YouTube ↗</a>' +
             '</div>' +
-            '<div class="playlist-note">' +
-              '<h3 class="item-title">' + escapeHTML(first.title) + '</h3>' +
-              '<p class="item-desc" style="margin:0">' + escapeHTML(first.description || "") + '</p>' +
-              '<div style="margin-top:6px"><a class="btn-primary" href="' + escapeHTML(watchUrl) + '" target="_blank" rel="noopener noreferrer">喺 YouTube 打開完整清單 ↗</a></div>' +
-            '</div>' +
-          '</div>';
+          '</div>' +
+        '</article>';
+      }).join("");
+    }
+
+    /* Try live Cloudflare Pages Function first, fallback to static JSON */
+    loadJSON("/api/sermons").then(function (data) {
+      if (data && data.videos && data.videos.length) {
+        renderSermonVideos(data);
+      } else {
+        throw new Error("Empty feed");
       }
-    }).catch(function () {});
+    }).catch(function () {
+      loadJSON("data/sermons.json").then(renderSermonVideos).catch(function () {});
+    });
 
     /* Render AI Resources */
     loadJSON("data/ai.json").then(function (data) {
@@ -134,7 +163,7 @@
           : '<article class="card ai-card">';
         var endTag = item.url ? '</a>' : '</article>';
         var right = item.url
-          ? '<span style="font-size:12px;color:var(--link)">↗</span>'
+          ? '<span style="font-size:14px;color:var(--link)">↗</span>'
           : '<span class="badge">' + escapeHTML(item.status || "筆記") + '</span>';
         return tag +
           '<div>' +
@@ -151,20 +180,15 @@
       var tools = data.tools || [];
       var grid = document.getElementById("homeToolsGrid");
       if (!grid || !tools.length) return;
-      var html = tools.map(function (t) {
+      grid.innerHTML = tools.map(function (t) {
         return '<a class="card card-hover tool-card" href="' + escapeHTML(t.path) + '">' +
           '<div>' +
-            '<div class="study-meta" style="margin-bottom:4px">' +
-              '<strong style="color:var(--ink);font-size:14px">' + escapeHTML(t.name) + '</strong>' +
-              '<span class="badge mono">' + escapeHTML(t.badge || t.path) + '</span>' +
-            '</div>' +
-            '<p class="item-desc" style="margin:0">' + escapeHTML(t.description || "") + '</p>' +
+            '<h3 class="item-title" style="font-size:17px">' + escapeHTML(t.name) + '</h3>' +
+            '<p class="item-desc" style="margin:4px 0 0">' + escapeHTML(t.description || "") + '</p>' +
           '</div>' +
           '<span class="study-row-link">開啟 →</span>' +
         '</a>';
       }).join("");
-      html += '<div class="dashed-card">+ 預留工具位 — 日後新增靜態小工具可直接加落 <span class="mono">data/tools.json</span></div>';
-      grid.innerHTML = html;
     }).catch(function () {});
   }
 
@@ -218,7 +242,6 @@
               '<div class="study-meta">' +
                 '<span class="badge badge-accent">第 ' + escapeHTML(s.chapter) + ' 章</span>' +
                 (s.version ? '<span class="badge">' + escapeHTML(s.version) + '</span>' : '') +
-                '<span class="mono">' + escapeHTML(s.file) + '</span>' +
               '</div>' +
               '<h3 class="item-title">' + escapeHTML(s.title) + '</h3>' +
               (s.subtitle ? '<p class="item-desc">' + escapeHTML(s.subtitle) + '</p>' : '') +
@@ -234,7 +257,7 @@
               '<h2 class="book-name">' + escapeHTML(g.book) + '</h2>' +
               '<span class="book-en">' + escapeHTML(g.bookEn) + ' · ' + testamentLabel + '</span>' +
             '</div>' +
-            '<span class="book-en mono">' + g.items.length + ' 篇</span>' +
+            '<span class="book-en">' + g.items.length + ' 篇</span>' +
           '</div>' +
           '<div class="card study-list">' + rows + '</div>' +
         '</section>';

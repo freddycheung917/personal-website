@@ -33,7 +33,6 @@
             <h1 class="page-title">個人工具與資源頁</h1>
             <p class="page-sub">集中整理查經資料、講道回顧、AI 資訊同常用小工具。</p>
           </div>
-          <span class="badge mono">4 個分類</span>
         </div>
 
         <div id="catFilters" class="filters" role="group" aria-label="分類篩選">
@@ -45,12 +44,11 @@
         </div>
       </section>
 
-      <!-- Module 1: Bible Study (/biblestudy) -->
+      <!-- Module 1: Bible Study -->
       <section id="mod-biblestudy" data-cat="biblestudy">
         <div class="section-head">
           <div class="section-title-group">
             <h2 class="section-title">查經資料</h2>
-            <span class="badge badge-accent mono">/biblestudy</span>
           </div>
           <a class="section-link" href="biblestudy/">查看總目錄 →</a>
         </div>
@@ -70,44 +68,76 @@
             </div>
           </div>
           <div class="card-footer">
-            <span>所有書卷與章節收錄於 <a class="section-link mono" href="biblestudy/">/biblestudy</a> 總目錄頁。</span>
-            <span id="bibleStudyCount" class="mono">1 篇已上架</span>
+            <span>所有書卷與章節收錄於 <a class="section-link" href="biblestudy/">查經總目錄</a>。</span>
+            <span id="bibleStudyCount">1 篇已上架</span>
           </div>
         </div>
       </section>
 
-      <!-- Module 2: Sermon Archive (YouTube Playlist) -->
+      <!-- Module 2: Sermon Archive (Latest 3 YouTube Videos) -->
       <section id="mod-sermons" data-cat="sermons">
         <div class="section-head">
           <div class="section-title-group">
             <h2 class="section-title">講道回顧</h2>
-            <span class="badge">YouTube Playlist</span>
+            <span class="badge">最新 3 集</span>
           </div>
-          <span id="sermonStatus" class="book-en">YouTube 同步中</span>
+          <a class="section-link" href="https://www.youtube.com/playlist?list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb" target="_blank" rel="noopener noreferrer">查看完整播放清單 ↗</a>
         </div>
 
-        <div id="homeSermons" class="card card-pad">
-          <div class="sermon-grid">
-            <div class="video-box">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/videoseries?list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb"
-                title="講道回顧播放清單"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                loading="lazy"></iframe>
-            </div>
-
-            <div class="playlist-note">
-              <h3 class="item-title">講道回顧播放清單</h3>
-              <p class="item-desc" style="margin:0">
-                YouTube 講道影片合集，點擊播放器右上角選單即可切換各集講道；清單更新時呢頁會自動同步。
-              </p>
-              <div style="margin-top:6px">
-                <a class="btn-primary" href="https://www.youtube.com/playlist?list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb" target="_blank" rel="noopener noreferrer">喺 YouTube 打開完整清單 ↗</a>
+        <div id="homeSermonGrid" class="grid-3">
+          <article class="card card-hover video-card">
+            <button type="button" class="video-thumb-btn" data-play-video="CZl4BkHwz3w" data-video-title="2026-10-31 宣道會錫安堂 Yonge &amp; Finch 唔駛驚，上帝係大廳 約伯記一1-12" aria-label="播放：2026-10-31 宣道會錫安堂 Yonge &amp; Finch 唔駛驚，上帝係大廳 約伯記一1-12">
+              <img src="https://i.ytimg.com/vi/CZl4BkHwz3w/hqdefault.jpg" alt="2026-10-31 宣道會錫安堂 Yonge &amp; Finch 唔駛驚，上帝係大廳 約伯記一1-12" loading="lazy" />
+              <span class="video-thumb-overlay" aria-hidden="true">
+                <span class="video-play-badge">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="margin-left:2px"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+              </span>
+            </button>
+            <div class="video-body">
+              <h3 class="video-title" title="2026-10-31 宣道會錫安堂 Yonge &amp; Finch 唔駛驚，上帝係大廳 約伯記一1-12">2026-10-31 宣道會錫安堂 Yonge &amp; Finch 唔駛驚，上帝係大廳 約伯記一1-12</h3>
+              <div class="video-meta-row">
+                <span>2026-10-31</span>
+                <a class="video-yt-link" href="https://www.youtube.com/watch?v=CZl4BkHwz3w&amp;list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
               </div>
             </div>
-          </div>
+          </article>
+
+          <article class="card card-hover video-card">
+            <button type="button" class="video-thumb-btn" data-play-video="4Od312yv1s8" data-video-title="2026-07-25 宣道會錫安堂 Yonge &amp; Finch 「撕開牆紙看教會」 使徒行傳二42-47" aria-label="播放：2026-07-25 宣道會錫安堂 Yonge &amp; Finch 「撕開牆紙看教會」 使徒行傳二42-47">
+              <img src="https://i.ytimg.com/vi/4Od312yv1s8/hqdefault.jpg" alt="2026-07-25 宣道會錫安堂 Yonge &amp; Finch 「撕開牆紙看教會」 使徒行傳二42-47" loading="lazy" />
+              <span class="video-thumb-overlay" aria-hidden="true">
+                <span class="video-play-badge">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="margin-left:2px"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+              </span>
+            </button>
+            <div class="video-body">
+              <h3 class="video-title" title="2026-07-25 宣道會錫安堂 Yonge &amp; Finch 「撕開牆紙看教會」 使徒行傳二42-47">2026-07-25 宣道會錫安堂 Yonge &amp; Finch 「撕開牆紙看教會」 使徒行傳二42-47</h3>
+              <div class="video-meta-row">
+                <span>2026-07-25</span>
+                <a class="video-yt-link" href="https://www.youtube.com/watch?v=4Od312yv1s8&amp;list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card card-hover video-card">
+            <button type="button" class="video-thumb-btn" data-play-video="2njU4zfk90c" data-video-title="2026-05-23 宣道會錫安堂 Yonge &amp; Finch 「公平咩？」瑪拉基書三13-四6" aria-label="播放：2026-05-23 宣道會錫安堂 Yonge &amp; Finch 「公平咩？」瑪拉基書三13-四6">
+              <img src="https://i.ytimg.com/vi/2njU4zfk90c/hqdefault.jpg" alt="2026-05-23 宣道會錫安堂 Yonge &amp; Finch 「公平咩？」瑪拉基書三13-四6" loading="lazy" />
+              <span class="video-thumb-overlay" aria-hidden="true">
+                <span class="video-play-badge">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="margin-left:2px"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+              </span>
+            </button>
+            <div class="video-body">
+              <h3 class="video-title" title="2026-05-23 宣道會錫安堂 Yonge &amp; Finch 「公平咩？」瑪拉基書三13-四6">2026-05-23 宣道會錫安堂 Yonge &amp; Finch 「公平咩？」瑪拉基書三13-四6</h3>
+              <div class="video-meta-row">
+                <span>2026-05-23</span>
+                <a class="video-yt-link" href="https://www.youtube.com/watch?v=2njU4zfk90c&amp;list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -118,7 +148,6 @@
             <h2 class="section-title">AI 資訊</h2>
             <span class="badge">筆記與書籤</span>
           </div>
-          <span class="book-en mono">data/ai.json</span>
         </div>
 
         <div id="homeAiGrid" class="grid-3">
@@ -151,24 +180,17 @@
         <div class="section-head">
           <div class="section-title-group">
             <h2 class="section-title">小工具</h2>
-            <span class="badge">Mini Apps</span>
           </div>
         </div>
 
         <div id="homeToolsGrid" class="grid-2">
           <a class="card card-hover tool-card" href="mathgame/">
             <div>
-              <div class="study-meta" style="margin-bottom:4px">
-                <strong style="color:var(--ink);font-size:14px">數學小遊戲</strong>
-                <span class="badge mono">/mathgame</span>
-              </div>
-              <p class="item-desc" style="margin:0">Grade 3–6 生活情景數學互動練習</p>
+              <h3 class="item-title" style="font-size:17px">數學小遊戲</h3>
+              <p class="item-desc" style="margin:4px 0 0">Grade 3–6 生活情景數學互動練習</p>
             </div>
             <span class="study-row-link">開啟 →</span>
           </a>
-          <div class="dashed-card">
-            + 預留工具位 — 日後新增靜態小工具可直接加落 <span class="mono">data/tools.json</span>
-          </div>
         </div>
       </section>
     </div>
@@ -177,9 +199,9 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <span>Personal Hub</span>
-      <div class="footer-links mono">
-        <a href="biblestudy/">/biblestudy</a>
-        <a href="mathgame/">/mathgame</a>
+      <div class="footer-links">
+        <a href="biblestudy/">查經目錄</a>
+        <a href="mathgame/">數學小遊戲</a>
       </div>
     </div>
   </footer>

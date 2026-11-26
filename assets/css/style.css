@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Personal Hub — Clean & Minimal Design System
-   Light mode default (Swiss Minimal) + optional Dark mode ([data-theme="dark"])
+   Personal Hub — Clean & Spacious Design System
+   Light mode default + optional Dark mode ([data-theme="dark"])
    ========================================================================== */
 
 :root {
@@ -8,16 +8,16 @@
   --surface: #ffffff;
   --surface-2: #f4f4f5;
   --ink: #18181b;
-  --muted: #71717a;
+  --muted: #63636e;
   --border: #e4e4e7;
   --border-hover: #a1a1aa;
   --accent: #18181b;
   --accent-ink: #ffffff;
   --link: #2563eb;
   --link-soft: #eff6ff;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --radius: 14px;
+  --radius-sm: 9px;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
   --font-sans: "PingFang TC", "Hiragino Sans", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
@@ -27,14 +27,14 @@
   --surface: #181a1e;
   --surface-2: #202328;
   --ink: #f1f1f3;
-  --muted: #989ba3;
+  --muted: #a1a5ae;
   --border: #2a2d34;
   --border-hover: #525763;
   --accent: #f1f1f3;
   --accent-ink: #111214;
   --link: #7dd3fc;
   --link-soft: #1b2834;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.28);
 }
 
 *,
@@ -51,8 +51,8 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: 16.5px;
+  line-height: 1.7;
   background-color: var(--bg);
   color: var(--ink);
   min-height: 100vh;
@@ -75,9 +75,9 @@ input {
 
 .wrap {
   width: 100%;
-  max-width: 880px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 28px;
 }
 
 /* ---------------- Header ---------------- */
@@ -91,7 +91,7 @@ input {
 }
 
 .header-inner {
-  height: 58px;
+  height: 66px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -101,35 +101,35 @@ input {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: -0.01em;
 }
 
 .brand-mark {
-  width: 26px;
-  height: 26px;
-  border-radius: 7px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
   background-color: var(--accent);
   color: var(--accent-ink);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .nav a {
-  padding: 6px 10px;
+  padding: 7px 13px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 15px;
   color: var(--muted);
   transition: color 0.15s ease, background-color 0.15s ease;
 }
@@ -150,9 +150,9 @@ input {
 }
 
 .theme-btn {
-  margin-left: 4px;
-  width: 32px;
-  height: 32px;
+  margin-left: 6px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background-color: var(--surface);
@@ -172,26 +172,26 @@ input {
 /* ---------------- Main ---------------- */
 main {
   flex: 1;
-  padding: 40px 0 64px;
+  padding: 48px 0 76px;
 }
 
 .stack-lg > * + * {
-  margin-top: 40px;
+  margin-top: 52px;
 }
 
 .stack-md > * + * {
-  margin-top: 24px;
+  margin-top: 28px;
 }
 
 .stack-sm > * + * {
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 /* ---------------- Page Header & Filters ---------------- */
 .page-head {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .head-row {
@@ -199,20 +199,20 @@ main {
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
 }
 
 .page-title {
   margin: 0;
-  font-size: clamp(24px, 4vw, 30px);
+  font-size: clamp(28px, 3.6vw, 38px);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.25;
 }
 
 .page-sub {
-  margin: 6px 0 0;
-  font-size: 14px;
+  margin: 8px 0 0;
+  font-size: 16px;
   color: var(--muted);
 }
 
@@ -220,7 +220,7 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
 }
 
@@ -228,7 +228,7 @@ main {
   color: var(--ink);
 }
 
-.breadcrumb .mono {
+.breadcrumb .current {
   color: var(--ink);
   font-weight: 500;
 }
@@ -237,16 +237,16 @@ main {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .pill-btn {
-  padding: 6px 12px;
+  padding: 8px 16px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background-color: var(--surface);
   color: var(--muted);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -268,19 +268,19 @@ main {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 20px;
+  gap: 14px;
+  padding-bottom: 24px;
   border-bottom: 1px solid var(--border);
 }
 
 .search-input {
   width: 100%;
-  max-width: 280px;
-  padding: 7px 12px;
+  max-width: 340px;
+  padding: 9px 14px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background-color: var(--surface);
-  font-size: 13px;
+  font-size: 15px;
   outline: none;
   transition: border-color 0.15s ease;
 }
@@ -292,27 +292,28 @@ main {
 /* ---------------- Sections ---------------- */
 .section-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .section-title-group {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .section-title {
   margin: 0;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
 .section-link {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--link);
 }
@@ -322,16 +323,12 @@ main {
 }
 
 /* ---------------- Badges & Tags ---------------- */
-.mono {
-  font-family: var(--font-mono);
-}
-
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 7px;
+  font-size: 13px;
   font-weight: 500;
   background-color: var(--surface-2);
   color: var(--muted);
@@ -345,8 +342,8 @@ main {
 .tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 /* ---------------- Cards & Grids ---------------- */
@@ -355,7 +352,7 @@ main {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, transform 0.15s ease;
 }
 
 .card-hover:hover {
@@ -363,11 +360,11 @@ main {
 }
 
 .card-pad {
-  padding: 20px;
+  padding: 24px 26px;
 }
 
 .card-footer {
-  padding: 12px 20px;
+  padding: 14px 26px;
   background-color: var(--surface-2);
   border-top: 1px solid var(--border);
   border-bottom-left-radius: calc(var(--radius) - 1px);
@@ -376,8 +373,8 @@ main {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  font-size: 12px;
+  gap: 10px;
+  font-size: 14px;
   color: var(--muted);
 }
 
@@ -386,11 +383,11 @@ main {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 14px;
+  padding: 10px 18px;
   border-radius: var(--radius-sm);
   background-color: var(--accent);
   color: var(--accent-ink);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   white-space: nowrap;
   transition: opacity 0.15s ease;
@@ -403,13 +400,13 @@ main {
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 20px;
 }
 
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 20px;
 }
 
 /* Feature row inside Bible Study card */
@@ -418,58 +415,104 @@ main {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
 }
 
 .study-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 13.5px;
   color: var(--muted);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .item-title {
   margin: 0;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .item-desc {
-  margin: 4px 0 0;
-  font-size: 13px;
+  margin: 6px 0 0;
+  font-size: 15px;
   color: var(--muted);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
-/* Sermon Playlist Card */
-.sermon-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: 20px;
+/* ---------------- Sermon Video Cards ---------------- */
+.video-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-thumb-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  border: 0;
+  background-color: var(--surface-2);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.video-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.video-thumb-btn:hover img {
+  transform: scale(1.03);
+}
+
+.video-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.08));
+  display: flex;
   align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
 }
 
-.video-box {
+.video-thumb-btn:hover .video-thumb-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.video-play-badge {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  background-color: rgba(24, 24, 27, 0.85);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.video-thumb-btn:hover .video-play-badge {
+  transform: scale(1.08);
+  background-color: #dc2626;
+}
+
+.video-embed-box {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  background-color: var(--surface-2);
-  border: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  gap: 10px;
+  background-color: #000;
 }
 
-.video-box iframe {
+.video-embed-box iframe {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -477,40 +520,44 @@ main {
   border: 0;
 }
 
-.play-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink);
-}
-
-.playlist-note {
+.video-body {
+  padding: 18px 20px 20px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.playlist-slot {
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  font-size: 12px;
-  color: var(--muted);
+.video-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.video-meta-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--muted);
 }
 
-.playlist-slot.is-highlight {
-  background-color: var(--surface-2);
-  color: var(--ink);
+.video-yt-link {
+  color: var(--link);
   font-weight: 500;
+  white-space: nowrap;
+}
+
+.video-yt-link:hover {
+  text-decoration: underline;
 }
 
 /* AI & Tool Cards */
@@ -518,8 +565,8 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 12px;
-  padding: 18px;
+  gap: 14px;
+  padding: 22px 24px;
 }
 
 .ai-card-top {
@@ -527,30 +574,22 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .tool-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  padding: 16px 18px;
-}
-
-.dashed-card {
-  border: 1px dashed var(--border);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-  color: var(--muted);
-  font-size: 13px;
+  gap: 16px;
+  padding: 20px 24px;
 }
 
 /* ---------------- Bible Study Directory List ---------------- */
 .book-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .book-head {
@@ -563,17 +602,17 @@ main {
 .book-head-left {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 10px;
 }
 
 .book-name {
   margin: 0;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 600;
 }
 
 .book-en {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
 }
 
@@ -587,8 +626,8 @@ main {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 16px 20px;
+  gap: 14px;
+  padding: 20px 24px;
   transition: background-color 0.15s ease;
 }
 
@@ -601,24 +640,24 @@ main {
 }
 
 .study-row-link {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--link);
   white-space: nowrap;
 }
 
 .empty-state {
-  padding: 36px 20px;
+  padding: 40px 24px;
   text-align: center;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* ---------------- Footer ---------------- */
 .site-footer {
   border-top: 1px solid var(--border);
-  padding: 22px 0;
-  font-size: 12px;
+  padding: 26px 0;
+  font-size: 14px;
   color: var(--muted);
 }
 
@@ -633,7 +672,7 @@ main {
 .footer-links {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
 
 .footer-links a:hover {
@@ -645,16 +684,27 @@ main {
 }
 
 /* ---------------- Responsive ---------------- */
-@media (max-width: 720px) {
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding: 0 18px;
+  }
   main {
-    padding: 28px 0 48px;
+    padding: 32px 0 56px;
   }
   .grid-3,
-  .grid-2,
-  .sermon-grid {
+  .grid-2 {
     grid-template-columns: 1fr;
   }
   .nav a.hide-sm {
     display: none;
+  }
+  .card-pad {
+    padding: 20px;
   }
 }

@@ -1,10 +1,27 @@
 {
-  "playlists": [
+  "playlistId": "PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb",
+  "playlistUrl": "https://www.youtube.com/playlist?list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb",
+  "videos": [
     {
-      "title": "講道回顧播放清單",
-      "description": "YouTube 講道影片合集，點擊播放器右上角選單即可切換各集講道；清單更新時呢頁會自動同步。",
-      "playlistId": "PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb",
-      "url": "https://www.youtube.com/playlist?list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb"
+      "videoId": "CZl4BkHwz3w",
+      "title": "2026-10-31 宣道會錫安堂 Yonge & Finch 唔駛驚，上帝係大廳 約伯記一1-12",
+      "date": "2026-10-31",
+      "thumbnail": "https://i.ytimg.com/vi/CZl4BkHwz3w/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=CZl4BkHwz3w&list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb"
+    },
+    {
+      "videoId": "4Od312yv1s8",
+      "title": "2026-07-25 宣道會錫安堂 Yonge & Finch 「撕開牆紙看教會」 使徒行傳二42-47",
+      "date": "2026-07-25",
+      "thumbnail": "https://i.ytimg.com/vi/4Od312yv1s8/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=4Od312yv1s8&list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb"
+    },
+    {
+      "videoId": "2njU4zfk90c",
+      "title": "2026-05-23 宣道會錫安堂 Yonge & Finch 「公平咩？」瑪拉基書三13-四6",
+      "date": "2026-05-23",
+      "thumbnail": "https://i.ytimg.com/vi/2njU4zfk90c/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=2njU4zfk90c&list=PLQ-Xx8rSSLVhnyXG8uso_r6Qw-PlEvJlb"
     }
   ]
 }
