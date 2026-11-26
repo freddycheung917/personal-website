@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>《撒母耳記上》25章 和修本全文互動查經：在職信徒的理智斷線與覺醒</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Google Fonts: Inter & Noto Serif TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['"Noto Serif TC"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    .dark ::-webkit-scrollbar-thumb { background: #475569; }
+    .custom-shadow {
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+    }
+    .scripture-card {
+      border-left: 4px solid #6366f1;
+      background: linear-gradient(to right, rgba(99, 102, 241, 0.03), transparent);
+    }
+    /* Dynamic Highlight Styling */
+    .hl-active .verse-hl {
+      background-color: #fef08a; /* yellow-200 */
+      color: #713f12; /* yellow-900 */
+      padding: 0.125rem 0.25rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      border-bottom: 2px solid #eab308;
+      cursor: help;
+    }
+    .dark .hl-active .verse-hl {
+      background-color: #854d0e; /* yellow-800 */
+      color: #fef9c3; /* yellow-100 */
+      border-bottom: 2px solid #ca8a04;
+    }
+    .verse-num {
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-200 antialiased min-h-screen flex flex-col font-sans hl-active">
+
+  <!-- TOP APP BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center gap-2.5 sm:gap-3 overflow-hidden">
+        <a href="./" title="返回查經總目錄" aria-label="返回查經總目錄" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition flex-shrink-0">
+          <i class="ph-bold ph-arrow-left text-lg"></i>
+        </a>
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-500 text-white flex items-center justify-center font-bold text-lg shadow-sm flex-shrink-0">
+          <i class="ph-bold ph-book-open-text text-xl"></i>
+        </div>
+        <div class="truncate">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300">撒母耳記上 25章（和修本）</span>
+            <span class="text-xs text-slate-500 hidden md:inline">全文研讀 ‧ 在職信徒查經 (75-90分鐘)</span>
+          </div>
+          <h1 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white truncate">理智斷線與覺醒：當受膏者遇上職場小人與談判專家</h1>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+        
+        <!-- Timer Widget -->
+        <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
+          <i class="ph-bold ph-timer text-indigo-600 dark:text-indigo-400 mr-1.5 text-base"></i>
+          <span id="timerDisplay" class="font-mono text-sm mr-2 w-12 text-center font-semibold">12:00</span>
+          <button id="timerToggleBtn" onclick="toggleTimer()" title="開始/暫停計時" class="p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition">
+            <i id="timerIcon" class="ph-fill ph-play text-slate-700 dark:text-slate-300"></i>
+          </button>
+          <button onclick="resetSectionTimer()" title="重設此段計時" class="p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition hidden sm:inline-block">
+            <i class="ph-bold ph-arrow-counter-clockwise text-slate-500"></i>
+          </button>
+        </div>
+
+        <!-- Highlight Toggle -->
+        <button id="hlToggleBtn" onclick="toggleHighlights()" title="開啟/關閉重點經文高亮" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition bg-yellow-100 border-yellow-300 text-yellow-900 dark:bg-yellow-950/60 dark:border-yellow-700 dark:text-yellow-200">
+          <i class="ph-bold ph-highlighter text-sm"></i>
+          <span class="hidden sm:inline">高亮重點</span>
+        </button>
+
+        <!-- Leader / Participant Mode Toggle -->
+        <button id="modeToggleBtn" onclick="toggleLeaderMode()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition bg-amber-50 border-amber-300 text-amber-900 dark:bg-amber-950/60 dark:border-amber-700 dark:text-amber-200">
+          <i class="ph-bold ph-chalkboard-teacher text-sm"></i>
+          <span id="modeText" class="hidden sm:inline">組長帶領模式</span>
+          <span class="sm:hidden">組長</span>
+        </button>
+
+        <!-- Dark/Light Mode -->
+        <button onclick="toggleDarkMode()" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="切換深淺模式">
+          <i id="themeIcon" class="ph-bold ph-moon text-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Stepper Navigation Bar -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 overflow-x-auto border-t border-slate-100 dark:border-slate-800/80 no-scrollbar">
+      <nav class="flex space-x-1 sm:space-x-2 py-2 min-w-max text-xs font-medium" id="stageTabsContainer">
+        <!-- Rendered by JS -->
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+
+    <!-- LEADER BANNER -->
+    <div id="leaderBanner" class="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/20 border-l-4 border-amber-500 p-4 rounded-xl text-xs sm:text-sm text-amber-900 dark:text-amber-200 shadow-sm flex items-start justify-between">
+      <div class="flex items-start gap-3">
+        <i class="ph-bold ph-shield-check text-xl text-amber-600 mt-0.5 flex-shrink-0"></i>
+        <div>
+          <span class="font-bold text-amber-950 dark:text-amber-100">組長模式已啟用：</span>
+          <span class="text-amber-800/90 dark:text-amber-200/90">採用《和修本》全文（無刪節）。經文已標示重點黃色高亮；藍色區塊為「歷史背景解密與八卦剖析」，黃色為「提問提示」。可點擊右上角隨時切換為組員純淨模式。</span>
+        </div>
+      </div>
+      <button onclick="toggleLeaderMode()" class="text-xs font-semibold text-amber-700 underline hover:text-amber-900 flex-shrink-0 ml-2">隱藏提示</button>
+    </div>
+
+    <!-- STAGE CONTENTS -->
+    <div id="stageContainer" class="bg-white dark:bg-slate-800/90 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 p-5 sm:p-8 custom-shadow min-h-[460px] flex flex-col justify-between">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- STAGE FOOTER NAVIGATION -->
+    <div class="flex items-center justify-between pt-2">
+      <button id="prevBtn" onclick="prevStage()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition disabled:opacity-30 disabled:cursor-not-allowed">
+        <i class="ph-bold ph-arrow-left"></i> 上一個階段
+      </button>
+
+      <div class="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+        <span id="stepIndicator">階段 1 / 6</span>
+      </div>
+
+      <button id="nextBtn" onclick="nextStage()" class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition disabled:opacity-30 disabled:cursor-not-allowed">
+        下一個階段 <i class="ph-bold ph-arrow-right"></i>
+      </button>
+    </div>
+  </main>
+
+  <!-- NOTIFICATION TOAST -->
+  <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white dark:bg-indigo-600 px-4 py-2.5 rounded-xl shadow-lg text-sm flex items-center gap-2 z-50">
+    <i class="ph-bold ph-check-circle text-emerald-400 text-lg"></i>
+    <span id="toastMsg">已複製到剪貼簿</span>
+  </div>
+
+  <script>
+    // --- STAGE DATA CONFIGURATION (RCUV 和合本修訂版 全文) ---
+    const stages = [
+      {
+        id: "intro",
+        title: "引言破冰",
+        badge: "開場熱身",
+        suggestedTime: 12,
+        content: {
+          tagline: "從港產片《無間道》切入大衛的合法性危機",
+          analogy: {
+            title: "經典對照：陳永仁的危機 vs 大衛的黑化",
+            left: {
+              name: "《無間道》梁朝偉（陳永仁）",
+              desc: "臥底唯一的上司黃 Sir 從天台墜落殉職，他在世上唯一的官方合法身份證明瞬間被抹除。無上線、無歸宿，處於黑白夾縫，稍一受刺激便極容易徹底失控變成古惑仔。"
+            },
+            right: {
+              name: "《撒母耳記上25:1》大衛",
+              desc: "經文一開篇便記載「撒母耳死了」。撒母耳是大衛唯一的屬靈上線與導師，曾暗中膏立並肯定他是未來君王。保護傘一倒，大衛流落曠野，尊嚴與安全感降至冰點，差點因一口怨氣變成收保護費不成的「山寨王」。"
+            }
+          },
+          icebreakerQuestion: "「當你日以繼夜幫團隊頂咗個大鑊，年中 Review 老闆卻反問你：『你係邊個？我點解要畀 Bonus 你？』——嗰一刻你內心浮現嘅第一句 OS 或第一個衝動反應係咩？」",
+          facilitatorTip: "不要一開始就問組員很私密的個人軟弱。用港產片與抽離的情境提問，能讓大家輕鬆笑著開口，完全消除 Dead Air。"
+        }
+      },
+      {
+        id: "part1",
+        title: "第一段：1-9節",
+        badge: "風暴前夕 ‧ 和修本全文",
+        suggestedTime: 15,
+        scriptureRef: "撒母耳記上 25:1-9（和合本修訂版）",
+        verses: [
+          { num: "1", text: "<span class='verse-hl' title='【核心討論重點】大衛失去屬靈上線與保護傘，身份懸空'>撒母耳死了</span>，以色列眾人聚集，為他哀哭，把他葬在拉瑪他自己的家裏。大衛起身，下到巴蘭的曠野。" },
+          { num: "2", text: "在瑪雲有一個人，他的產業在迦密。這人非常富有，有三千隻綿羊，一千隻山羊。那時他正在迦密剪羊毛。" },
+          { num: "3", text: "那人名叫拿八，他的妻子名叫亞比該。這婦人聰明美麗，但那人為人剛愎，做事兇惡。他是迦勒家族的人。" },
+          { num: "4", text: "大衛在曠野聽見拿八正在剪羊毛，" },
+          { num: "5", text: "大衛就差派十個年輕人。大衛對年輕人說：「你們上迦密去見拿八，奉我的名問候他。" },
+          { num: "6", text: "<span class='verse-hl' title='【核心討論重點】大衛極其客氣稱兄自稱兒，合乎古代禮數'>你們要對他說：『願你長壽，願你平安，願你的家平安，願你一切所有的都平安！</span>" },
+          { num: "7", text: "<span class='verse-hl' title='【核心討論重點】大衛強調自己的隊伍是正義之師，客觀提供保護且絕不搶掠'>現在我聽說有人為你剪羊毛。你的牧人曾和我們在一起，我們沒有欺負過他們，他們在迦密的日子也未曾失去甚麼。</span>" },
+          { num: "8", text: "你可以問你的年輕人，他們必告訴你。所以，請讓這些年輕人在你眼前蒙恩，因為我們是在好日子來的。<span class='verse-hl' title='【核心討論重點】正當索取勞動服務回報，非勒索搶掠'>請你隨手分點食物給僕人和你兒子大衛。』」</span>" },
+          { num: "9", text: "大衛的年輕人到了，就按大衛的話，奉大衛的名對拿八說了這一切話，就等候著。" }
+        ],
+        insights: [
+          {
+            title: "組長解密：大衛手握四百壯士，點解重要向拿八「求」食物？",
+            text: "1. <strong>千人後勤的極限消耗</strong>：大衛身邊有400-600名戰士加上隨行家眷，在貧瘠曠野每天吃喝都是天文數字。剪羊毛節相當於年終豐收節，是補給的唯一窗口。<br>2. <strong>古代合法的「安保服務」契約</strong>：曠野充滿劫匪，大衛部隊在客觀上擔任拿八羊群的防衛牆，無偷無搶。這不是勒索，而是按當時習俗合情合理索取應得的勞動報酬。<br>3. <strong>守住受膏者的道德底線</strong>：大衛完全有武力直接掠奪，但他要向以色列民證明自己不是叛亂土匪，而是有紀律的正義之師。"
+          }
+        ],
+        questions: [
+          {
+            q: "1. 第 1 節特別交代「撒母耳死了」，這對流亡中的大衛在心理壓力、安全感與身份認同上有何衝擊？",
+            hint: "大衛失去了唯一的官方後盾與屬靈父親，淪為沒有名份的通緝犯，內心極度渴望被認同。"
+          },
+          {
+            q: "2. 大衛派僕人向拿八問安時極其謙卑（稱兄、自稱為兒，6-8節）。他為何堅持用「求取」而不是直接以武力奪取？",
+            hint: "大衛堅守受膏者的底線：不搶奪、不魚肉鄉民，維持屬靈操守與政治民心。"
+          }
+        ]
+      },
+      {
+        id: "part2",
+        title: "第二段：10-13, 21-22節",
+        badge: "導火線引爆 ‧ 和修本全文",
+        suggestedTime: 18,
+        scriptureRef: "撒母耳記上 25:10-13, 21-22（和合本修訂版）",
+        chronologicalNote: "【時序結構提示】經文第 21-22 節是大衛在聽完拿八羞辱後、帶刀出發時在心中立下的毒誓，敘事上與第 13 節緊密相連，故在此合併研讀。",
+        verses: [
+          { num: "10", text: "拿八回答大衛的僕人說：<span class='verse-hl' title='【核心討論重點】拿八指名道姓知道耶西，卻故意定性大衛為逃奴，人格侮辱'>「大衛是誰？耶西的兒子是誰？今日悖逆主人奔逃的僕人很多！</span>" },
+          { num: "11", text: "我豈可把我的餅、我的水，和我為剪羊毛的人所宰的肉，給我不知道從哪裏來的人呢？」" },
+          { num: "12", text: "大衛的年輕人轉身上路，按原路回去，到了大衛那裏，把這一切話都告訴他。" },
+          { num: "13", text: "大衛對跟隨他的人說：<span class='verse-hl' title='【核心討論重點】大衛黑化：由為神爭戰的受膏者，瞬間降格為江湖拔刀私了'>「你們各人都要佩上刀！」各人就都佩上刀，大衛也佩上刀。</span>跟隨大衛上去的約有四百人，留二百人看守行囊。" },
+          { num: "21", text: "大衛曾說：「我在曠野為這人看守他一切所有的，以致他樣樣都不失去，實在是徒勞了！<span class='verse-hl' title='【核心討論重點】大衛的自義與心理失衡：自認以善報惡，怒火中燒'>他竟然向我以惡報善。</span>" },
+          { num: "22", text: "<span class='verse-hl' title='【核心討論重點】血氣發毒誓：要殺盡所有男丁，差點犯下滅門濫殺之罪'>凡屬拿八的男丁，我若留一個到明日早晨，願神重重懲罰大衛！」</span>" }
+        ],
+        insights: [
+          {
+            title: "組長解密：拿八這句「大衛是誰？」殺傷力何在？",
+            text: "拿八是迦勒族大富翁（地方名門），他明明知道大衛是「耶西的兒子」，卻故意嘲諷他是「背叛主人逃跑的僕人」。這句話直接踩中大衛最深的三重痛處：<br>① 否定大衛的一切守護付出；<br>② 當眾撕開大衛被掃羅通緝追殺的傷疤；<br>③ 把未來的君王踩低成卑賤的逃奴家丁。"
+          },
+          {
+            title: "大衛的黑化反差：24章 vs 25章",
+            text: "在第24章，面對想取自己性命的掃羅，大衛連「割下衣襟」都自責不安，深知不可加害耶和華的受膏者；但在25章，面對只不過是言語刻薄羞辱的拿八，大衛竟然發毒誓要屠滅全家男丁。大衛由「為神爭戰的受膏者」瞬間墮落成「爭一口氣、血氣私了的江湖古惑仔」。"
+          }
+        ],
+        interactiveTool: "triggerPoll",
+        questions: [
+          {
+            q: "3. 對比24章大衛對掃羅的節制，點解來到25章面對拿八，大衛會暴怒到要帶400把刀滅門（13節、21-22節）？",
+            hint: "大衛心態失衡：「我明明可以搶你，但我好心保護你，你居然踩上我心口侮辱我！」自義與尊嚴受創引發了毀滅性怒氣。"
+          },
+          {
+            q: "4. 【在職實戰對照】在你的職場或服事經驗中，哪一句話或哪一種情境最容易踩中你的地雷，讓你理智斷線想「拔刀」？",
+            hint: "例如：努力被無視、被外行指指點點、功勞被搶走、被質疑專業操守等。"
+          }
+        ]
+      },
+      {
+        id: "part3",
+        title: "第三段：14-20, 23-31節",
+        badge: "危機調停 ‧ 和修本全文",
+        suggestedTime: 20,
+        scriptureRef: "撒母耳記上 25:14-20, 23-31（和合本修訂版）",
+        verses: [
+          { num: "14", text: "拿八的一個僕人告訴拿八的妻子亞比該說：「看哪，大衛從曠野差派使者來向我主人問候，主人卻辱罵他們。" },
+          { num: "15", text: "那些人待我們很好；我們在田野與他們來往的日子，沒有受到欺負，也未曾失去甚麼。" },
+          { num: "16", text: "我們在他們身邊牧羊的時候，他們晝夜作我們的防護牆。" },
+          { num: "17", text: "<span class='verse-hl' title='【核心討論重點】僕人直斥主人是兇暴之徒，說明拿八在內部早失人心'>現在你要知道，要考慮該怎麼做，因為大禍必臨到我們主人和他全家。他性情兇暴，沒有人敢對他說話。」</span>" },
+          { num: "18", text: "<span class='verse-hl' title='【核心討論重點】高EQ行動力：不與丈夫爭辯，第一時間調動資源直奔前線'>亞比該急忙拿二百個餅，兩皮袋酒，五隻收拾好了的羊，五細亞烘好的穗子，一百個葡萄餅，二百個無花果餅，馱在驢上</span>，" },
+          { num: "19", text: "對僕人說：「你們在我前面走，看哪，我隨後就來。」這事她卻沒有告訴丈夫拿八。" },
+          { num: "20", text: "她騎著驢，沿著山崖暗處下去，看哪，大衛和跟隨他的人正迎著她下來，亞比該就遇見了他們。" },
+          { num: "23", text: "亞比該見了大衛，就急忙下驢，臉伏於地，向大衛下拜，" },
+          { num: "24", text: "俯伏在大衛腳前，說：<span class='verse-hl' title='【核心討論重點】頂級危機公關：主動承擔責任，先完全接住對方的怒火與委屈'>「我主啊，願這罪歸於我！求你容婢女向你進言，求你聽婢女的話。</span>" },
+          { num: "25", text: "<span class='verse-hl' title='【核心討論重點】客觀切割責任：向大衛提供台階——跟一個糊塗瘋子計較只會貶低君王的身價'>請我主不要理會拿八這性情兇暴的人，他就像他的名字一樣；他名叫拿八，為人也真是愚頑。</span>至於我，你婢女並沒有看見我主所差派的年輕人。" },
+          { num: "26", text: "現在，我主啊，我指著永生的耶和華，又指著你的性命起誓，耶和華既然攔阻你親手報仇、流人的血，現在願你的仇敵和謀害我主的人都像拿八一樣。" },
+          { num: "27", text: "如今這婢女送給我主的禮物，求你賜給跟隨我主的年輕人。" },
+          { num: "28", text: "<span class='verse-hl' title='【核心討論重點】拉高格局：重新定位這場爭戰不是私怨，而是為神爭戰'>求你赦免婢女的罪過。耶和華必為我主建立堅固的家，因為我主為耶和華爭戰；並且在你一生的日子中，查不出你有甚麼過惡。</span>" },
+          { num: "29", text: "雖然有人起來追逼你，尋索你的性命，<span class='verse-hl' title='【核心討論重點】屬靈穿透力：神的保守遠比拔刀私了更穩妥'>我主的性命在耶和華－你的神那裏，如同藏在生命的寶藏中；至於你仇敵的性命，耶和華必拋去，如同用機弦甩石一樣。</span>" },
+          { num: "30", text: "到了耶和華照所應許你的一切福氣臨到我主，立你作以色列的領袖時，" },
+          { num: "31", text: "<span class='verse-hl' title='【核心討論重點】提醒長遠職涯履歷：切勿為了一口怨氣毀了君王命定與見證'>我主就不至於因為親手報仇，流了無辜人的血，而心裏不安，良心有虧了。耶和華賜福給我主的時候，求你記念婢女。」</span>" }
+        ],
+        deepDives: [
+          {
+            id: "dd1",
+            title: "🔥 亞比該的四步危機公關法 (EQ + SQ 調停術)",
+            content: "1. <strong>動作俐落（18節）</strong>：不跟丈夫扯皮，第一時間備齊大量糧食直奔前線，先解決400人肉體飢渴。<br>2. <strong>全盤接住情緒與自尊（23-24節）</strong>：臉伏於地叩拜，說「願這罪孽歸我」，徹底撫平大衛被踐踏的尊嚴。<br>3. <strong>客觀責任切割（25節）</strong>：直斥拿八愚頑，向大衛提供台階——跟一個糊塗瘋子計較只會貶低君王的身價。<br>4. <strong>拉高屬靈與職涯格局（28-31節）</strong>：「你將來是要作王的人，何必為了一個小人，在履歷上留下無故流血的永久污點？」"
+          },
+          {
+            id: "dd2",
+            title: "🤔 八卦大拷問：在別的男人前罵自己丈夫，倫理說得通嗎？",
+            content: "<strong>生命權高於虛名（緊急避險原則）</strong>：大衛已發誓天亮前殺盡男丁。若亞比該拘泥於婦道面子替丈夫護短，全家數十條無辜僕人家丁命喪黃泉。她不是背後嚼舌根，而是在行使法律抗辯與危機避險，真正忠於全家的生存。"
+          },
+          {
+            id: "dd3",
+            title: "⚔️ 軍事謎題：拿八富甲一方，家丁為何打不過四百壯士？",
+            content: "拿八手下僕人雖多，但只是牧童與剪毛工，且全宅正爛醉狂歡；大衛手下是身經百戰、具備特種作戰能力的常規部隊。更重要的是內部人心潰散，僕人深恨拿八兇暴，無人願意替這樣的老闆賣命。"
+          }
+        ],
+        questions: [
+          {
+            q: "5. 亞比該在別的男人（大衛）面前直言丈夫愚頑（25節），你如何評價她的決斷？這對我們處理夾縫危機有何啟發？",
+            hint: "看清輕重緩急：虛浮的面子 vs 實質的生命；拯救團隊高於盲從盲護。"
+          },
+          {
+            q: "6. 細讀 23-31 節，亞比該哪一句話最打動你？她如何完美結合高 EQ（同理情緒）與高 SQ（屬靈格局）？",
+            hint: "「生命在神那裏如同藏在生命寶藏中」、「不至在將來作領袖時心裏不安、良心有虧」。"
+          }
+        ]
+      },
+      {
+        id: "part4",
+        title: "第四段：32-44節",
+        badge: "覺醒與承接 ‧ 和修本全文",
+        suggestedTime: 15,
+        scriptureRef: "撒母耳記上 25:32-44（和合本修訂版）",
+        verses: [
+          { num: "32", text: "大衛對亞比該說：<span class='verse-hl' title='【核心討論重點】大衛的可塑造性：沒有惱羞成怒，立刻承認神藉婦女說話'>「耶和華－以色列的神是應當稱頌的，因為他今日差派你來迎接我。</span>" },
+          { num: "33", text: "<span class='verse-hl' title='【核心討論重點】大衛由衷佩服對方的智慧，及時收刀入鞘'>你和你的見識也配得稱讚，因為你今日攔阻我親手報仇、流人的血。</span>" },
+          { num: "34", text: "我指著攔阻我加害於你的耶和華－以色列永生的神起誓，你若不速速來迎接我，到明日早晨，凡屬拿八的男丁必定一個也不留！」" },
+          { num: "35", text: "大衛受了亞比該送來的禮物，就對她說：「你平平安安上你的家去吧！看哪，我聽了你的話，準了你的情面。」" },
+          { num: "36", text: "亞比該到拿八那裏，看哪，他在家裏設擺宴席，如同王的宴席。拿八心裏暢快，喝得酩酊大醉。亞比該無論大小事都沒有告訴他，直到明日早晨。" },
+          { num: "37", text: "到了早晨，拿八醒了酒，他的妻子把這些事都告訴他，他就魂不附體，身僵如石頭一樣。" },
+          { num: "38", text: "<span class='verse-hl' title='【核心討論重點】伸冤在神：不自己動手，神以祂的主權與公義親自終結拿八'>過了約十天，耶和華擊打拿八，他就死了。</span>" },
+          { num: "39", text: "大衛聽見拿八死了，就說：「應當稱頌耶和華，因為他伸了我受拿八羞辱的冤，又攔阻僕人行惡；耶和華使拿八的惡報應在他自己頭上。」大衛派人去向亞比該提親，要娶她為妻。" },
+          { num: "40", text: "大衛的僕人到了迦密見亞比該，對她說：「大衛派我們到你這裏來，要娶你為妻。」" },
+          { num: "41", text: "亞比該就起來，臉伏於地叩拜，說：「看哪，你的婢女願作僕人，洗我主僕人的腳。」" },
+          { num: "42", text: "亞比該立刻起身，騎上驢，帶著跟隨她的五個女僕，跟隨大衛的使者去了，就作了大衛的妻子。" },
+          { num: "43", text: "<span class='verse-hl' title='【核心討論重點】政治與資源整編：大衛同時娶了耶斯列的亞希暖，鞏固南部勢力'>大衛也娶了耶斯列的亞希暖，她們二人都作了他的妻子。</span>" },
+          { num: "44", text: "<span class='verse-hl' title='【核心討論重點】掃羅切斷政治紐帶，大衛透過新婚姻合法接收地方盟友'>掃羅已把他的女兒米甲，就是大衛的妻子，給了迦琳人拉億的兒子帕提為妻。</span>" }
+        ],
+        insights: [
+          {
+            title: "大衛的可塑造性（Teachability）vs 掃羅的剛愎自用",
+            text: "大衛最偉大的特質不是從不犯錯，而是<strong>「聽得進勸誡」</strong>。面對一個婦女在曠野攔截教訓他，他沒有惱羞成怒，而是立刻認清神的心意，稱讚對方的見識並收刀入鞘。對比掃羅被撒母耳責備時不斷卸責強辯，這正是神喜悅大衛的原因。"
+          },
+          {
+            title: "政經內幕：大衛為何隨即迎娶亞比該？",
+            text: "1. <strong>合法且光明正大</strong>：拿八被神擊打暴斃後，大衛才正式提親，沒有謀害人夫（與拔示巴事件形成強烈對比）。<br>2. <strong>知音與屬靈智囊</strong>：亞比該是大衛流亡期間唯一看透他君王命定、拉住他良心的人。<br>3. <strong>合法接收迦勒族政治財富版圖</strong>：拿八無子嗣，亞比該掌握大宅實權。大衛娶亞比該，以強大武力為靠山，順理成章接收了迦勒族在猶大南地的龐大人脈與土地影響力，奠定了他日後在希伯崙受膏作猶大王的根基。"
+          }
+        ],
+        questions: [
+          {
+            q: "7. 大衛在 32-34 節的回應反映出他怎樣的生命特質？為什麼「肯承認自己差點行惡」反而顯出他是合神心意的領袖？",
+            hint: "受教的心（Teachability）。真正的屬靈成熟是敏銳於神的勒住，並有勇氣推翻自己剛發出的衝動誓言。"
+          },
+          {
+            q: "8. 當大衛選擇收刀交託給神，神如何親自處理拿八（38節）？這對我們習慣靠自己手段「私了討公道」帶來甚麼警醒？",
+            hint: "「過了約十天，耶和華擊打拿八」。伸冤在主，神的公義收尾遠比我們血氣殺戮更徹底、更聖潔。"
+          }
+        ]
+      },
+      {
+        id: "roleReflection",
+        title: "職場角色代入",
+        badge: "實戰應用",
+        suggestedTime: 18,
+        content: {
+          tagline: "在職信徒心靈體檢：你是被踐踏的大衛，還是夾縫中的亞比該？",
+          roles: [
+            {
+              id: "david",
+              name: "角色 A：被踐踏的付出者 ——「大衛」（黑化與覺醒）",
+              icon: "ph-sword",
+              color: "rose",
+              desc: "為團隊默默付出、保護項目，但遇到極度刻薄、否定你存在價值的上司、客戶或同工，內心湧起「想拔刀」的衝動。",
+              selfQuestions: [
+                "在工作或事奉中，當你的努力被當成理所當然甚至遭羞辱時，你最常拔出的「刀」是甚麼（公開發飆、冷暴力擺爛、辭職玉石俱焚、背後投訴）？",
+                "回顧過去，有沒有哪一次神藉著某些人事物（你的「亞比該」）及時拉住你，提醒你守住天國受膏者的長遠見證？"
+              ]
+            },
+            {
+              id: "abigail",
+              name: "角色 B：夾縫中的談判專家 ——「亞比該」（智慧與格局）",
+              icon: "ph-scales",
+              color: "emerald",
+              desc: "常夾在糊塗暴躁的「豬隊友/老闆」與憤怒的「客戶/合作夥伴」之間，既要安撫情緒，又要保護團隊不致引爆滅亡。",
+              selfQuestions: [
+                "面對充滿火藥味的人際糾紛，你通常是憑血氣硬碰，還是能像亞比該一樣「先同理情緒、給足面子，再將眼光拉高到長遠格局」？",
+                "在目前的工作環境中，神呼召你在哪個人事僵局中成為一個帶有智慧與冷靜的「和平拆彈者」？"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: "summary",
+        title: "總結與禱告",
+        badge: "守住命定",
+        suggestedTime: 10,
+        content: {
+          takeaways: [
+            {
+              title: "1. 守住門徒的可教導性 (Teachability)",
+              text: "屬神的受膏者不代表不會動怒跌倒，但真正的門徒永遠具備「及時踩剎車、承認自己過失」的受教心靈。大衛比掃羅偉大，就在於他聽得進亞比該的勸阻。"
+            },
+            {
+              title: "2. 延遲滿足：不要讓「拿八」整臭你的履歷表",
+              text: "亞比該提醒大衛：你將來是要作王的，不要為了眼前一個愚頑小人，留下無故流血的終生污點。在職場上，絕不要為了一時意氣，砸碎了神在你生命中的長遠見證。"
+            },
+            {
+              title: "3. 把伸冤的權柄交還給神 (伸冤在主)",
+              text: "大衛把400把刀收回鞘中，過了十天，神親自擊打拿八。神的出手遠比我們的血氣私了更公義、更完全。"
+            }
+          ],
+          prayerGuide: [
+            "<strong>釋放委屈與醫治</strong>：向神傾倒在職場中被否定、被踐踏的辛酸與怒火，求主親自安慰受傷的尊嚴。",
+            "<strong>求賜收刀的勇氣</strong>：求聖靈在我們情緒理智即將斷線時，賜下警醒，讓我們聽得見身邊「亞比該」的微聲提醒，及時收刀入鞘。",
+            "<strong>作職場和平的使者</strong>：求主賜給我們亞比該那樣敏銳、情理兼備的高情商與屬靈眼光，在混亂張力中化解危機、見證基督。"
+          ]
+        }
+      }
+    ];
+
+    // --- APP STATE ---
+    let currentStageIndex = 0;
+    let isLeaderMode = true;
+    let isHighlightActive = true;
+    let timerDuration = stages[0].suggestedTime * 60;
+    let timerRemaining = timerDuration;
+    let timerInterval = null;
+    let isTimerRunning = false;
+    let selectedRole = "david";
+
+    // --- DOM REFERENCES ---
+    const stageTabsContainer = document.getElementById("stageTabsContainer");
+    const stageContainer = document.getElementById("stageContainer");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const stepIndicator = document.getElementById("stepIndicator");
+    const timerDisplay = document.getElementById("timerDisplay");
+    const timerIcon = document.getElementById("timerIcon");
+    const leaderBanner = document.getElementById("leaderBanner");
+    const modeToggleBtn = document.getElementById("modeToggleBtn");
+    const modeText = document.getElementById("modeText");
+    const hlToggleBtn = document.getElementById("hlToggleBtn");
+
+    // --- INITIALIZATION ---
+    window.addEventListener("DOMContentLoaded", () => {
+      renderTabs();
+      renderCurrentStage();
+      updateTimerDisplay();
+      updateLeaderModeUI();
+    });
+
+    // --- RENDER TABS ---
+    function renderTabs() {
+      stageTabsContainer.innerHTML = stages.map((stg, idx) => {
+        const isActive = idx === currentStageIndex;
+        return `
+          <button onclick="goToStage(${idx})" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
+            isActive 
+              ? 'bg-indigo-600 text-white font-semibold shadow-sm' 
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+          }">
+            <span class="w-4 h-4 rounded-full flex items-center justify-center text-[10px] ${
+              isActive ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+            }">${idx + 1}</span>
+            <span>${stg.title}</span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    // --- RENDER STAGE CONTENT ---
+    function renderCurrentStage() {
+      const stage = stages[currentStageIndex];
+      renderTabs();
+
+      stepIndicator.textContent = `階段 ${currentStageIndex + 1} / ${stages.length}`;
+      prevBtn.disabled = currentStageIndex === 0;
+      nextBtn.disabled = currentStageIndex === stages.length - 1;
+
+      resetSectionTimer();
+
+      let html = `
+        <div class="space-y-6">
+          <!-- Header of Section -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700/80 gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800">${stage.badge}</span>
+                <span class="text-xs text-slate-400 flex items-center gap-1">
+                  <i class="ph-bold ph-clock"></i> 建議時間：${stage.suggestedTime} 分鐘
+                </span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">${stage.title}</h2>
+            </div>
+            
+            <button onclick="copyCurrentScriptureOrQuestions()" class="self-start sm:self-auto text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition">
+              <i class="ph-bold ph-copy"></i> 複製本段內容
+            </button>
+          </div>
+      `;
+
+      if (stage.id === "intro") {
+        html += renderIntroContent(stage);
+      } else if (stage.id === "roleReflection") {
+        html += renderRoleReflectionContent(stage);
+      } else if (stage.id === "summary") {
+        html += renderSummaryContent(stage);
+      } else {
+        html += renderPassageContent(stage);
+      }
+
+      html += `</div>`;
+      stageContainer.innerHTML = html;
+    }
+
+    // --- SUB-RENDERERS ---
+    function renderIntroContent(stg) {
+      return `
+        <div class="space-y-6">
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">${stg.content.tagline}</p>
+          
+          <!-- Analogy Comparison Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-900/40">
+              <div class="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold mb-2">
+                <i class="ph-bold ph-film-strip text-xl"></i>
+                <span>${stg.content.analogy.left.name}</span>
+              </div>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${stg.content.analogy.left.desc}</p>
+            </div>
+
+            <div class="p-5 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50/40 dark:bg-indigo-950/20">
+              <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-300 font-bold mb-2">
+                <i class="ph-bold ph-scroll text-xl"></i>
+                <span>${stg.content.analogy.right.name}</span>
+              </div>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${stg.content.analogy.right.desc}</p>
+            </div>
+          </div>
+
+          <!-- Icebreaker Question -->
+          <div class="p-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-indigo-950/40 border border-indigo-100 dark:border-indigo-900">
+            <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <i class="ph-bold ph-chats-circle text-base"></i> 破冰討論問題（全組輪流簡短回答）
+            </div>
+            <p class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white leading-snug font-serif">
+              ${stg.content.icebreakerQuestion}
+            </p>
+          </div>
+
+          <!-- Leader Tip -->
+          <div class="leader-only ${isLeaderMode ? '' : 'hidden'} p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/60 text-xs text-amber-900 dark:text-amber-200">
+            <span class="font-bold flex items-center gap-1 mb-1 text-amber-950 dark:text-amber-100">
+              <i class="ph-bold ph-lightbulb text-sm"></i> 組長引導錦囊：
+            </span>
+            ${stg.content.facilitatorTip}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPassageContent(stg) {
+      let chronoHtml = "";
+      if (stg.chronologicalNote) {
+        chronoHtml = `
+          <div class="p-3 rounded-lg bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-900 text-xs text-indigo-900 dark:text-indigo-200 flex items-center gap-2">
+            <i class="ph-bold ph-clock-countdown text-base text-indigo-600 dark:text-indigo-400 flex-shrink-0"></i>
+            <span>${stg.chronologicalNote}</span>
+          </div>
+        `;
+      }
+
+      let scriptureHtml = `
+        <!-- Full Scripture Section (RCUV) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <span class="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400">
+              <i class="ph-bold ph-book-open"></i> 和修本全文閱讀（${stg.scriptureRef}）
+            </span>
+            <span class="text-slate-400">請邀請組員接續朗讀 ‧ 黃色為討論重心</span>
+          </div>
+          ${chronoHtml}
+          <div class="p-4 sm:p-6 rounded-2xl scripture-card font-serif text-sm sm:text-base leading-relaxed text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-slate-700/60 shadow-sm space-y-2.5">
+            ${stg.verses.map(v => `
+              <p class="leading-relaxed">
+                <sup class="verse-num text-xs font-sans font-bold text-indigo-600 dark:text-indigo-400 mr-1 select-none">${v.num}</sup>
+                <span>${v.text}</span>
+              </p>
+            `).join("")}
+          </div>
+        </div>
+      `;
+
+      // Deep Dives (Stage 3 specific)
+      let deepDivesHtml = "";
+      if (stg.deepDives) {
+        deepDivesHtml = `
+          <div class="space-y-3">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+              <i class="ph-bold ph-compass"></i> 深度解構與八卦爭議點（點擊展開）
+            </h3>
+            <div class="space-y-2.5">
+              ${stg.deepDives.map(dd => `
+                <details class="group bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700/80 p-3.5 transition open:ring-1 open:ring-indigo-500/20">
+                  <summary class="font-semibold text-sm cursor-pointer list-none flex items-center justify-between text-slate-800 dark:text-slate-200 select-none">
+                    <span>${dd.title}</span>
+                    <i class="ph-bold ph-caret-down text-slate-400 group-open:rotate-180 transition-transform"></i>
+                  </summary>
+                  <div class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200/60 dark:border-slate-700/60 pt-2.5">
+                    ${dd.content}
+                  </div>
+                </details>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      // Insights (Leader / collapsible)
+      let insightsHtml = "";
+      if (stg.insights && stg.insights.length > 0) {
+        insightsHtml = `
+          <div class="space-y-2.5">
+            ${stg.insights.map(ins => `
+              <div class="leader-only ${isLeaderMode ? '' : 'hidden'} p-4 rounded-xl bg-blue-50/70 dark:bg-blue-950/20 border border-blue-200/80 dark:border-blue-900/60 text-xs sm:text-sm text-blue-950 dark:text-blue-200">
+                <div class="font-bold flex items-center gap-2 mb-1.5 text-blue-900 dark:text-blue-300">
+                  <i class="ph-bold ph-info text-base"></i> ${ins.title}
+                </div>
+                <div class="leading-relaxed opacity-90">${ins.text}</div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      // Interactive Workplace Poll (Stage 2)
+      let pollHtml = "";
+      if (stg.interactiveTool === "triggerPoll") {
+        pollHtml = `
+          <div class="p-4 sm:p-5 rounded-xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-200/70 dark:border-rose-900/50 space-y-3">
+            <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm">
+              <i class="ph-bold ph-warning-octagon text-lg"></i>
+              <span>職場地雷調查：邊句說話/情況最容易令你理智斷線想「拔刀」？</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <button onclick="selectTriggerPoll(this)" class="poll-btn p-2.5 rounded-lg border border-rose-200 dark:border-rose-800/80 bg-white dark:bg-slate-800 text-left hover:border-rose-500 transition">
+                ⚡ 「你做咗啲咩？呢啲唔係理所當然嘅咩？」(辛勞被徹底忽視)
+              </button>
+              <button onclick="selectTriggerPoll(this)" class="poll-btn p-2.5 rounded-lg border border-rose-200 dark:border-rose-800/80 bg-white dark:bg-slate-800 text-left hover:border-rose-500 transition">
+                ⚡ 「你係邊位呀？幾時輪到你講嘢？」(專業身份被踩低侮辱)
+              </button>
+              <button onclick="selectTriggerPoll(this)" class="poll-btn p-2.5 rounded-lg border border-rose-200 dark:border-rose-800/80 bg-white dark:bg-slate-800 text-left hover:border-rose-500 transition">
+                ⚡ 幫隊友頂咗大獲，回頭反被指責卸責 (以惡報善)
+              </button>
+              <button onclick="selectTriggerPoll(this)" class="poll-btn p-2.5 rounded-lg border border-rose-200 dark:border-rose-800/80 bg-white dark:bg-slate-800 text-left hover:border-rose-500 transition">
+                ⚡ 老闆或客戶完全反口不認賬，無規矩可言 (契約破壞)
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      // Discussion Questions
+      let questionsHtml = `
+        <div class="space-y-3 pt-2">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="ph-bold ph-chats text-base text-indigo-600"></i> 本段討論題目（建議選 1-2 條深入交流）
+          </div>
+          <div class="space-y-3">
+            ${stg.questions.map((qObj) => `
+              <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 shadow-sm space-y-2">
+                <p class="font-medium text-sm sm:text-base text-slate-900 dark:text-white font-serif leading-snug">${qObj.q}</p>
+                <div class="leader-only ${isLeaderMode ? '' : 'hidden'} text-xs text-amber-800 dark:text-amber-300/90 bg-amber-50/70 dark:bg-amber-950/30 p-2.5 rounded-lg border border-amber-200/60 dark:border-amber-900/40 flex items-start gap-1.5">
+                  <i class="ph-bold ph-key text-sm mt-0.5 flex-shrink-0 text-amber-600"></i>
+                  <div><strong>組長引導提示：</strong>${qObj.hint}</div>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+
+      return `
+        <div class="space-y-6">
+          ${scriptureHtml}
+          ${deepDivesHtml}
+          ${insightsHtml}
+          ${pollHtml}
+          ${questionsHtml}
+        </div>
+      `;
+    }
+
+    function renderRoleReflectionContent(stg) {
+      const currentRole = stg.content.roles.find(r => r.id === selectedRole) || stg.content.roles[0];
+
+      return `
+        <div class="space-y-6">
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">${stg.content.tagline}</p>
+
+          <!-- Role Toggle Buttons -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            ${stg.content.roles.map(r => {
+              const isSelected = r.id === selectedRole;
+              return `
+                <button onclick="setRole('${r.id}')" class="p-4 rounded-xl border text-left transition-all flex items-start gap-3 ${
+                  isSelected 
+                    ? 'border-indigo-600 ring-2 ring-indigo-500/20 bg-indigo-50/30 dark:bg-indigo-950/20 shadow-sm' 
+                    : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800'
+                }">
+                  <div class="p-2.5 rounded-lg ${
+                    r.id === 'david' ? 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300' : 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
+                  }">
+                    <i class="ph-bold ${r.icon} text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">${r.name}</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${r.desc}</p>
+                  </div>
+                </button>
+              `;
+            }).join("")}
+          </div>
+
+          <!-- Active Role Details Card -->
+          <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-900/40 space-y-4">
+            <div class="flex items-center gap-2 text-sm font-bold text-indigo-700 dark:text-indigo-400 uppercase tracking-wider">
+              <i class="ph-bold ph-pencil-simple text-base"></i> 個人反思問卷（可自由紀錄筆記）
+            </div>
+
+            <div class="space-y-3">
+              ${currentRole.selfQuestions.map((sq, i) => `
+                <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 space-y-1.5">
+                  <div class="font-serif font-medium text-sm sm:text-base text-slate-900 dark:text-white">${i+1}. ${sq}</div>
+                </div>
+              `).join("")}
+            </div>
+
+            <!-- Notes Notepad Area -->
+            <div class="space-y-1.5 pt-2">
+              <label class="text-xs font-semibold text-slate-500 flex items-center justify-between">
+                <span>我的心靈沉澱與回應筆記：</span>
+                <span class="text-[11px] text-slate-400">（資料只暫存於你的瀏覽器，可隨時複製）</span>
+              </label>
+              <textarea id="reflectionNotes" rows="4" placeholder="在此寫下你想收刀的心情、或需要神賜下智慧的具體人際處境..." class="w-full text-sm p-3.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-100"></textarea>
+              <div class="flex justify-end gap-2 pt-1">
+                <button onclick="saveAndCopyNotes()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition flex items-center gap-1">
+                  <i class="ph-bold ph-floppy-disk"></i> 複製/保存我的筆記
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSummaryContent(stg) {
+      return `
+        <div class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            ${stg.content.takeaways.map(t => `
+              <div class="p-4 sm:p-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 shadow-sm space-y-2">
+                <h4 class="font-bold text-sm sm:text-base text-indigo-700 dark:text-indigo-400">${t.title}</h4>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${t.text}</p>
+              </div>
+            `).join("")}
+          </div>
+
+          <!-- Prayer Focus -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/80 space-y-4">
+            <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-base">
+              <i class="ph-bold ph-hands-praying text-xl"></i>
+              <span>總結回應與同心禱告</span>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              建議邀請兩位組員開聲，分別為「面對不公委屈能收刀交託」及「在職場做和平調停的使者」祈禱：
+            </p>
+
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+              ${stg.content.prayerGuide.map(pg => `
+                <li class="flex items-start gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 flex-shrink-0"></span>
+                  <div>${pg}</div>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+
+    // --- NAVIGATION LOGIC ---
+    function nextStage() {
+      if (currentStageIndex < stages.length - 1) {
+        currentStageIndex++;
+        renderCurrentStage();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function prevStage() {
+      if (currentStageIndex > 0) {
+        currentStageIndex--;
+        renderCurrentStage();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function goToStage(index) {
+      if (index >= 0 && index < stages.length) {
+        currentStageIndex = index;
+        renderCurrentStage();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // --- INTERACTIVE ACTIONS ---
+    function setRole(roleId) {
+      selectedRole = roleId;
+      renderCurrentStage();
+    }
+
+    function selectTriggerPoll(button) {
+      document.querySelectorAll(".poll-btn").forEach(btn => {
+        btn.classList.remove("ring-2", "ring-rose-500", "bg-rose-50", "dark:bg-rose-950/50");
+      });
+      button.classList.add("ring-2", "ring-rose-500", "bg-rose-50", "dark:bg-rose-950/50");
+      showToast("已選擇！請同組員分享具體觸發經歷");
+    }
+
+    function saveAndCopyNotes() {
+      const textarea = document.getElementById("reflectionNotes");
+      if (textarea && textarea.value.trim() !== "") {
+        copyTextToClipboard(textarea.value);
+        showToast("筆記已複製到剪貼簿！");
+      } else {
+        showToast("請先輸入一些筆記內容");
+      }
+    }
+
+    function copyCurrentScriptureOrQuestions() {
+      const current = stages[currentStageIndex];
+      let textToCopy = `【${current.title}】\n`;
+      if (current.verses) {
+        textToCopy += `經文 (${current.scriptureRef}):\n` + 
+          current.verses.map(v => `${v.num}. ${v.text.replace(/<[^>]*>/g, '')}`).join("\n") + "\n\n";
+      }
+      if (current.questions) {
+        textToCopy += `討論題目:\n` + current.questions.map(q => q.q).join("\n") + "\n";
+      }
+      if (current.id === "intro") {
+        textToCopy += `破冰問題:\n${current.content.icebreakerQuestion}\n`;
+      }
+      copyTextToClipboard(textToCopy);
+      showToast("已複製本段內容至剪貼簿！");
+    }
+
+    function copyTextToClipboard(text) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+      } catch (err) {
+        console.error("Copy failed", err);
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      const toastMsg = document.getElementById("toastMsg");
+      toastMsg.textContent = message;
+      toast.classList.remove("opacity-0", "translate-y-20");
+      setTimeout(() => {
+        toast.classList.add("opacity-0", "translate-y-20");
+      }, 2500);
+    }
+
+    // --- HIGHLIGHT TOGGLE LOGIC ---
+    function toggleHighlights() {
+      isHighlightActive = !isHighlightActive;
+      const body = document.body;
+      if (isHighlightActive) {
+        body.classList.add("hl-active");
+        hlToggleBtn.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition bg-yellow-100 border-yellow-300 text-yellow-900 dark:bg-yellow-950/60 dark:border-yellow-700 dark:text-yellow-200";
+        showToast("已開啟重點經文高亮");
+      } else {
+        body.classList.remove("hl-active");
+        hlToggleBtn.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition bg-slate-100 border-slate-300 text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300";
+        showToast("已關閉經文高亮");
+      }
+    }
+
+    // --- LEADER MODE LOGIC ---
+    function toggleLeaderMode() {
+      isLeaderMode = !isLeaderMode;
+      updateLeaderModeUI();
+    }
+
+    function updateLeaderModeUI() {
+      if (isLeaderMode) {
+        leaderBanner.classList.remove("hidden");
+        modeToggleBtn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition bg-amber-50 border-amber-300 text-amber-900 dark:bg-amber-950/60 dark:border-amber-700 dark:text-amber-200";
+        modeText.textContent = "組長帶領模式";
+      } else {
+        leaderBanner.classList.add("hidden");
+        modeToggleBtn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition bg-slate-100 border-slate-300 text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300";
+        modeText.textContent = "組員精簡模式";
+      }
+
+      document.querySelectorAll(".leader-only").forEach(el => {
+        if (isLeaderMode) {
+          el.classList.remove("hidden");
+        } else {
+          el.classList.add("hidden");
+        }
+      });
+    }
+
+    // --- SECTION TIMER LOGIC ---
+    function updateTimerDisplay() {
+      const mins = Math.floor(timerRemaining / 60);
+      const secs = timerRemaining % 60;
+      timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function toggleTimer() {
+      if (isTimerRunning) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        timerIcon.className = "ph-fill ph-play text-slate-700 dark:text-slate-300";
+      } else {
+        isTimerRunning = true;
+        timerIcon.className = "ph-fill ph-pause text-indigo-600 dark:text-indigo-400";
+        timerInterval = setInterval(() => {
+          if (timerRemaining > 0) {
+            timerRemaining--;
+            updateTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerIcon.className = "ph-fill ph-play text-slate-700 dark:text-slate-300";
+            showToast("此段建議時間已到，可準備過渡到下一階段！");
+          }
+        }, 1000);
+      }
+    }
+
+    function resetSectionTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      isTimerRunning = false;
+      timerIcon.className = "ph-fill ph-play text-slate-700 dark:text-slate-300";
+      timerDuration = stages[currentStageIndex].suggestedTime * 60;
+      timerRemaining = timerDuration;
+      updateTimerDisplay();
+    }
+
+    // --- DARK MODE LOGIC ---
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById("themeIcon");
+      if (html.classList.contains("dark")) {
+        html.classList.remove("dark");
+        themeIcon.className = "ph-bold ph-moon text-lg";
+      } else {
+        html.classList.add("dark");
+        themeIcon.className = "ph-bold ph-sun text-lg";
+      }
+    }
+  </script>
+</body>
+</html>

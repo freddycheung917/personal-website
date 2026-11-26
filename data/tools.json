@@ -1,0 +1,10 @@
+{
+  "tools": [
+    {
+      "name": "數學小遊戲",
+      "path": "mathgame/",
+      "badge": "/mathgame",
+      "description": "Grade 3–6 生活情景數學互動練習"
+    }
+  ]
+}

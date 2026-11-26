@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" href="data:," />
+  <title>查經總目錄 — Bible Study</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body data-page="biblestudy">
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <span>Personal Hub</span>
+      </a>
+      <nav class="nav" aria-label="主要導覽">
+        <a class="nav-primary" href="./">查經資料</a>
+        <a href="../#mod-sermons">講道回顧</a>
+        <a href="../#mod-ai">AI 資訊</a>
+        <a class="hide-sm" href="../#mod-tools">小工具</a>
+        <button id="themeToggle" class="theme-btn" type="button" aria-label="切換深淺模式" title="切換深淺模式"></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap stack-md">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="../">← 返回主頁</a>
+        <span>/</span>
+        <span class="mono">biblestudy</span>
+      </div>
+
+      <!-- Page Header -->
+      <section class="page-head">
+        <div class="head-row">
+          <div>
+            <h1 class="page-title">查經總目錄</h1>
+            <p class="page-sub">按聖經書卷與章節整理嘅查經資料與互動研經頁。</p>
+          </div>
+          <span id="studyTotal" class="badge mono">1 篇查經資料</span>
+        </div>
+
+        <div class="search-row">
+          <div id="testamentFilters" class="filters" role="group" aria-label="新舊約篩選">
+            <button type="button" data-testament="all" class="pill-btn active">全部</button>
+            <button type="button" data-testament="old" class="pill-btn">舊約</button>
+            <button type="button" data-testament="new" class="pill-btn">新約</button>
+          </div>
+          <input id="studySearch" class="search-input" type="search" placeholder="搜尋書卷、章節或關鍵字…" aria-label="搜尋查經資料" />
+        </div>
+      </section>
+
+      <!-- Directory List (dynamically hydrated from ../data/biblestudy.json, with static fallback) -->
+      <div id="studyGroups" class="stack-md">
+        <section class="book-group">
+          <div class="book-head">
+            <div class="book-head-left">
+              <h2 class="book-name">撒母耳記上</h2>
+              <span class="book-en">1 Samuel · 舊約</span>
+            </div>
+            <span class="book-en mono">1 篇</span>
+          </div>
+          <div class="card study-list">
+            <a class="study-row" href="1-samuel-25.html">
+              <div>
+                <div class="study-meta">
+                  <span class="badge badge-accent">第 25 章</span>
+                  <span class="badge">和修本</span>
+                  <span class="mono">1-samuel-25.html</span>
+                </div>
+                <h3 class="item-title">理智斷線與覺醒：當受膏者遇上職場小人與談判專家</h3>
+                <p class="item-desc">和修本全文互動查經（75–90 分鐘）</p>
+                <div class="tag-list">
+                  <span class="badge">在職信徒</span>
+                  <span class="badge">情緒管理</span>
+                  <span class="badge">危機調停</span>
+                  <span class="badge">互動查經</span>
+                </div>
+              </div>
+              <span class="study-row-link">打開閱讀 →</span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>查經總目錄 · <span class="mono">/biblestudy</span></span>
+      <div class="footer-links">
+        <a href="../">← 返回主頁</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/hub.js" defer></script>
+</body>
+</html>

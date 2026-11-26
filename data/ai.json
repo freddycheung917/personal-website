@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "category": "常用工具",
+      "title": "AI 工作流與模型筆記",
+      "summary": "整理常用 AI 工具、模型強項與快速書籤，之後可按需要直接加連結。",
+      "url": "",
+      "status": "整理中"
+    },
+    {
+      "category": "Prompt 庫",
+      "title": "實用提示詞範本",
+      "summary": "收納寫作、資料整理、輔助研經同日常工作常用嘅 Prompt。",
+      "url": "",
+      "status": "整理中"
+    },
+    {
+      "category": "資訊摘要",
+      "title": "AI 趨勢與文章收藏",
+      "summary": "值得重溫嘅 AI 文章、教學影片同重點筆記。",
+      "url": "",
+      "status": "整理中"
+    }
+  ]
+}

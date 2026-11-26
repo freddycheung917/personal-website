@@ -1,0 +1,10 @@
+{
+  "playlists": [
+    {
+      "title": "講道回顧播放清單",
+      "description": "日後填入 YouTube Playlist ID 後，網站會自動嵌入播放清單並同步最新影片。",
+      "playlistId": "",
+      "url": ""
+    }
+  ]
+}
