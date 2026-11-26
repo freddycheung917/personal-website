@@ -154,7 +154,7 @@
       </button>
 
       <div class="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-        <span id="stepIndicator">階段 1 / 6</span>
+        <span id="stepIndicator">階段 1 / 8</span>
       </div>
 
       <button id="nextBtn" onclick="nextStage()" class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition disabled:opacity-30 disabled:cursor-not-allowed">
@@ -418,6 +418,93 @@
             "<strong>作職場和平的使者</strong>：求主賜給我們亞比該那樣敏銳、情理兼備的高情商與屬靈眼光，在混亂張力中化解危機、見證基督。"
           ]
         }
+      },
+      {
+        id: "bonus",
+        title: "彩蛋：大衛何時黑化？",
+        badge: "深度彩蛋 ‧ 人物剖析",
+        suggestedTime: 15,
+        scriptureRef: "撒母耳記上 17:26, 28, 30-31（和合本修訂版）",
+        verses: [
+          { num: "26", text: "大衛問站在旁邊的人說：「<span class='verse-hl' title='【雙重動機】先精準確認獎賞回報，再表達對神榮耀的義憤'>有人殺這非利士人，除掉以色列人的恥辱，怎樣待他呢？</span>這未受割禮的非利士人是誰呢，竟敢向永生神的軍隊罵陣嗎？」" },
+          { num: "28", text: "大衛的長兄以利押聽見大衛與他們所說的話，就向他發怒，說：「你為甚麼下來呢？在曠野那幾隻羊，你交託給誰呢？<span class='verse-hl' title='【家人視角】原文帶有狂傲、野心、心懷盤算之意，反映大衛在家中向來企圖心強'>我知道你的驕傲和你心裏的惡意</span>，你下來特為要看打仗！」" },
+          { num: "30", text: "<span class='verse-hl' title='【反覆確認與造勢】被大哥喝止後，轉向另一個人再問一次獎賞條款'>大衛就離開他轉向別人，照先前所說的話又問了一遍</span>；百姓仍照先前的話回答他。" },
+          { num: "31", text: "有人聽見大衛所說的話，就告訴了掃羅；掃羅就打發人召他來。" }
+        ],
+        content: {
+          tagline: "打破非黑即白的樣板聖人迷思：少年大衛真的「單純無瑕」嗎？原來他的精明、野心與敬畏神，從年輕時就一直同時運轉。",
+          engines: {
+            a: {
+              title: "引擎 A：真實敬畏神",
+              items: [
+                "真心相信耶和華必救他脫離獅熊與歌利亞（撒上 17:37）",
+                "面對追殺自己的掃羅，堅持不可加害神的受膏者（撒上 24 章）",
+                "在流亡曠野中寫下深刻倚靠神的詩篇",
+                "被亞比該半路攔截後，能即時認錯收刀、感謝神攔阻（撒上 25:32-33）"
+              ]
+            },
+            b: {
+              title: "引擎 B：世俗精明與強大野心",
+              items: [
+                "打歌利亞前兩次確認獎賞（大財、娶王女、免納糧），並主動在軍中造勢讓消息傳到掃羅耳中（撒上 17:26-31）",
+                "掃羅要 100 個非利士人陽皮作聘禮，他超額交出 200 個，展現強烈好勝心與政治表態（撒上 18:27）",
+                "逃到挪伯時向大祭司編造完整謊言換取餅與刀，間接連累 85 位祭司全家滅門（撒上 21-22 章）",
+                "拿八死後迅速迎娶亞比該與亞希暖，欣賞之餘亦精準承接猶大南地迦勒族的財力與勢力（撒上 25:39-43）"
+              ]
+            }
+          },
+          timeline: [
+            {
+              stage: "撒上 17 章 ‧ 歌利亞",
+              label: "動機混雜，方向對齊",
+              color: "emerald",
+              desc: "熱誠與野心剛好往同一個方向走，因此看起來像完美英雄——但內心的盤算與好勝早已存在。"
+            },
+            {
+              stage: "撒上 21-22 章 ‧ 挪伯祭司",
+              label: "壓力下首次越界",
+              color: "amber",
+              desc: "流亡保命時動用精明說謊，第一次付出無辜人命的沉重代價（22:22 親口認責）。"
+            },
+            {
+              stage: "撒上 25 章 ‧ 拿八事件",
+              label: "差點黑化的臨界點",
+              color: "orange",
+              desc: "撒母耳剛死、外在制衡消失，屈辱爆煲令引擎 B 壓過引擎 A，差點演變成血洗全家的山寨王——幸好神派亞比該急煞。"
+            },
+            {
+              stage: "撒下 11 章 ‧ 拔示巴與烏利亞",
+              label: "失去煞車皮的權力巔峰",
+              color: "rose",
+              desc: "登上王位、再無人敢在路上攔截時，同一套「想要就精準算計到手」的本能徹底失控，直到拿單先知出現再次把他叫醒。"
+            }
+          ],
+          coreInsight: "與其說大衛在某一天「突然由白變黑」，更準確地說：他的野心、生存算計與血氣一直都在；真正的分水嶺不在「有沒有私心」，而在「當下有沒有敬畏神的心，與願意被亞比該／拿單攔住的可教導性（Teachability）」。",
+          workplaceNotes: [
+            {
+              title: "打破屬靈完美主義",
+              text: "在職信徒常內疚：「我既想榮耀神，又在意 Bonus、升職、被看見，係咪好虛偽？」大衛提醒我們：神從來不是等人動機 100% 純淨無瑕才使用他，而是在往後的曠野中慢慢煉淨我們。"
+            },
+            {
+              title: "比野心更關鍵的是「煞車皮」",
+              text: "當職位越高、資源越多、壓力越大時，你身邊還有沒有敢講真話的「亞比該」或「拿單」？你還願不願意允許別人校正自己？"
+            },
+            {
+              title: "重新定義「合神心意」",
+              text: "不是從不盤算、永不失控的樣板聖人，而是清楚自己有陰暗面，卻依然願意向神與真理停下來認錯轉回的真實門徒。"
+            }
+          ]
+        },
+        questions: [
+          {
+            q: "彩蛋討論 1：如果回到撒上 17 章，看到大衛「兩次確認獎賞＋真心為神出戰」並存，這如何改變你對「在職信徒可以有事業野心嗎？」的看法？",
+            hint: "引導組員誠實面對「混雜動機」：野心本身可以是中性的驅動力，關鍵在於它是否降服於神的公義與界線，而不是為達目的不擇手段。"
+          },
+          {
+            q: "彩蛋討論 2：回看大衛由 17 章 → 25 章 → 拔示巴事件的軌跡，當你在工作上越來越有話語權或壓力越來越大時，你會怎樣為自己預備「亞比該式」的屬靈制衡？",
+            hint: "例如固定的屬靈同伴、誠實的同工／配偶反饋機制、定時停下來省察動機，而不是等到「無人敢勸」時才爆煲。"
+          }
+        ]
       }
     ];
 
@@ -456,14 +543,15 @@
     function renderTabs() {
       stageTabsContainer.innerHTML = stages.map((stg, idx) => {
         const isActive = idx === currentStageIndex;
+        const isBonus = stg.id === "bonus";
         return `
           <button onclick="goToStage(${idx})" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
             isActive 
-              ? 'bg-indigo-600 text-white font-semibold shadow-sm' 
-              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+              ? (isBonus ? 'bg-amber-600 text-white font-semibold shadow-sm' : 'bg-indigo-600 text-white font-semibold shadow-sm')
+              : (isBonus ? 'text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/40' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800')
           }">
             <span class="w-4 h-4 rounded-full flex items-center justify-center text-[10px] ${
-              isActive ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+              isActive ? 'bg-white/20 text-white' : (isBonus ? 'bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300' : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300')
             }">${idx + 1}</span>
             <span>${stg.title}</span>
           </button>
@@ -508,6 +596,8 @@
         html += renderRoleReflectionContent(stage);
       } else if (stage.id === "summary") {
         html += renderSummaryContent(stage);
+      } else if (stage.id === "bonus") {
+        html += renderBonusContent(stage);
       } else {
         html += renderPassageContent(stage);
       }
@@ -788,6 +878,130 @@
                 </li>
               `).join("")}
             </ul>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderBonusContent(stg) {
+      const badgeColors = {
+        emerald: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800",
+        amber: "bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300 border-amber-200 dark:border-amber-800",
+        orange: "bg-orange-100 text-orange-800 dark:bg-orange-950/70 dark:text-orange-300 border-orange-200 dark:border-orange-800",
+        rose: "bg-rose-100 text-rose-800 dark:bg-rose-950/70 dark:text-rose-300 border-rose-200 dark:border-rose-800"
+      };
+
+      return `
+        <div class="space-y-6">
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">${stg.content.tagline}</p>
+
+          <!-- Key Scripture Clues (1 Sam 17) -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              <span class="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400">
+                <i class="ph-bold ph-magnifying-glass"></i> 經文顯微鏡（${stg.scriptureRef}）
+              </span>
+              <span class="text-slate-400">少年大衛的雙重訊號</span>
+            </div>
+            <div class="p-4 sm:p-6 rounded-2xl scripture-card font-serif text-sm sm:text-base leading-relaxed text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-slate-700/60 shadow-sm space-y-2.5">
+              ${stg.verses.map(v => `
+                <p class="leading-relaxed">
+                  <sup class="verse-num text-xs font-sans font-bold text-indigo-600 dark:text-indigo-400 mr-1 select-none">${v.num}</sup>
+                  <span>${v.text}</span>
+                </p>
+              `).join("")}
+            </div>
+          </div>
+
+          <!-- Dual Engine Portrait -->
+          <div class="space-y-3">
+            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+              <i class="ph-bold ph-gear-six text-base text-indigo-600"></i> 少年大衛不是樣板人物：同時運轉的「雙引擎」
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-5 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50/40 dark:bg-indigo-950/20 space-y-3">
+                <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-300 font-bold">
+                  <i class="ph-bold ph-sparkle text-lg"></i>
+                  <span>${stg.content.engines.a.title}</span>
+                </div>
+                <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                  ${stg.content.engines.a.items.map(item => `
+                    <li class="flex items-start gap-2">
+                      <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 flex-shrink-0"></span>
+                      <span>${item}</span>
+                    </li>
+                  `).join("")}
+                </ul>
+              </div>
+
+              <div class="p-5 rounded-xl border border-rose-200 dark:border-rose-800 bg-rose-50/40 dark:bg-rose-950/20 space-y-3">
+                <div class="flex items-center gap-2 text-rose-700 dark:text-rose-300 font-bold">
+                  <i class="ph-bold ph-flame text-lg"></i>
+                  <span>${stg.content.engines.b.title}</span>
+                </div>
+                <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                  ${stg.content.engines.b.items.map(item => `
+                    <li class="flex items-start gap-2">
+                      <span class="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 flex-shrink-0"></span>
+                      <span>${item}</span>
+                    </li>
+                  `).join("")}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline: When did David turn dark? -->
+          <div class="space-y-3">
+            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+              <i class="ph-bold ph-path text-base text-indigo-600"></i> 軌跡重組：大衛是「何時黑化」的？
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              ${stg.content.timeline.map((step, i) => `
+                <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-900/40 space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">0${i + 1} ‧ ${step.stage}</span>
+                    <span class="text-[11px] font-semibold px-2 py-0.5 rounded border ${badgeColors[step.color] || badgeColors.amber}">${step.label}</span>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${step.desc}</p>
+                </div>
+              `).join("")}
+            </div>
+
+            <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/40 dark:to-purple-950/30 border border-indigo-200/80 dark:border-indigo-800/80 text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
+              <div class="font-bold text-indigo-700 dark:text-indigo-300 mb-1 flex items-center gap-1.5">
+                <i class="ph-bold ph-lightbulb text-base"></i> 核心洞察
+              </div>
+              ${stg.content.coreInsight}
+            </div>
+          </div>
+
+          <!-- Workplace Takeaways -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            ${stg.content.workplaceNotes.map(n => `
+              <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 shadow-sm space-y-1.5">
+                <h4 class="font-bold text-sm text-indigo-700 dark:text-indigo-400">${n.title}</h4>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${n.text}</p>
+              </div>
+            `).join("")}
+          </div>
+
+          <!-- Bonus Discussion Questions -->
+          <div class="space-y-3 pt-1">
+            <div class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+              <i class="ph-bold ph-chats text-base text-indigo-600"></i> 彩蛋延伸討論（供有餘裕時間的小組深挖）
+            </div>
+            <div class="space-y-3">
+              ${stg.questions.map(qObj => `
+                <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 shadow-sm space-y-2">
+                  <p class="font-medium text-sm sm:text-base text-slate-900 dark:text-white font-serif leading-snug">${qObj.q}</p>
+                  <div class="leader-only ${isLeaderMode ? '' : 'hidden'} text-xs text-amber-800 dark:text-amber-300/90 bg-amber-50/70 dark:bg-amber-950/30 p-2.5 rounded-lg border border-amber-200/60 dark:border-amber-900/40 flex items-start gap-1.5">
+                    <i class="ph-bold ph-key text-sm mt-0.5 flex-shrink-0 text-amber-600"></i>
+                    <div><strong>組長引導提示：</strong>${qObj.hint}</div>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
           </div>
         </div>
       `;
