@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>祈禱與分享 差遣禮簡報</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#050f1c; --deep:#0a2036;
+  --teal:#2fe0b0; --sky:#4aa8ff; --violet:#7d6bff;
+  --gold:#efcf86; --gold-d:#c9a24a;
+  --text:#eef5f8; --muted:#9bb2c2; --line:rgba(255,255,255,.14);
+  --serif:'Noto Serif TC','Songti TC','PMingLiU',serif;
+  --sans:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+  color-scheme: dark;
+}
+/* Layout idea: 1920x1080 stage scaled to fit; northern-lights backdrop, gold serif titles, one idea per slide. */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--night);color:var(--text);font-family:var(--sans)}
+body{-webkit-font-smoothing:antialiased}
+
+/* ---------- backdrop ---------- */
+.bg{position:fixed;inset:0;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#0b2a46 0%,var(--night) 70%)}
+.blob{position:absolute;border-radius:50%;filter:blur(110px);mix-blend-mode:screen;opacity:.5}
+.b1{width:70vw;height:55vh;left:-12vw;top:-18vh;background:var(--teal);animation:drift1 24s ease-in-out infinite alternate}
+.b2{width:60vw;height:50vh;right:-14vw;top:4vh;background:var(--sky);opacity:.38;animation:drift2 28s ease-in-out infinite alternate}
+.b3{width:55vw;height:45vh;left:20vw;bottom:-26vh;background:var(--violet);opacity:.32;animation:drift1 32s ease-in-out infinite alternate-reverse}
+@keyframes drift1{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(9vw,6vh,0) scale(1.18)}}
+@keyframes drift2{from{transform:translate3d(0,0,0) scale(1.1)}to{transform:translate3d(-8vw,9vh,0) scale(.92)}}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--t,4s) ease-in-out infinite;animation-delay:var(--dl,0s)}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.85}}
+
+/* ---------- stage ---------- */
+.stage{position:absolute;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden}
+.slide{position:absolute;inset:0;display:none;overflow:hidden}
+.slide.active,.slide.leaving{display:block}
+.slide.leaving{pointer-events:none;z-index:0}
+.slide.active{z-index:1}
+
+@keyframes inNext{from{opacity:0;transform:translateX(140px) scale(.98);filter:blur(12px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes outNext{from{opacity:1}to{opacity:0;transform:translateX(-140px) scale(1.02);filter:blur(12px)}}
+@keyframes inPrev{from{opacity:0;transform:translateX(-140px) scale(.98);filter:blur(12px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes outPrev{from{opacity:1}to{opacity:0;transform:translateX(140px) scale(1.02);filter:blur(12px)}}
+@keyframes inFirst{from{opacity:0}to{opacity:1}}
+.slide.active.next{animation:inNext .85s cubic-bezier(.2,.7,.2,1) both}
+.slide.active.prev{animation:inPrev .85s cubic-bezier(.2,.7,.2,1) both}
+.slide.active.first{animation:inFirst 1s ease both}
+.slide.leaving.next{animation:outNext .6s ease both}
+.slide.leaving.prev{animation:outPrev .6s ease both}
+
+@keyframes rise{from{opacity:0;transform:translateY(34px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.slide.active .rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.4s + var(--d,0) * 1s)}
+
+.eyebrow{display:flex;align-items:center;gap:24px;font:500 30px/1 var(--sans);letter-spacing:.28em;color:var(--teal)}
+.eyebrow::before{content:"";height:2px;width:72px;background:currentColor;transform-origin:left}
+.slide.active .eyebrow::before{animation:grow .8s .5s cubic-bezier(.2,.7,.2,1) both}
+
+/* ---------- 1. cover ---------- */
+.cover-bg{position:absolute;inset:-60px;background:url(poster.jpg) center/cover;filter:blur(48px) brightness(.55) saturate(1.3)}
+.poster{position:absolute;left:525px;top:0;width:870px;height:1080px;overflow:hidden;box-shadow:0 0 120px rgba(47,224,176,.25),0 0 0 1px rgba(255,255,255,.08)}
+.poster img{display:block;width:100%;height:100%;object-fit:cover;animation:slowzoom 26s ease-in-out infinite alternate}
+@keyframes slowzoom{from{transform:scale(1)}to{transform:scale(1.035)}}
+.sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);transform:translateX(-120%);animation:sheen 10s ease-in-out 1.6s infinite}
+@keyframes sheen{0%{transform:translateX(-120%)}14%,100%{transform:translateX(120%)}}
+@keyframes posterIn{from{opacity:0;transform:translateY(60px) scale(.95)}to{opacity:1;transform:none}}
+.slide.active .poster{animation:posterIn 1.2s cubic-bezier(.2,.7,.2,1) .15s both}
+.hint{position:absolute;right:60px;bottom:48px;font-size:28px;letter-spacing:.2em;color:var(--muted)}
+.slide.active .hint{animation:hint 7s ease 1.2s both}
+@keyframes hint{0%{opacity:0;transform:translateX(-12px)}12%,75%{opacity:.9;transform:none}100%{opacity:0}}
+
+/* ---------- 2. flow ---------- */
+.flow-left{position:absolute;left:120px;top:0;bottom:0;width:600px;display:flex;flex-direction:column;justify-content:center;gap:40px}
+.flow-left .eyebrow{font-size:26px;letter-spacing:.1em;gap:16px;white-space:nowrap}
+.flow-left .eyebrow::before{width:44px}
+.flow-title{font:900 150px/1.05 var(--serif);color:var(--gold);text-shadow:0 0 70px rgba(239,207,134,.28);text-wrap:balance}
+.lede{font-size:42px;line-height:1.6;color:var(--text)}
+.total{display:flex;align-items:baseline;gap:18px;padding-top:30px;border-top:1px solid var(--line);color:var(--muted);font-size:36px}
+.total .num{font:900 120px/1 var(--sans);color:var(--text);font-variant-numeric:tabular-nums}
+.timeline{position:absolute;left:780px;right:100px;top:100px;bottom:100px;list-style:none;display:flex;flex-direction:column;justify-content:space-between}
+.timeline::before{content:"";position:absolute;left:calc(28px + 150px + 30px - 1px);top:50px;bottom:50px;width:2px;background:linear-gradient(var(--teal),var(--sky));opacity:.55;transform-origin:top}
+.slide.active .timeline::before{animation:growY 1.4s cubic-bezier(.3,.7,.2,1) .5s both}
+@keyframes growY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.row{display:grid;grid-template-columns:150px 60px 1fr 120px;align-items:center;padding:0 28px;height:108px;border-radius:22px;position:relative}
+.row time{font:500 40px/1 var(--sans);font-variant-numeric:tabular-nums;color:var(--muted)}
+.dot{width:22px;height:22px;border-radius:50%;border:3px solid var(--teal);background:var(--night);justify-self:center;position:relative;z-index:1}
+.row h3{font:700 44px/1.2 var(--sans)}
+.row p{font-size:28px;color:var(--muted);margin-top:6px}
+.dur{justify-self:end;font-size:30px;color:var(--muted);font-variant-numeric:tabular-nums}
+.row.hl{background:linear-gradient(90deg,rgba(239,207,134,.16),rgba(239,207,134,.03));box-shadow:inset 0 0 0 1px rgba(239,207,134,.42)}
+.row.hl h3,.row.hl time,.row.hl .dur{color:var(--gold)}
+.row.hl .dot{background:var(--gold);border-color:var(--gold)}
+@keyframes rowIn{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.5)}100%{transform:scale(1)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,207,134,.6)}100%{box-shadow:0 0 0 22px rgba(239,207,134,0)}}
+.slide.active .row{animation:rowIn .75s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.55s + var(--i) * .12s)}
+.slide.active .dot{animation:pop .5s ease both;animation-delay:calc(.7s + var(--i) * .12s)}
+.slide.active .row.hl .dot{animation:pop .5s ease calc(.7s + var(--i) * .12s) both,pulse 2.4s ease-out 2.2s infinite}
+
+/* ---------- 3. message title ---------- */
+.msg-head{position:absolute;left:0;right:0;top:130px;display:flex;flex-direction:column;align-items:center;gap:34px}
+.msg-title{font:900 190px/1.1 var(--serif);color:var(--gold);text-shadow:0 0 90px rgba(239,207,134,.35);white-space:nowrap}
+.ch{display:inline-block}
+.slide.active .ch{animation:chIn 1s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.45s + var(--i) * .09s)}
+@keyframes chIn{from{opacity:0;transform:translateY(70px);filter:blur(14px)}to{opacity:1;transform:none;filter:blur(0)}}
+.refs{font-size:36px;letter-spacing:.14em;color:var(--muted)}
+.route{position:absolute;left:0;bottom:0;width:1920px;height:380px}
+.route svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.faint{fill:none;stroke:rgba(255,255,255,.24);stroke-width:3;stroke-dasharray:4 14;stroke-linecap:round}
+.glow{fill:none;stroke:var(--teal);stroke-width:5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 10px rgba(47,224,176,.8))}
+.slide.active .glow{animation:draw 5.6s ease-in-out .7s both}
+@keyframes draw{to{stroke-dashoffset:0}}
+.plane{position:absolute;left:0;top:0;width:60px;height:56px;offset-path:path('M 240 300 C 640 40, 1260 20, 1680 230');offset-rotate:auto;offset-distance:0%}
+.plane svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 12px rgba(239,207,134,.8))}
+.slide.active .plane{animation:fly 5.6s ease-in-out .7s both}
+@keyframes fly{from{offset-distance:0%}to{offset-distance:100%}}
+.city{font:500 38px var(--sans);fill:var(--text);text-anchor:middle;letter-spacing:.1em}
+.pt-a{fill:var(--gold)}
+.pt-b{fill:var(--teal)}
+.ping{fill:none;stroke:var(--teal);stroke-width:3;transform-box:fill-box;transform-origin:center;opacity:0}
+.slide.active .ping{animation:ping 2.8s ease-out 6.2s infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(5);opacity:0}}
+
+/* ---------- 4. verse ---------- */
+.rings{position:absolute;inset:0;pointer-events:none}
+.ring{position:absolute;left:50%;top:50%;width:620px;height:620px;margin:-310px 0 0 -310px;border:2px solid rgba(47,224,176,.3);border-radius:50%;opacity:0}
+.slide.active .ring{animation:ring 9s ease-out infinite;animation-delay:calc(var(--i) * 3s)}
+@keyframes ring{0%{transform:scale(.4);opacity:.55}100%{transform:scale(3);opacity:0}}
+.verse-wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:56px;z-index:1}
+.verse{text-align:center}
+.vl{font:600 84px/1.62 var(--serif);color:var(--text)}
+.slide.active .vl{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.7s + var(--i) * .5s)}
+.vl mark{background:none;color:var(--gold);animation:glowGold 3.2s ease-in-out 3s infinite alternate}
+@keyframes glowGold{from{text-shadow:0 0 0 rgba(239,207,134,0)}to{text-shadow:0 0 44px rgba(239,207,134,.75)}}
+.vl em{font-style:normal;color:#8ff3d3}
+.note{position:absolute;left:0;right:0;bottom:90px;text-align:center;font-size:32px;letter-spacing:.12em;color:var(--muted);z-index:1}
+
+/* ---------- controls ---------- */
+.nav{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:14px;padding:7px 14px;border-radius:999px;background:rgba(5,15,28,.6);backdrop-filter:blur(8px);z-index:10;opacity:.55;transition:opacity .3s}
+.nav:hover,.nav:focus-within{opacity:1}
+.nav button{all:unset;cursor:pointer;box-sizing:border-box}
+.arrow{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--text);font-size:20px;line-height:1}
+.arrow:hover{background:rgba(255,255,255,.12)}
+.dots{display:flex;gap:10px;align-items:center}
+.dots button{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.35);transition:width .35s cubic-bezier(.2,.7,.2,1),background .3s}
+.dots button.on{width:34px;background:var(--gold)}
+.nav button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.count{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:3.2em;text-align:center}
+
+
+/* ---------- full deck additions ---------- */
+.tl{position:absolute;left:140px;top:110px}
+.mid-title{font:900 130px/1.1 var(--serif);color:var(--gold);text-shadow:0 0 70px rgba(239,207,134,.3)}
+
+/* 4 opening shift */
+.shift{position:absolute;left:140px;right:140px;top:250px;display:grid;grid-template-columns:1fr 200px 1fr;align-items:center}
+.shift small{display:block;font:500 30px var(--sans);letter-spacing:.3em;color:var(--muted);margin-bottom:18px}
+.shift p{font:900 112px/1.25 var(--serif)}
+.was p{color:#b9c8d3}
+.now p{color:var(--gold);text-shadow:0 0 60px rgba(239,207,134,.3)}
+.now{text-align:left}
+.was{text-align:right}
+.arrow-svg{width:200px;height:60px;overflow:visible}
+.arrow-svg path{fill:none;stroke:var(--teal);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 8px rgba(47,224,176,.7))}
+.slide.active .arrow-svg path{animation:draw 1.2s ease 1.5s both}
+.slide.active .was{animation:rise .9s cubic-bezier(.2,.7,.2,1) .5s both}
+.slide.active .now{animation:rise .9s cubic-bezier(.2,.7,.2,1) 2.2s both}
+.under{position:absolute;left:0;right:0;top:780px;text-align:center}
+.under p{font-size:52px;line-height:1.5;color:var(--text)}
+.under .god{font:900 96px/1.3 var(--serif);color:var(--gold);text-shadow:0 0 60px rgba(239,207,134,.35)}
+
+/* 5 birthday story */
+.bubbles{position:absolute;left:140px;top:250px;width:1000px;display:flex;flex-direction:column;gap:34px;align-items:flex-start}
+.who{font-size:28px;letter-spacing:.2em;color:var(--muted);margin-bottom:-14px}
+.bubble{position:relative;background:rgba(47,224,176,.15);box-shadow:inset 0 0 0 1px rgba(47,224,176,.4);padding:34px 56px;border-radius:44px 44px 44px 10px;font:600 76px/1.2 var(--serif)}
+.slide.active .bubble{animation:bub .7s cubic-bezier(.2,1.3,.4,1) both;animation-delay:calc(.7s + var(--i) * 1.1s);transform-origin:left bottom}
+@keyframes bub{from{opacity:0;transform:scale(.4) translateY(30px)}to{opacity:1;transform:none}}
+.verdict{position:absolute;left:1220px;top:230px;width:560px}
+.verdict .v1{font:600 56px/1.4 var(--serif);color:var(--muted);position:relative;display:inline-block}
+.verdict .v1::after{content:"";position:absolute;left:-6px;right:-6px;top:54%;height:6px;background:rgba(255,255,255,.65);transform-origin:left;transform:scaleX(0)}
+.slide.active .verdict .v1::after{animation:grow .6s ease 4.2s both}
+.verdict .v2{font:600 56px/1.4 var(--serif);margin-top:6px}
+.verdict .v3{font:900 210px/1.1 var(--serif);color:var(--gold);text-shadow:0 0 80px rgba(239,207,134,.45)}
+.slide.active .verdict .v1{animation:rise .8s ease 3.4s both}
+.slide.active .verdict .v2{animation:rise .8s ease 4.6s both}
+.slide.active .verdict .v3{animation:rise 1s cubic-bezier(.2,.7,.2,1) 5s both}
+.core{position:absolute;left:140px;right:140px;bottom:110px;text-align:center;font:600 66px/1.4 var(--serif);color:var(--text)}
+.core b{color:var(--gold);font-weight:600}
+.slide.active .core{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) 6.6s both}
+
+/* verse variants */
+.verse.md .vl{font-size:72px}
+.ref{font:500 30px var(--sans);letter-spacing:.24em;color:var(--teal);margin-top:30px}
+.verse .gap{height:6px}
+.sub{font-size:44px;line-height:1.6;color:var(--muted);text-align:center}
+.vl strong{font-weight:600;color:var(--gold);text-shadow:0 0 44px rgba(239,207,134,.6)}
+
+/* 9 out and in */
+.pairs{position:absolute;left:0;right:0;top:230px;display:flex;flex-direction:column;gap:22px;align-items:center}
+.pair{display:grid;grid-template-columns:720px 180px 720px;align-items:center;font:600 70px/1.3 var(--serif)}
+.pair span:first-child{text-align:right}
+.pair span:last-child{text-align:left}
+.pair i{display:block;height:3px;margin:0 30px;background:linear-gradient(90deg,transparent,var(--teal),transparent);transform-origin:center}
+.slide.active .pair{animation:rise .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.6s + var(--i) * .75s)}
+.slide.active .pair i{animation:grow 1s ease both;animation-delay:calc(.9s + var(--i) * .75s)}
+.finale{position:absolute;left:0;right:0;bottom:110px;text-align:center;font:900 120px/1.2 var(--serif);color:var(--gold);text-shadow:0 0 80px rgba(239,207,134,.45)}
+.slide.active .finale{animation:rise 1.2s cubic-bezier(.2,.7,.2,1) 4.2s both}
+
+/* 10 presence */
+.pres{position:absolute;left:0;right:0;top:150px;text-align:center}
+.pres .eyebrow{justify-content:center}
+.pres p{margin-top:34px;font:600 60px/1.6 var(--serif);color:var(--text)}
+.pres .big{margin-top:14px;font:900 128px/1.25 var(--serif);color:var(--gold);text-shadow:0 0 90px rgba(239,207,134,.4)}
+.slide.active .pres .big{animation:rise 1.2s cubic-bezier(.2,.7,.2,1) 1.6s both}
+.slide.active .pres p.l1{animation:rise .9s ease .8s both}
+.midlabel{font:900 52px var(--serif);fill:var(--gold);text-anchor:middle;letter-spacing:.2em;opacity:0}
+.slide.active .midlabel{animation:fadein 1.2s ease 3.4s both}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+
+/* 11 sending */
+.send{position:absolute;left:0;right:0;top:300px;text-align:center;display:flex;justify-content:center;align-items:center;gap:120px}
+.send .a{font:900 230px/1 var(--serif);color:#b9c8d3;position:relative}
+.send .a::after{content:"";position:absolute;left:-14px;right:-14px;top:52%;height:12px;background:#ff8a7a;border-radius:6px;transform-origin:left;transform:scaleX(0)}
+.slide.active .send .a::after{animation:grow .6s ease 1.4s both}
+.send .arr{font:400 100px var(--sans);color:var(--muted)}
+.send .b{font:900 270px/1 var(--serif);color:var(--gold);text-shadow:0 0 100px rgba(239,207,134,.5)}
+.slide.active .send .a{animation:rise .9s ease .6s both}
+.slide.active .send .arr{animation:fadein .6s ease 2s both}
+.slide.active .send .b{animation:rise 1.2s cubic-bezier(.2,.7,.2,1) 2.3s both}
+.under2{position:absolute;left:0;right:0;bottom:120px;text-align:center;font:600 54px/1.7 var(--serif)}
+.slide.active .under2{animation:rise 1s ease 3.4s both}
+.under2 em{font-style:normal;color:#8ff3d3}
+
+/* 12 pillars */
+.pillars{position:absolute;left:140px;right:140px;top:230px;display:grid;grid-template-columns:repeat(3,1fr);gap:70px}
+.pillar{padding-top:34px;position:relative}
+.pillar::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--sky));transform-origin:left}
+.slide.active .pillar::before{animation:grow 1s ease both;animation-delay:calc(.6s + var(--i) * .8s)}
+.pillar h3{font:900 170px/1.15 var(--serif);color:var(--gold);text-shadow:0 0 70px rgba(239,207,134,.3)}
+.pillar p{margin-top:18px;font-size:40px;color:var(--text);line-height:1.5}
+.slide.active .pillar{animation:rise 1s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.6s + var(--i) * .8s)}
+.closing{position:absolute;left:140px;right:140px;bottom:100px;font:600 48px/1.75 var(--serif)}
+.closing .g{color:var(--gold)}
+.slide.active .closing{animation:rise 1.1s ease 3.6s both}
+
+/* 13 share */
+.share-l{position:absolute;left:140px;top:250px;width:1180px}
+.share-l h2{font:900 150px/1.15 var(--serif);color:var(--gold);text-shadow:0 0 80px rgba(239,207,134,.35)}
+.prompt{margin-top:46px;padding:36px 48px;border-radius:30px;background:rgba(47,224,176,.12);box-shadow:inset 0 0 0 1px rgba(47,224,176,.4);font:600 66px/1.35 var(--serif)}
+.tip{margin-top:30px;font-size:36px;color:var(--muted)}
+.timer{position:absolute;left:1380px;top:320px;width:400px;height:400px;display:grid;place-items:center;cursor:pointer;text-align:center}
+.timer svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.timer .track{fill:none;stroke:rgba(255,255,255,.14);stroke-width:14}
+.timer .prog{fill:none;stroke:var(--teal);stroke-width:14;stroke-linecap:round;stroke-dasharray:942.5;stroke-dashoffset:0;filter:drop-shadow(0 0 12px rgba(47,224,176,.7))}
+.timer .num{font:900 170px/1 var(--sans);font-variant-numeric:tabular-nums;position:relative}
+.timer .lab{position:absolute;bottom:60px;left:0;right:0;font-size:28px;letter-spacing:.2em;color:var(--muted)}
+.timer.done .prog{stroke:var(--gold)}
+.timer.done .num{color:var(--gold);animation:pulsenum .8s ease 3}
+@keyframes pulsenum{50%{transform:scale(1.15)}}
+.timer:focus-visible{outline:3px solid var(--gold);outline-offset:8px;border-radius:50%}
+.slide.active .timer{animation:rise 1s ease 1s both}
+
+/* 14 prayer cards */
+.steps{position:absolute;left:140px;right:140px;top:520px;display:grid;grid-template-columns:repeat(3,1fr);gap:50px}
+.card{padding:46px 44px;border-radius:30px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px var(--line)}
+.card h3{font:900 76px/1.2 var(--serif);color:var(--gold)}
+.card p{margin-top:18px;font-size:38px;line-height:1.5}
+.slide.active .card{animation:rise 1s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.9s + var(--i) * .5s)}
+.card:nth-child(2){box-shadow:inset 0 0 0 1px rgba(239,207,134,.45);background:linear-gradient(160deg,rgba(239,207,134,.14),rgba(255,255,255,.03))}
+
+/* 16 thank you */
+.thanks{position:absolute;left:0;right:0;top:300px;text-align:center}
+.thanks h2{font:900 220px/1.15 var(--serif);color:var(--gold);text-shadow:0 0 100px rgba(239,207,134,.45);white-space:nowrap}
+.thanks p{margin-top:30px;font:600 56px/1.6 var(--serif)}
+.thanks .pho{margin-top:46px;font-size:34px;letter-spacing:.4em;color:var(--teal)}
+.fly{position:absolute;left:0;top:0;width:60px;height:56px;offset-path:path('M -100 900 C 500 760, 1300 980, 2020 640');offset-rotate:auto;offset-distance:0%}
+.fly svg{width:100%;height:100%;filter:drop-shadow(0 0 12px rgba(239,207,134,.8))}
+.slide.active .fly{animation:fly 11s ease-in-out 1.5s infinite}
+.slide.active .thanks p{animation:rise 1s ease 2.2s both}
+.slide.active .thanks .pho{animation:rise 1s ease 3s both}
+
+
+/* worship + JoJo sharing */
+.big-title{font:900 270px/1.05 var(--serif);color:var(--gold);text-shadow:0 0 100px rgba(239,207,134,.4)}
+.sub-line{font:600 64px/1.4 var(--serif);color:var(--text)}
+.eq{position:absolute;left:140px;right:140px;bottom:90px;height:340px;display:flex;align-items:flex-end;gap:14px}
+.eq i{flex:1;height:var(--h);border-radius:10px 10px 0 0;background:linear-gradient(to top,var(--teal),var(--sky) 62%,var(--gold));opacity:.85;transform-origin:bottom;animation:eq var(--t) ease-in-out var(--dl) infinite alternate}
+@keyframes eq{from{transform:scaleY(.12)}to{transform:scaleY(1)}}
+.song-l{position:absolute;left:140px;top:190px}
+.song-l .sub-line{margin-top:6px}
+.jj-l{position:absolute;left:140px;top:250px}
+.jj-l .big-title{font-size:210px}
+.jj-l .sub-line{margin-top:30px}
+.odo-wrap{position:absolute;left:1130px;top:170px;display:flex;align-items:flex-end;gap:10px;filter:drop-shadow(0 0 50px rgba(239,207,134,.35))}
+.odo{height:560px;overflow:hidden}
+.odo ul{list-style:none;font:900 560px/560px var(--serif);color:var(--gold);font-variant-numeric:tabular-nums}
+.slide.active .odo ul{animation:roll 3s cubic-bezier(.2,.8,.2,1) .8s both}
+@keyframes roll{from{transform:translateY(0)}to{transform:translateY(-2240px)}}
+.odo-unit{font:900 190px/1 var(--serif);color:var(--muted);padding-bottom:70px}
+.slide.active .odo-unit{animation:rise 1s ease 3.2s both}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0s !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<div class="bg" id="bg" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+
+<main class="stage" id="stage">
+
+  <!-- 1 封面 -->
+  <section class="slide s-cover" aria-label="封面：祈禱與分享">
+    <div class="cover-bg" aria-hidden="true"></div>
+    <div class="poster">
+      <img src="poster.jpg" alt="祈禱與分享海報：11月27日中午12點，會議室，講員葉浩恩">
+      <div class="sheen" aria-hidden="true"></div>
+    </div>
+    <p class="hint">按 → 或點擊畫面翻頁</p>
+  </section>
+
+  <!-- 2 流程 -->
+  <section class="slide s-flow" aria-label="今日流程">
+    <div class="flow-left">
+      <p class="eyebrow rise" style="--d:0">11月27日 · 中午12點 · 會議室</p>
+      <h2 class="flow-title rise" style="--d:.12">今日流程</h2>
+      <p class="lede rise" style="--d:.24">禁食祈禱會<br>JoJo 差遣及祝福禮</p>
+      <div class="total rise" style="--d:.36"><span class="num">60</span><span>分鐘</span></div>
+    </div>
+    <ol class="timeline">
+      <li class="row hl" style="--i:0"><time>12:00</time><span class="dot"></span><div><h3>開場禱告</h3><p>今天是禁食祈禱，也是差遣禮</p></div><span class="dur">3 分</span></li>
+      <li class="row" style="--i:1"><time>12:03</time><span class="dot"></span><div><h3>敬拜</h3><p>詩歌一次唱完</p></div><span class="dur">13 分</span></li>
+      <li class="row" style="--i:2"><time>12:16</time><span class="dot"></span><div><h3>JoJo 分享</h3><p>這幾年的點滴</p></div><span class="dur">10 分</span></li>
+      <li class="row" style="--i:3"><time>12:26</time><span class="dot"></span><div><h3>訓勉</h3><p>〈行程的設計者〉</p></div><span class="dur">10 分</span></li>
+      <li class="row" style="--i:4"><time>12:36</time><span class="dot"></span><div><h3>同事分享</h3><p>她在辦公室最令你印象深刻的一件事</p></div><span class="dur">16 分</span></li>
+      <li class="row" style="--i:5"><time>12:52</time><span class="dot"></span><div><h3>禱告與差遣</h3><p>圍禱、三位同事祝福、民數記 6:24-26</p></div><span class="dur">6 分</span></li>
+      <li class="row" style="--i:6"><time>12:58</time><span class="dot"></span><div><h3>合照</h3><p>留住這一刻</p></div><span class="dur">2 分</span></li>
+    </ol>
+  </section>
+
+
+  <!-- 敬拜 -->
+  <section class="slide" aria-label="敬拜">
+    <p class="eyebrow tl rise" style="--d:0">12:03 · 13 分鐘</p>
+    <div class="song-l">
+      <h2 class="big-title rise" style="--d:.1">敬拜</h2>
+      <p class="sub-line rise" style="--d:.4">詩歌一次唱完</p>
+    </div>
+    <div class="eq" id="eq" aria-hidden="true"></div>
+  </section>
+
+  <!-- JoJo 分享 -->
+  <section class="slide" aria-label="JoJo 分享">
+    <p class="eyebrow tl rise" style="--d:0">12:16 · 10 分鐘</p>
+    <div class="jj-l">
+      <h2 class="big-title rise" style="--d:.1">JoJo<br>分享</h2>
+      <p class="sub-line rise" style="--d:.5">這幾年的點滴</p>
+    </div>
+    <div class="odo-wrap" aria-hidden="true">
+      <div class="odo"><ul><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>
+      <span class="odo-unit">年</span>
+    </div>
+  </section>
+
+  <!-- 3 訓勉標題 -->
+  <section class="slide s-msg" aria-label="訓勉信息：行程的設計者">
+    <div class="msg-head">
+      <p class="eyebrow rise" style="--d:0">訓勉信息</p>
+      <h2 class="msg-title" data-split>〈行程的設計者〉</h2>
+      <p class="refs rise" style="--d:.7">詩篇 121:7-8 · 腓立比書 1:3-6 · 箴言 16:9</p>
+    </div>
+    <div class="route" aria-hidden="true">
+      <svg viewBox="0 0 1920 380">
+        <path class="faint" d="M 240 300 C 640 40, 1260 20, 1680 230"/>
+        <path class="glow" pathLength="1" d="M 240 300 C 640 40, 1260 20, 1680 230"/>
+        <circle class="pt-a" cx="240" cy="300" r="13"/>
+        <circle class="ping" cx="1680" cy="230" r="13"/>
+        <circle class="pt-b" cx="1680" cy="230" r="13"/>
+        <text class="city" x="240" y="350">多倫多</text>
+        <text class="city" x="1680" y="298">黃刀鎮</text>
+      </svg>
+      <div class="plane"><svg viewBox="0 0 60 56"><polygon points="58,28 4,8 20,28 4,48" fill="#efcf86"/></svg></div>
+    </div>
+  </section>
+
+  <!-- 4 開場 -->
+  <section class="slide" aria-label="開場">
+    <p class="eyebrow tl rise" style="--d:0">開場</p>
+    <div class="shift">
+      <div class="was"><small>以前</small><p>飛去聽<br>別人的旅程</p></div>
+      <svg class="arrow-svg" viewBox="0 0 200 60" aria-hidden="true"><path pathLength="1" d="M 10 30 H 185 M 160 8 L 188 30 L 160 52"/></svg>
+      <div class="now"><small>現在</small><p>為別人<br>設計旅程</p></div>
+    </div>
+    <div class="under">
+      <p class="rise" style="--d:2.6">這一刻，也有一位早就把你的旅程想得很周到。</p>
+      <p class="god rise" style="--d:3.6">他就是神。</p>
+    </div>
+  </section>
+
+  <!-- 5 生日故事 -->
+  <section class="slide" aria-label="一、回望：問生日">
+    <p class="eyebrow tl rise" style="--d:0">一、回望</p>
+    <div class="bubbles">
+      <p class="who rise" style="--d:.2">JoJo 問我</p>
+      <div class="bubble" style="--i:0">你幾時生日呀？</div>
+      <div class="bubble" style="--i:1">咁你幾多歲呀？</div>
+    </div>
+    <div class="verdict">
+      <p class="v1">可以是冒犯</p>
+      <p class="v2">也可以是</p>
+      <p class="v3">興趣</p>
+    </div>
+    <p class="core">一個肯問你生日的人，<b>是因為她想記住你。</b></p>
+  </section>
+
+  <!-- 6 腓立比書 -->
+  <section class="slide" aria-label="經文：腓立比書 1:3-6">
+    <div class="rings" aria-hidden="true"><i class="ring" style="--i:0"></i><i class="ring" style="--i:1"></i><i class="ring" style="--i:2"></i></div>
+    <div class="verse-wrap">
+      <p class="eyebrow rise" style="--d:0">經文 · 腓立比書 1:3-6</p>
+      <blockquote class="verse md">
+        <p class="vl" style="--i:0">我每逢想念你們，就<strong>感謝我的神</strong>；</p>
+        <div class="gap"></div>
+        <p class="vl" style="--i:1">我深信那在你們心裡動了善工的，</p>
+        <p class="vl" style="--i:2">必成全這工，直到耶穌基督的日子。</p>
+      </blockquote>
+      <p class="sub rise" style="--d:2.8">每逢想念你，我們就感謝神。<br><span style="color:var(--gold)">神不會中途放棄祂開始的工作。</span></p>
+    </div>
+  </section>
+
+  <!-- 7 箴言 -->
+  <section class="slide" aria-label="二、前行：箴言 16:9">
+    <div class="rings" aria-hidden="true"><i class="ring" style="--i:0"></i><i class="ring" style="--i:1"></i><i class="ring" style="--i:2"></i></div>
+    <div class="verse-wrap">
+      <p class="eyebrow rise" style="--d:0">二、前行 · 箴言 16:9</p>
+      <blockquote class="verse">
+        <p class="vl" style="--i:0">人心<strong>籌算</strong>自己的道路，</p>
+        <p class="vl" style="--i:1">惟耶和華<strong>指引</strong>他的腳步。</p>
+      </blockquote>
+      <p class="sub rise" style="--d:2.2">航班會延誤，天氣會轉變。<br>真正帶領腳步的，是神。</p>
+    </div>
+  </section>
+
+  <!-- 8 詩篇 121 -->
+  <section class="slide s-verse" aria-label="經文：詩篇 121:7-8">
+    <div class="rings" aria-hidden="true"><i class="ring" style="--i:0"></i><i class="ring" style="--i:1"></i><i class="ring" style="--i:2"></i></div>
+    <div class="verse-wrap">
+      <p class="eyebrow rise" style="--d:0">經文 · 詩篇 121:7-8</p>
+      <blockquote class="verse">
+        <p class="vl" style="--i:0">耶和華要保護你，免受一切的災害；</p>
+        <p class="vl" style="--i:1">他要保護你的性命。</p>
+        <p class="vl" style="--i:2"><mark>你出你入</mark>，耶和華要保護你，</p>
+        <p class="vl" style="--i:3"><em>從今時直到永遠。</em></p>
+      </blockquote>
+    </div>
+    <p class="note rise" style="--d:2.4">上行之歌：以色列人上耶路撒冷朝聖，一路走一路唱的詩</p>
+  </section>
+
+  <!-- 9 你出你入 -->
+  <section class="slide" aria-label="你出你入">
+    <p class="eyebrow tl rise" style="--d:0">你出你入</p>
+    <div class="pairs">
+      <div class="pair" style="--i:0"><span>出門</span><i></i><span>回家</span></div>
+      <div class="pair" style="--i:1"><span>出發</span><i></i><span>降落</span></div>
+      <div class="pair" style="--i:2"><span>工作的日子</span><i></i><span>一個人的晚上</span></div>
+      <div class="pair" style="--i:3"><span>熱鬧的時候</span><i></i><span>孤單的時候</span></div>
+    </div>
+    <p class="finale">神說：我都在。</p>
+  </section>
+
+  <!-- 10 同在 -->
+  <section class="slide" aria-label="從今時直到永遠">
+    <div class="pres">
+      <p class="eyebrow rise" style="--d:0">從今時直到永遠</p>
+      <p class="l1">沒有期限，也沒有地域。</p>
+      <p class="big">神的同在沒有離開你</p>
+    </div>
+    <div class="route" aria-hidden="true">
+      <svg viewBox="0 0 1920 380">
+        <path class="faint" d="M 240 300 C 640 40, 1260 20, 1680 230"/>
+        <path class="glow" pathLength="1" d="M 240 300 C 640 40, 1260 20, 1680 230"/>
+        <text class="midlabel" x="952" y="40">同在</text>
+        <circle class="pt-a" cx="240" cy="300" r="13"/>
+        <circle class="ping" cx="1680" cy="230" r="13"/>
+        <circle class="pt-b" cx="1680" cy="230" r="13"/>
+        <text class="city" x="240" y="350">多倫多</text>
+        <text class="city" x="1680" y="298">黃刀鎮</text>
+      </svg>
+      <div class="plane"><svg viewBox="0 0 60 56"><polygon points="58,28 4,8 20,28 4,48" fill="#efcf86"/></svg></div>
+    </div>
+  </section>
+
+  <!-- 11 差遣 -->
+  <section class="slide" aria-label="三、差遣">
+    <p class="eyebrow tl rise" style="--d:0">三、帶著祝福出發</p>
+    <div class="send">
+      <span class="a">送走</span><span class="arr">→</span><span class="b">差遣</span>
+    </div>
+    <p class="under2">今天不是只用一頓飯來送你，<br>而是用一個<em>空出來的心</em>，把你交到神手上。</p>
+  </section>
+
+  <!-- 12 結語 -->
+  <section class="slide" aria-label="結語">
+    <p class="eyebrow tl rise" style="--d:0">結語 · 帶三樣東西上路</p>
+    <div class="pillars">
+      <div class="pillar" style="--i:0"><h3>感恩</h3><p>因為神一路帶領</p></div>
+      <div class="pillar" style="--i:1"><h3>倚靠</h3><p>因為神指引每一步</p></div>
+      <div class="pillar" style="--i:2"><h3>祝福</h3><p>因為你會成為別人的祝福</p></div>
+    </div>
+    <p class="closing">你曾經飛去聽別人的旅程，現在你要為別人設計旅程。<br><span class="g">願你也成為他們旅途上的祝福。</span></p>
+  </section>
+
+  <!-- 13 同事分享 -->
+  <section class="slide" aria-label="同事分享">
+    <p class="eyebrow tl rise" style="--d:0">同事分享</p>
+    <div class="share-l">
+      <h2 class="rise" style="--d:.1">一句話，30 秒</h2>
+      <p class="prompt rise" style="--d:.5">我最記得 JoJo 的一件事是……</p>
+      <p class="tip rise" style="--d:.8">她在這個辦公室最令你印象深刻的一件事。也可以這樣開頭：「感謝神，因為 JoJo……」</p>
+    </div>
+    <div class="timer" id="timer" role="button" tabindex="0" aria-label="30 秒倒數，點擊開始或重設">
+      <svg viewBox="0 0 340 340" aria-hidden="true"><circle class="track" cx="170" cy="170" r="150"/><circle class="prog" id="prog" cx="170" cy="170" r="150"/></svg>
+      <span class="num" id="tnum">30</span>
+      <span class="lab" id="tlab">點擊倒數</span>
+    </div>
+  </section>
+
+  <!-- 14 禱告與差遣 -->
+  <section class="slide" aria-label="禱告與差遣">
+    <p class="eyebrow tl rise" style="--d:0">差遣禮</p>
+    <h2 class="mid-title rise" style="position:absolute;left:140px;top:210px;--d:.15">禱告與差遣</h2>
+    <div class="steps">
+      <div class="card" style="--i:0"><h3>圍禱</h3><p>全體站起來，圍著 JoJo，向她伸手或舉手。</p></div>
+      <div class="card" style="--i:1"><h3>祝福</h3><p>三位同事，按感動為她祝福。</p></div>
+      <div class="card" style="--i:2"><h3>差遣</h3><p>一同為她的新工作、新環境，也為部門禱告。</p></div>
+    </div>
+  </section>
+
+  <!-- 15 民數記 -->
+  <section class="slide" aria-label="祝福：民數記 6:24-26">
+    <div class="rings" aria-hidden="true"><i class="ring" style="--i:0"></i><i class="ring" style="--i:1"></i><i class="ring" style="--i:2"></i></div>
+    <div class="verse-wrap">
+      <p class="eyebrow rise" style="--d:0">祝福 · 民數記 6:24-26</p>
+      <blockquote class="verse md">
+        <p class="vl" style="--i:0">願耶和華賜福給你，保護你；</p>
+        <p class="vl" style="--i:1">願耶和華使他的臉光照你，賜恩給你；</p>
+        <p class="vl" style="--i:2">願耶和華向你仰臉，<em>賜你平安。</em></p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 16 謝謝 -->
+  <section class="slide" aria-label="謝謝你，JoJo">
+    <div class="rings" aria-hidden="true"><i class="ring" style="--i:0"></i><i class="ring" style="--i:1"></i><i class="ring" style="--i:2"></i></div>
+    <div class="fly" aria-hidden="true"><svg viewBox="0 0 60 56"><polygon points="58,28 4,8 20,28 4,48" fill="#efcf86"/></svg></div>
+    <div class="thanks">
+      <h2 data-split>謝謝你，JoJo</h2>
+      <p>願你出入都有主同在，被祝福，被記念。</p>
+      <p class="pho">合　照</p>
+    </div>
+  </section>
+
+</main>
+
+<nav class="nav" aria-label="簡報導覽">
+  <button class="arrow" id="prev" aria-label="上一頁">‹</button>
+  <div class="dots" id="dots"></div>
+  <span class="count" id="count"></span>
+  <button class="arrow" id="next" aria-label="下一頁">›</button>
+</nav>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage');
+  var slides=Array.prototype.slice.call(stage.querySelectorAll('.slide'));
+  var dotsEl=document.getElementById('dots');
+  var countEl=document.getElementById('count');
+  var cur=-1;
+
+  /* stars */
+  var bg=document.getElementById('bg');
+  for(var i=0;i<70;i++){
+    var s=document.createElement('i');s.className='star';
+    var sz=Math.random()*2.2+.8;
+    s.style.cssText='left:'+(Math.random()*100)+'%;top:'+(Math.random()*70)+'%;width:'+sz+'px;height:'+sz+'px;--t:'+(3+Math.random()*4)+'s;--dl:'+(Math.random()*5)+'s';
+    bg.appendChild(s);
+  }
+
+
+  /* equalizer bars */
+  Array.prototype.forEach.call(document.querySelectorAll('.eq'),function(el){
+    for(var i=0;i<48;i++){
+      var b=document.createElement('i');
+      b.style.cssText='--h:'+(55+Math.random()*45)+'%;--t:'+(.7+Math.random()*.9)+'s;--dl:-'+(Math.random()*1.6)+'s';
+      el.appendChild(b);
+    }
+  });
+
+  /* split title characters */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-split]'),function(el){
+    var t=el.textContent;el.setAttribute('aria-label',t);el.textContent='';
+    Array.prototype.forEach.call(t,function(c,i){
+      var sp=document.createElement('span');sp.className='ch';sp.setAttribute('aria-hidden','true');
+      sp.style.setProperty('--i',i);sp.textContent=c;el.appendChild(sp);
+    });
+  });
+
+  /* dots */
+  slides.forEach(function(sl,i){
+    var b=document.createElement('button');
+    b.setAttribute('aria-label','第 '+(i+1)+' 頁：'+(sl.getAttribute('aria-label')||''));
+    b.addEventListener('click',function(){go(i);});
+    dotsEl.appendChild(b);
+  });
+
+
+  /* 30-second timer */
+  var timerEl=document.getElementById('timer'),prog=document.getElementById('prog'),tnum=document.getElementById('tnum'),tlab=document.getElementById('tlab');
+  var T={on:false,t0:0,id:0},TOTAL=30,CIRC=942.5;
+  function tReset(){
+    clearInterval(T.id);T.on=false;
+    timerEl.classList.remove('done');
+    prog.style.strokeDashoffset=0;tnum.textContent=TOTAL;tlab.textContent='點擊倒數';
+  }
+  function tTick(){
+    var left=TOTAL-(performance.now()-T.t0)/1000;
+    if(left<=0){
+      clearInterval(T.id);T.on=false;
+      prog.style.strokeDashoffset=CIRC;tnum.textContent='0';tlab.textContent='時間到';
+      timerEl.classList.add('done');return;
+    }
+    prog.style.strokeDashoffset=CIRC*(1-left/TOTAL);
+    tnum.textContent=Math.ceil(left);
+  }
+  function tToggle(){
+    if(T.on||timerEl.classList.contains('done')){tReset();return;}
+    T.on=true;T.t0=performance.now();tlab.textContent='點擊重設';
+    T.id=setInterval(tTick,100);tTick();
+  }
+  timerEl.addEventListener('click',function(e){e.stopPropagation();tToggle();});
+  timerEl.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();tToggle();}
+  });
+
+  function fit(){
+    var s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+    stage.style.transform='scale('+s+')';
+    stage.style.left=((window.innerWidth-1920*s)/2)+'px';
+    stage.style.top=((window.innerHeight-1080*s)/2)+'px';
+  }
+
+  function show(n,dir){
+    if(n<0||n>=slides.length||n===cur)return;
+    tReset();
+    var old=cur>=0?slides[cur]:null,nw=slides[n];
+    slides.forEach(function(s){if(s!==old&&s!==nw)s.classList.remove('active','leaving','next','prev','first');});
+    if(old){
+      old.classList.remove('active','next','prev','first');
+      old.classList.add('leaving',dir>0?'next':'prev');
+      setTimeout(function(){if(!old.classList.contains('active'))old.classList.remove('leaving','next','prev');},700);
+    }
+    nw.classList.remove('leaving','next','prev','first');
+    nw.classList.add('active',cur<0?'first':(dir>0?'next':'prev'));
+    cur=n;
+    Array.prototype.forEach.call(dotsEl.children,function(d,i){d.classList.toggle('on',i===n);});
+    countEl.textContent=(n+1)+' / '+slides.length;
+    try{if(location.hash!=='#s'+(n+1))location.hash='s'+(n+1);}catch(e){}
+  }
+  function go(n){show(n,n>cur?1:-1);}
+  function next(){go(Math.min(cur+1,slides.length-1));}
+  function prev(){go(Math.max(cur-1,0));}
+
+  document.getElementById('next').addEventListener('click',function(e){e.stopPropagation();next();});
+  document.getElementById('prev').addEventListener('click',function(e){e.stopPropagation();prev();});
+
+  document.addEventListener('keydown',function(e){
+    if(e.target===timerEl)return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='Enter'){e.preventDefault();next();}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev();}
+    else if(e.key==='Home'){go(0);}
+    else if(e.key==='End'){go(slides.length-1);}
+  });
+
+  var swipedAt=0,sx=0;
+  document.addEventListener('touchstart',function(e){sx=e.changedTouches[0].clientX;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>60){swipedAt=Date.now();if(dx<0)next();else prev();}
+  },{passive:true});
+  stage.addEventListener('click',function(e){
+    if(Date.now()-swipedAt<400)return;
+    var r=stage.getBoundingClientRect();
+    if((e.clientX-r.left)/r.width<.28)prev();else next();
+  });
+
+  function fromHash(){
+    var m=/^#s(\d+)$/.exec(location.hash);
+    var n=m?parseInt(m[1],10)-1:0;
+    if(n<0||n>=slides.length)n=0;
+    return n;
+  }
+  window.addEventListener('hashchange',function(){go(fromHash());});
+  window.addEventListener('resize',fit);
+  fit();
+  show(fromHash(),1);
+})();
+</script>
+</body>
+</html>
